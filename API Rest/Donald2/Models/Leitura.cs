@@ -6,10 +6,10 @@ using System.Web;
 using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Donald2.Banco;
+using API.Banco;
 using System.Data;
 
-namespace Donald2.Models
+namespace API.Models
 {
     public class Leitura
     {

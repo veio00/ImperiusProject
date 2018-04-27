@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Web;
 
-namespace Donald2.Models
+namespace API.Models
 {
     [DataContract]
     public class Usuario 

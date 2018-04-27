@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Donald2.Banco
+namespace API.Banco
 {
     public class BancoGrupo
     {

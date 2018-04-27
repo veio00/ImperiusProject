@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace Donald2.Banco
+namespace API.Banco
 {
     public class Conexao
     {

@@ -1,41 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Donald2.Banco.Conexao">
+  <Class Name="API.Banco.Conexao">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAQAAABAAAAAAA=</HashCode>
       <FileName>Banco\Conexao.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Donald2.Controllers.ViewController">
+  <Class Name="API.Controllers.ViewController">
     <Position X="6.75" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAABAAABAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Controllers\ViewController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Donald2.Controllers.ColetaController">
+  <Class Name="API.Controllers.ColetaController">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAABAABACAAAAAAAAgAAAAAQAAAAEAAA=</HashCode>
       <FileName>Controllers\ColetaController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Donald2.Banco.BancoGrupo">
+  <Class Name="API.Banco.BancoGrupo">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
       <FileName>Banco\BancoGrupo.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Donald2.Banco.BancoMaquina">
+  <Class Name="API.Banco.BancoMaquina">
     <Position X="4.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAAAQAAQAAAAgAABIAAAAAAE=</HashCode>
       <FileName>Banco\BancoMaquina.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Donald2.Banco.BancoLeitura">
+  <Class Name="API.Banco.BancoLeitura">
     <Position X="2.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAk=</HashCode>

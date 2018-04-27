@@ -1,4 +1,4 @@
-﻿using Donald2.Banco;
+﻿using API.Banco;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace Donald2.Controllers
+namespace API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ViewController : ApiController

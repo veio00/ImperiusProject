@@ -7,7 +7,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Donald2.Models
+namespace API.Models
 {
    
     public class Maquina

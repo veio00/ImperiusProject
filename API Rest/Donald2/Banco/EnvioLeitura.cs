@@ -1,4 +1,4 @@
-﻿using Donald2.Models;
+﻿using API.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace Donald2.Banco
+namespace API.Banco
 {
     public class BancoLeitura
     {
