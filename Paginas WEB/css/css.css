@@ -1,0 +1,66 @@
+body,html{
+	background-color:#2d2d2d;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:#82FA58;
+}
+.col-md-9,.col-md-3{
+	border-left:2px solid #151515;
+	height:100%;
+}
+.row{
+	background-color:#000;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:#82FA58;
+}
+footer{
+	background-color:#000;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	color:#82FA58;
+}
+#grupo{
+  border:2px solid #000;
+  height:500px;
+  overflow:auto;
+  background-color:#2d2d2d;
+}
+
+#Tela > button,i {
+	margin:auto;
+	margin-top: 3%;
+	
+}#Tela > button {
+	width:30%;
+
+}
+#Tela > span {
+	font-size:small;
+
+}
+
+.maquina {
+	font-size:600%;
+}
+.maquina a{
+	width: 30%;
+}
+.info {
+	color:#82FA58;
+	background-color:#000;
+}
+.info circle{
+	display:none;
+	
+}
+svg {
+	margin:auto;
+}
+svg > g > text[text-anchor~=middle]{
+	fill:#82FA58;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+	font-size:1.5em;
+}
+
+svg > g > text[text-anchor~=end],text[text-anchor~=start]{
+	fill:#82FA58;
+	font-family:"Comic Sans MS", cursive, sans-serif;
+}

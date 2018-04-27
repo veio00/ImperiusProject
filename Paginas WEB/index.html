@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+	<title>Donald 2</title>
+	<meta charset="utf-8"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<link href="css/css.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<!--icones do google-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="js/home.js"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		$("button").on("click", function(){
+			console.log(jsonM);
+			var local = $(this).attr('value');
+			document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
+			var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';
+
+			document.getElementById('chart_info').innerHTML = CriaInfo;			
+		});
+	});
+	
+	</script> 
+
+</head>
+<body class="inicia">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="btn-group">
+		<button type="button" class="btn btn-lg btn-default" style="border-radius: 100%;width: 50px;height: 50px;font-size: xx-small;padding: 0;">Imperius</button>
+
+	</div>
+	<div class="btn-group">
+		
+		<button type="button" class="btn btn-warning">Empresas</button>
+		<button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">			<span class="sr-only">Toggle Dropdown</span>
+		</button>
+		<div class="dropdown-menu" id="empresa">
+		</div>
+	</div>
+    </nav>
+
+	  <div class="row">
+        <div class="col-md-3 w-100 p-3" id="grupo">
+		<h1 id="Letreiro1">[empresa]</h1>
+			<div id="Tela" class="d-flex align-content-stretch flex-wrap">
+		
+			</div>
+		</div>
+        <div class="col-md-9 w-100 p-3 info" >
+		<h1 id="Letreiro2">[Nome da Maquina]</h1>
+			<div class="row">
+				<div class="col-md-12" id="chart_div" > </div>
+				<div class="col-md-12" id="chart_info" > </div>
+			</div>
+		</div>
+
+</body>
+</html>
