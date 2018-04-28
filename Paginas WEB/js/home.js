@@ -1,11 +1,10 @@
-<!--https://jsonplaceholder.typicode.com/users/-->
+//<!--https://jsonplaceholder.typicode.com/users/-->
 var jsonC;var jsonM;
-	$(document).ready(function(){
-
-		google.charts.load('current', {'packages':['gauge']});
-		google.charts.setOnLoadCallback(drawChart);
-		empresa();
-		maquinas(1);
+$(document).ready(function(){
+	google.charts.load('current', {'packages':['gauge']});
+	google.charts.setOnLoadCallback(drawChart);
+	empresa();
+	maquinas(1);
 	function drawChart() {
 		var settings = {
 		"async": false,
@@ -95,7 +94,7 @@ var jsonC;var jsonM;
 					keepAlive = "btn btn-lg btn-success";
 				}
 					
-				view += '	<button type="button" class="'+keepAlive+' id="mostra" value='+i+'><i class="maquina material-icons"  style="font-size: 300%;">computer</i> <br><span style="font-size: small;">'+response[i].Nome_Maquina+'</span></button>';
+				view += `\t<button type="button" class="${keepAlive} + mostra"  value=${i}><i class="maquina material-icons"  style="font-size: 300%;">computer</i> <br><span style="font-size: small;">${response[i].Nome_Maquina}</span></button>`;
 				keepAlive="btn btn-lg btn-danger";
 			}
 			view += "\n";
@@ -106,13 +105,22 @@ var jsonC;var jsonM;
 		
 		
 	}
-	
-	$(".dropdown-item").on("click", function(){
-		var NomeEmpresa = $(this).text();
-		var Cod = $(this).attr('value');
-		maquinas(Cod);
-		document.getElementById('Letreiro1').innerHTML = NomeEmpresa;
-				
-	});
 
+		$(".dropdown-item").on("click", function () {
+			var NomeEmpresa = $(this).text();
+            console.log('aa');
+			var Cod = $(this).attr('value');
+			maquinas(Cod);
+			document.getElementById('Letreiro1').innerHTML = NomeEmpresa;
+
+		});
+
+        $('.mostra').click(function(){
+            console.log(jsonM);
+            var local = $(this).attr('value');
+            document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
+            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';
+
+            document.getElementById('chart_info').innerHTML = CriaInfo;
+        });
 });

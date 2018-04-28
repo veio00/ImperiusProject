@@ -13,6 +13,7 @@ create table Cliente(
 idCliente int primary key identity(1,1),
 Nome varchar(100),
 Email varchar(100),
+Senha varchar(6),
 Acesso_Cliente int foreign key references Acesso(idAcesso),
 Grupo_Cliente int foreign key references Grupo(idGrupo),
 )
@@ -76,9 +77,9 @@ insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')
 insert into Grupo values('Imperius')
 insert into Grupo values('Logicalis')
 
-insert into Cliente(Nome,Email,Acesso_Cliente,Grupo_Cliente) values('Carlos Vinicius','bebe@nubeliu.com.br',2,1)
-insert into Cliente(Nome,Email,Acesso_Cliente,Grupo_Cliente) values('Wilian Mathias','veio@nubeliu.com.br',1,1)
-insert into Cliente(Nome,Email,Acesso_Cliente,Grupo_Cliente) values('Adrelayne ','dodoi@nubeliu.com.br',2,1)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Carlos Vinicius','bebe@nubeliu.com.br','123456',2,1)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Wilian Mathias','veio@nubeliu.com.br','123456',1,1)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Adrelayne ','dodoi@nubeliu.com.br','123456',2,1)
 
 insert into Maquina values('Will','Teste-pc0',getdate(),'Microsoft',1,1)
 insert into Maquina values('Will','Teste-pc1',getdate(),'Microsoft',0,1)
