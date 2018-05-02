@@ -5,6 +5,7 @@ $(document).ready(function(){
 	google.charts.setOnLoadCallback(drawChart);
 	empresa();
 	maquinas(1);
+    agoravai();
 	function drawChart() {
 		var settings = {
 		"async": false,
@@ -105,22 +106,21 @@ $(document).ready(function(){
 		
 		
 	}
-
-		$(".dropdown-item").on("click", function () {
-			var NomeEmpresa = $(this).text();
+	function agoravai(){
+        $(".dropdown-item").on("click", function () {
+            var NomeEmpresa = $(this).text();
             console.log('aa');
-			var Cod = $(this).attr('value');
-			maquinas(Cod);
-			document.getElementById('Letreiro1').innerHTML = NomeEmpresa;
+            var Cod = $(this).attr('value');
+            maquinas(Cod);
+            document.getElementById('Letreiro1').innerHTML = NomeEmpresa;
+            agoravai();
+        });
 
-		});
-
-        $('.mostra').click(function(){
-            console.log(jsonM);
+        $('.mostra').on("click", function(){
             var local = $(this).attr('value');
             document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
-            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';
-
-            document.getElementById('chart_info').innerHTML = CriaInfo;
+            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
         });
+	}
+
 });

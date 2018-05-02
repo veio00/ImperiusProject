@@ -33,13 +33,11 @@ namespace API.Controllers
         [HttpPost]
         public bool LeituraAgora([FromBody]Leitura l)
         {
-            if (l != null)
-            {
-                return true;
-            }
-            else{
-                return false;
-            }
+
+                BancoLeitura bl = new BancoLeitura();
+                
+                return bl.Salva_Leitura(l);
+   
             
 
         }

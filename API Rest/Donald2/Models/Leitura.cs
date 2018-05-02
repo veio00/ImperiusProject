@@ -14,7 +14,7 @@ namespace API.Models
     public class Leitura
     {
         
-        public int IdUso { get; set; }
+        public int idUso { get; set; }
 
         public int Hd { get; set; }
 
@@ -22,7 +22,7 @@ namespace API.Models
 
         public int Cpu { get; set; }
 
-        public int MaquinaUso { get; set; }
+        public int Maquina_Uso { get; set; }
 
         public string ConvertClasse()
         {

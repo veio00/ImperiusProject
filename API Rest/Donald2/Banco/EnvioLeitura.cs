@@ -39,6 +39,26 @@ namespace API.Banco
 
         }
 
+        public bool Salva_Leitura(Leitura l)
+        {
+            try
+            {
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("insert into Leitura(Hd,Mram,Cpu,Maquina_Uso) values("+l.Hd+","+l.Mram+","+l.Cpu+","+l.Maquina_Uso+")", LstParametros);
+                if(dt != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+
+                return false;
+            }
+        }
+
 
     }
 }
