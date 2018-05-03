@@ -37,10 +37,9 @@ namespace API.Controllers
                 BancoLeitura bl = new BancoLeitura();
                 
                 return bl.Salva_Leitura(l);
-   
-            
-
         }
+
+
         [HttpPost]
         public bool KeepAlive([FromBody]bool ok)
         {
@@ -54,6 +53,8 @@ namespace API.Controllers
             }
             
         }
+
+
         [HttpPost]
         public int InfoMaquina([FromBody]Maquina maq)
         {
