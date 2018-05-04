@@ -126,6 +126,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Telebot, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Telebot.3.1.1\lib\net461\Telebot.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -142,6 +145,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Banco\BancoGrupo.cs" />
+    <Compile Include="Banco\BancoLogin.cs" />
     <Compile Include="Banco\BancoMaquina.cs" />
     <Compile Include="Banco\Conexao.cs" />
     <Compile Include="Banco\EnvioLeitura.cs" />

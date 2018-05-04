@@ -45,6 +45,7 @@ namespace API.Controllers
             return lista;
         }
 
+        [HttpPost]
         public DataTable CarregaMaquinaEsp(int maquina)
         {
             BancoMaquina CarregaMaquinas = new BancoMaquina();
@@ -52,5 +53,15 @@ namespace API.Controllers
             lista = CarregaMaquinas.Carregar_Maquina(maquina);
             return lista;
         }
+
+        [HttpGet]
+        public DataTable Login(string user, string senha)
+        {
+            BancoLogin ValidarLogin = new BancoLogin();
+            DataTable lista = new DataTable();
+            lista = ValidarLogin.ValidarAcesso(user,senha);
+            return lista;
+        }
+
     }
 }
