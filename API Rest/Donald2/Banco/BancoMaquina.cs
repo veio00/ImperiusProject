@@ -28,7 +28,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select * from Maquina where Grupo_Cliente =" + empresa +" ", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select * from Maquina inner join grupo on idgrupo = Grupo_Cliente where Grupo_Cliente =" + empresa +" ", LstParametros);
 
                 return dt;
             }

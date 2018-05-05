@@ -3,9 +3,21 @@ var jsonC;var jsonM;
 $(document).ready(function(){
 	google.charts.load('current', {'packages':['gauge']});
 	google.charts.setOnLoadCallback(drawChart);
-	empresa();
 	maquinas(1);
-    agoravai();
+	
+});
+
+$(function(){
+		document.getElementById('Letreiro2').innerHTML = "Escolha a maquina ao lado";
+		$('.btn').on("click", function(){
+            var local = $(this).attr('value');
+            document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
+            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
+        });
+		
+	});
+	
+	
 	function drawChart() {
 		var settings = {
 		"async": false,
@@ -46,32 +58,6 @@ $(document).ready(function(){
         }, 1000);
     }
 	
-	function empresa() {
-		var maq = {
-		"url": "http://imperius.azurewebsites.net/api/View/CarregaEmpresa",
-		"method": "post",
-		"dataType": "json",
-		"headers": {
-			"Cache-Control": "no-cache",
-			"Postman-Token": "df98e587-f312-4bab-b892-cab75b40d4be"
-			}
-		}
-		
-		$.ajax(maq).done(function (response) {
-			var view = "\n";
-			for (var i in response) {
-			view += '	<a class="dropdown-item" id="Escolha" value='+response[i].idGrupo+' href="#" >'+response[i].Nome_grupo +'</a> ';
-			}
-			view += "\n";
-			document.getElementById('empresa').innerHTML = view;
-		}, 
-		function (errorCode, errorText) {
-			console.log('Código: ' + errorCode);
-			console.log('Mensagem de erro: ' + errorText);
-		});
-	}
-	
-	
 	function maquinas(grupo) {
 		
 		var settings = {
@@ -88,6 +74,8 @@ $(document).ready(function(){
 		$.ajax(settings).done(function (response) {
 			var keepAlive="btn btn-lg btn-danger";
 			jsonM = response;
+			console.log(jsonM[0].Nome_grupo);
+            document.getElementById('Letreiro1').innerHTML = jsonM[0].Nome_grupo;
 			var view = "\n";
 			for (var i in response) {
 				
@@ -95,32 +83,16 @@ $(document).ready(function(){
 					keepAlive = "btn btn-lg btn-success";
 				}
 					
-				view += `\t<button type="button" class="${keepAlive} + mostra"  value=${i}><i class="maquina material-icons"  style="font-size: 300%;">computer</i> <br><span style="font-size: small;">${response[i].Nome_Maquina}</span></button>`;
+				view += `\t<button type="button" class="${keepAlive} mostra"  value=${i}><i class="maquina material-icons"  style="font-size: 300%;">computer</i> <br><span style="font-size: small;">${response[i].Nome_Maquina}</span></button>`;
 				keepAlive="btn btn-lg btn-danger";
 			}
 			view += "\n";
 			document.getElementById('Tela').innerHTML = view;
 		});
-		
-		
-		
-		
-	}
-	function agoravai(){
-        $(".dropdown-item").on("click", function () {
-            var NomeEmpresa = $(this).text();
-            console.log('aa');
-            var Cod = $(this).attr('value');
-            maquinas(Cod);
-            document.getElementById('Letreiro1').innerHTML = NomeEmpresa;
-            agoravai();
-        });
 
-        $('.mostra').on("click", function(){
-            var local = $(this).attr('value');
-            document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
-            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
-        });
+            
 	}
 
-});
+
+
+

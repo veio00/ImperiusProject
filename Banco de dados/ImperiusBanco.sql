@@ -66,7 +66,7 @@ Leitura_Logs int foreign key references Leitura(idLeitura)
 
 
 /*select * from Grupo*/
-select * from Maquina where Grupo_Cliente = 1
+select * from Maquina inner join grupo on idgrupo = Grupo_Cliente where Grupo_Cliente = 1
 select * from leitura where Maquina_Uso= 1
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
 select * from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
