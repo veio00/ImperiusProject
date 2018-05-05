@@ -4,20 +4,11 @@ $(document).ready(function(){
 	google.charts.load('current', {'packages':['gauge']});
 	google.charts.setOnLoadCallback(drawChart);
 	maquinas(1);
-	
+	setInterval(function() {
+          drawChart();
+        }, 1000);
 });
 
-$(function(){
-		document.getElementById('Letreiro2').innerHTML = "Escolha a maquina ao lado";
-		$('.btn').on("click", function(){
-            var local = $(this).attr('value');
-            document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
-            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
-        });
-		
-	});
-	
-	
 	function drawChart() {
 		var settings = {
 		"async": false,
@@ -36,8 +27,8 @@ $(function(){
 			
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', jsonC['Cpu']],
-          ['CPU', jsonC['Mram']],
+          ['Memory', jsonC['Mram']],
+          ['CPU', jsonC['Cpu']],
           ['Disk', jsonC['Hd']]
         ]);
 
@@ -53,9 +44,7 @@ $(function(){
 
         chart.draw(data, options);
 
-        setInterval(function() {
-          chart.draw(data, options);
-        }, 1000);
+        
     }
 	
 	function maquinas(grupo) {
@@ -88,6 +77,15 @@ $(function(){
 			}
 			view += "\n";
 			document.getElementById('Tela').innerHTML = view;
+			$(function(){
+		document.getElementById('Letreiro2').innerHTML = "Escolha a maquina ao lado";
+		$('.btn').on("click", function(){
+            var local = $(this).attr('value');
+            document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
+            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
+        });
+		
+	});
 		});
 
             

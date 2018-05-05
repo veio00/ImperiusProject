@@ -28,7 +28,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select * from leitura where Maquina_Uso= 1 ", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso = 1)", LstParametros);
 
                 return dt;
             }
