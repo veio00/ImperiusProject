@@ -6,37 +6,10 @@
     </title>
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-	$(function(){
-		$(".loga").click(function(){
-				var Nome = document.getElementById('nome').value;
-				var Senha = document.getElementById('senha').value;
-				var settings = {
-                    "url": "http://localhost:3182/api/Values/GetFoi?coleta=" + Nome+"";
-					"method": "GET",
-				}
-				$.ajax(settings).done(function (response) {
-					if(response == "não ta Funcionando"){
-						$("#alerta").html("Deslogado");
-					}else{
-						$("#alerta").html("Logado");
-					}
-				});
-		});
-
-
-	});
-    </script>
+    
 </head>
 <body>
-    <div class="login">
-        <span>Nome:</span>
-        <input type="text" id="nome" /><br>
-        <span>Senha:</span>
-        <input type="text" id="senha" /><br>
-        <input class="loga" type="submit" value="Logar">
-        <label id="alerta">Deslogado</label>
-    </div>
-
+    <div style="width:100%;height:0;padding-bottom:40%;position:relative;"><iframe src="https://giphy.com/embed/x0w62ZcupOMak" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/star-wars-confused-han-solo-x0w62ZcupOMak"></a></p>
+    <h1>Em Manutenção</h1>
 </body>
 </html>
