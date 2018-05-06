@@ -22,7 +22,7 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ColetaController : ApiController 
     {
-        // GET api/values
+        // GET api/Coleta
         [SwaggerOperation("GetAll")]
         [HttpGet]
         public IEnumerable<string> Get()
@@ -81,6 +81,13 @@ namespace API.Controllers
         {
             BancoMaquina bm = new BancoMaquina();
             return bm.Salva_Disco(maq);
+        }
+
+        [HttpPost] //api/Coleta/PesquisaCadastro
+        public int PesquisaCadastro(string email)
+        {
+            BancoGrupo emp = new BancoGrupo();
+            return emp.Carregar_Grupo_Esp(email);
         }
     }
 }
