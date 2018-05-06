@@ -12,7 +12,11 @@ import controller.Envio;
 import controller.LeituraMaquina;
 import java.io.*;
 import java.net.*;
+import model.Disco;
 import model.Leitura;
+import model.Maquina;
+import model.Memoria;
+import model.Processador;
 import org.hyperic.sigar.*;
 import org.*;
 
@@ -24,20 +28,22 @@ public class View {
 
     public static void main(String[] args) throws SigarException, Exception {
         Gson g = new Gson();
-        System.out.println(g.toJson(LeituraMaquina.ColetaUso()));
-        System.out.println(g.toJson(InfoMaquina.getDados()));
-        InfoMaquina.getDados();
-        Leitura u;
-        u = LeituraMaquina.ColetaUso();
-        boolean verificador = false;
-        while(verificador == false){
-            verificador = Envio.envioColeta(g.toJson(u),"http://imperius.azurewebsites.net/api/Coleta/LeituraAgora", Boolean.class);
-            Alerta.KeepAlive("true",Boolean.class);
-            System.out.println("foi");
-        }
-        
+        while(1>0){
+            
+            System.out.println(g.toJson(LeituraMaquina.ColetaUso()));
+            System.out.println(g.toJson(InfoMaquina.infoMaquina()));
+            Leitura u = LeituraMaquina.ColetaUso();
+            
+            boolean verificador = false;
+            while(verificador == false){
+                verificador = Envio.envioColeta(g.toJson(u),"http://imperius.azurewebsites.net/api/Coleta/LeituraAgora", Boolean.class);
 
+                System.out.println(verificador);
+            }
+        }
+           
     }
+    
     
     
 }

@@ -13,6 +13,7 @@ import org.hyperic.sigar.*;
  * @author Will
  */
 public class LeituraMaquina {
+    // metodo que retorna uma classe model de Leitura para mandar a api
     public static Leitura ColetaUso(){
         Sigar sigar = new Sigar();
         Mem mem = null;
@@ -21,7 +22,7 @@ public class LeituraMaquina {
         try {
             mem = sigar.getMem();
             cpuperc = sigar.getCpuPerc();
-            disk = sigar.getFileSystemUsage("C:");          
+            disk = sigar.getFileSystemUsage("C:");        
         } catch (SigarException se) {
             se.printStackTrace();
         }
@@ -30,7 +31,7 @@ public class LeituraMaquina {
         uso.setCpu((int) (cpuperc.getCombined()*100));
         uso.setMram((int) mem.getUsedPercent());
         uso.setHd((int) (disk.getUsePercent()*100));
-        
+        uso.setMaquina_Uso(1);
         return uso;
         
     }
