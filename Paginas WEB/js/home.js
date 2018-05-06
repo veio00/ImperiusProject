@@ -1,18 +1,40 @@
 //<!--https://jsonplaceholder.typicode.com/users/-->
-var jsonC;var jsonM;
+var jsonC;var jsonM;var maquina;
 $(document).ready(function(){
-	google.charts.load('current', {'packages':['gauge']});
-	google.charts.setOnLoadCallback(drawChart);
-	maquinas(1);
+	maquinas(Cookie("Grupo_Cliente"));
 	setInterval(function() {
-          drawChart();
-        }, 1000);
+        drawChart(maquina);
+    }, 1000);
 });
-
-	function drawChart() {
+	function Cookie(name) {
+		var cookies = document.cookie;
+		var prefix = name + "=";
+		var begin = cookies.indexOf("; " + prefix);
+	
+		if (begin == -1) {
+	
+			begin = cookies.indexOf(prefix);
+			
+			if (begin != 0) {
+				return null;
+			}
+	
+		} else {
+			begin += 2;
+		}
+	
+		var end = cookies.indexOf(";", begin);
+		
+		if (end == -1) {
+			end = cookies.length;                        
+		}
+	
+		return unescape(cookies.substring(begin + prefix.length, end));
+	}
+	function drawChart(mostrar) {
 		var settings = {
 		"async": false,
-		"url": "http://imperius.azurewebsites.net/api/View/CarregaLeitura",
+		"url": "http://imperius.azurewebsites.net/api/View/CarregaLeitura?escolhida="+mostrar+"",
 		"method": "post",
 		"dataType": "json",
 		"headers": {
@@ -22,8 +44,11 @@ $(document).ready(function(){
 		}
 		
 		$.ajax(settings).done(function (response) {
+			if(response.length == 0){
+				return null;
+			}
 			jsonC =response[0];
-		});
+		}).fail(function(response){});
 			
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
@@ -45,8 +70,7 @@ $(document).ready(function(){
         chart.draw(data, options);
 
         
-    }
-	
+    }	
 	function maquinas(grupo) {
 		
 		var settings = {
@@ -72,20 +96,28 @@ $(document).ready(function(){
 					keepAlive = "btn btn-lg btn-success";
 				}
 					
-				view += `\t<button type="button" class="${keepAlive} mostra"  value=${i}><i class="maquina material-icons"  style="font-size: 300%;">computer</i> <br><span style="font-size: small;">${response[i].Nome_Maquina}</span></button>`;
+				view += `\t<button type="button" class="${keepAlive} mostra"  value=${i}><i class="maquina material-icons md-48" >computer</i> <br><span style="font-size: small;">${response[i].Nome_Maquina}</span></button>`;
 				keepAlive="btn btn-lg btn-danger";
 			}
 			view += "\n";
+			document.getElementById('Letreiro2').innerHTML = "Escolha a maquina ao lado";
 			document.getElementById('Tela').innerHTML = view;
 			$(function(){
-		document.getElementById('Letreiro2').innerHTML = "Escolha a maquina ao lado";
-		$('.btn').on("click", function(){
-            var local = $(this).attr('value');
-            document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
-            var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
-        });
+				
+				$('.btn').on("click", function(){
+					var local = $(this).attr('value');
+					document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
+					var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
+					google.charts.load('current', {'packages':['gauge']});
+					maquina = jsonM[local].idMaquina;
+					google.charts.setOnLoadCallback(drawChart(maquina));
+				});
 		
-	});
+			});
+		}).fail(function(response){
+			
+			window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/index.html";
+
 		});
 
             

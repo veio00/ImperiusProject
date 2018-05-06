@@ -63,24 +63,24 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public bool InfoProcessador([FromBody]Processador maq,int id)
+        public bool InfoProcessador([FromBody]Processador maq)
         {
             BancoMaquina bm = new BancoMaquina();
-            return bm.Salva_Processador(maq,id);
+            return bm.Salva_Processador(maq);
         }
 
         [HttpPost]
-        public bool InfoMemoria([FromBody]Memoria maq, int id)
+        public bool InfoMemoria([FromBody]Memoria maq)
         {
             BancoMaquina bm = new BancoMaquina();
-            return bm.Salva_Memoria(maq, id);
+            return bm.Salva_Memoria(maq);
         }
 
         [HttpPost]
-        public bool InfoDisco([FromBody]Disco maq, int id)
+        public bool InfoDisco([FromBody]Disco maq)
         {
             BancoMaquina bm = new BancoMaquina();
-            return bm.Salva_Disco(maq, id);
+            return bm.Salva_Disco(maq);
         }
     }
 }

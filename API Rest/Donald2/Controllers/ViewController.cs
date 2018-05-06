@@ -18,16 +18,18 @@ namespace API.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpPost]
-        public DataTable CarregaLeitura()
+        [HttpPost]//api/view/
+        public DataTable CarregaLeitura(int escolhida)
         {
             BancoLeitura CarregaLeitura = new BancoLeitura();
             DataTable lista = new DataTable();
-            lista = CarregaLeitura.Carregar_Leitura();
+            lista = CarregaLeitura.Carregar_Leitura(escolhida);
             return lista;
         }
 
-        [HttpPost]
+
+
+        [HttpPost]//api/view/
         public DataTable CarregaEmpresa()
         {
             BancoGrupo CarregaMaquinas = new BancoGrupo();
@@ -36,7 +38,7 @@ namespace API.Controllers
             return lista;
         }
 
-        [HttpPost]
+        [HttpPost]//api/view/
         public DataTable CarregaMaquina(int grupo)
         {
             BancoMaquina CarregaMaquinas = new BancoMaquina();
@@ -44,8 +46,15 @@ namespace API.Controllers
             lista = CarregaMaquinas.Carregar_Maquina(grupo);
             return lista;
         }
+        [HttpPost]//api/view/ExcluiMaquina
+        public bool ExcluiMaquina(int maquina)
+        {
+            BancoMaquina CarregaMaquinas = new BancoMaquina();
+            bool resposta = CarregaMaquinas.Exclui_Maquina(maquina);
+            return resposta;
+        }
 
-        [HttpPost]
+        [HttpPost]//api/view/
         public DataTable CarregaMaquinaEsp(int maquina)
         {
             BancoMaquina CarregaMaquinas = new BancoMaquina();
@@ -54,7 +63,7 @@ namespace API.Controllers
             return lista;
         }
 
-        [HttpGet]
+        [HttpGet]//api/view/
         public DataTable Login(string user, string senha)
         {
             BancoLogin ValidarLogin = new BancoLogin();

@@ -69,7 +69,7 @@ Leitura_Logs int foreign key references Leitura(idLeitura)
 select * from Maquina inner join grupo on idgrupo = Grupo_Cliente where Grupo_Cliente = 1
 select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso = 1)
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
-select * from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
+select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
 
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')
@@ -97,3 +97,14 @@ insert into Memoria(Qtd,Geracao,Maquina_Memoria) values (2048,'ddr3',1)
 insert into Disco(Espaço,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 1)
 
 select max(idMAquina) from Maquina
+
+select * from Processador 
+select * from Memoria
+select * from Disco
+delete from maquina where idMAquina = 41
+delete from leitura where Maquina_Uso = 41
+delete from Processador where Maquina_Cpu = 41
+delete from Memoria where Maquina_Memoria = 41
+delete from Disco where Maquina_Disco = 41
+
+insert into Processador values('Core(TM) i5-2450M CPU @ 2.50GHz',41)

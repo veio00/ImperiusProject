@@ -28,7 +28,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select * from Cliente where Email = '"+ user +"' and Senha = '"+ senha +"' ", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = '" + user +"' and Senha = '"+ senha +"' ", LstParametros);
 
                 return dt;
             }

@@ -21,14 +21,14 @@ namespace API.Banco
             ObjBanco = null;
         }
 
-        public DataTable Carregar_Leitura()
+        public DataTable Carregar_Leitura(int maquina)
         {
             try
             {
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso = 1)", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso ="+maquina+")", LstParametros);
 
                 return dt;
             }

@@ -82,13 +82,13 @@ namespace API.Banco
             }
         }
 
-        public bool Salva_Processador(Processador p,int id)
+        public bool Salva_Processador(Processador p)
         {
             try
             {
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("insert into Processador('"+p.Modelo+"',"+id+")", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("insert into Processador values('"+p.Modelo+"',"+p.MaquinaCpu+")", LstParametros);
 
                 if (dt != null)
                 {
@@ -105,13 +105,13 @@ namespace API.Banco
             }
         }
 
-        public bool Salva_Memoria(Memoria me, int id)
+        public bool Salva_Memoria(Memoria me)
         {
             try
             {
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("insert into Memoria(Qtd,Geracao,Maquina_Memoria) values ("+me.Qtd+",'"+me.Geracao+"',"+id+")", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("insert into Memoria(Qtd,Geracao,Maquina_Memoria) values ("+me.Qtd+",'"+me.Geracao+"',"+ me.MaquinaMemoria + ")", LstParametros);
 
                 if (dt != null)
                 {
@@ -129,13 +129,13 @@ namespace API.Banco
         }
 
 
-        public bool Salva_Disco(Disco d, int id)
+        public bool Salva_Disco(Disco d)
         {
             try
             {
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("insert into Disco(Espaço,Marca,N_Discos,Maquina_Disco) values ("+ d.Espaco+",'"+d.Marca+"',"+d.NDisco+","+d.MaquinaDisco+")", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values ("+ d.Espaco+",'"+d.Marca+"',"+d.NDisco+","+d.MaquinaDisco+")", LstParametros);
 
                 if (dt != null)
                 {
@@ -150,6 +150,31 @@ namespace API.Banco
             {
                 return false;
             }
+        }
+
+        public bool Exclui_Maquina(int maquina)
+        {
+            try
+            {
+
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("delete from Memoria where Maquina_Memoria =" + maquina + "", LstParametros);   
+                dt = ObjBanco.ExecuteQuery("delete from Disco where Maquina_Disco =" + maquina + "", LstParametros);
+                dt = ObjBanco.ExecuteQuery("delete from Processador where Maquina_Cpu =" + maquina + "", LstParametros);
+                dt = ObjBanco.ExecuteQuery("delete from leitura where Maquina_Uso =" + maquina + "", LstParametros);
+                dt = ObjBanco.ExecuteQuery("delete from maquina where idMAquina =" + maquina + "", LstParametros);
+                if (dt == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
     }
 }

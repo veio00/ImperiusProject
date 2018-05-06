@@ -1,7 +1,7 @@
 function login(nome,senha) {
 
 var settings = {
-  "url": "http://localhost:3182/api/view/Login?user="+nome+"&senha="+senha+"",
+  "url": "http://imperius.azurewebsites.net/api/view/Login?user="+nome+"&senha="+senha+"",
   "method": "GET",
   "headers": {
     "Cache-Control": "no-cache",
@@ -11,7 +11,14 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
   if(response.length > 0){
-	  alert("logou");
+
+		for (var i in response[0]) {
+			var valor;
+			valor = createCookie(i,response[0][i])
+			document.cookie = valor ;
+			i++;
+		}
+		window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/principal.html";
   }else {
 	  alert("usuario e/ou senha");
   }
@@ -27,12 +34,17 @@ $(function(){
 
 });
 
-
-
-
-
-
-
+function createCookie(name,value) {
+    
+    var date = new Date();
+    date.setTime(date.getTime()+(60*10000));
+    var expires = "; expires="+date.toUTCString();
+    
+    console.log(date.toUTCString());
+    console.log(name+"="+value+expires+";");
+	return name+"="+value+expires+";";
+    document.cookie = name+"="+value+expires+";";
+}
 
 $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function(){
     particlesJS('particles-js',
@@ -46,7 +58,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles
             }
           },
           "color": {
-            "value": "#ffffff"
+            "value": "#d8b600"
           },
           "shape": {
             "type": "circle",
