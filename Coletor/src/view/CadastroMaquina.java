@@ -133,8 +133,8 @@ public class CadastroMaquina extends javax.swing.JFrame {
             lblErro.setForeground(Color.red);
         }else{
             try {
-                int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""),"http://localhost:3182/api/Coleta/PesquisaCadastro?email="+email+""));
-                if(cod < 0){
+                int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""),"http://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro?email="+email+""));
+                if(cod > 0){
                     InfoMaquina.Cadastro(cod);
                 }else{
                     lblErro.setText("E-mail não cadastrado ou errado");
@@ -152,6 +152,7 @@ public class CadastroMaquina extends javax.swing.JFrame {
                 openURL("http://imperius.azurewebsites.net/");
             }
         }
+        System.exit(0);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     public static void main(String args[]) {

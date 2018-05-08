@@ -14,7 +14,14 @@ import model.Maquina;
 import model.Memoria;
 import model.Processador;
 import model.Leitura;
-import org.hyperic.sigar.*;
+import org.hyperic.sigar.CpuInfo;
+import org.hyperic.sigar.CpuPerc;
+import org.hyperic.sigar.FileSystemUsage;
+import org.hyperic.sigar.Mem;
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
+import org.hyperic.sigar.SysInfo;
+
 
 
 /**
