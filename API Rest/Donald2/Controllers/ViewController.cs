@@ -72,5 +72,11 @@ namespace API.Controllers
             return lista;
         }
 
+        [HttpPost]
+        public void alerta(string msg)
+        {
+            Mensageria.Envio(msg);
+        }
+
     }
 }
