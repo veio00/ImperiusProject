@@ -70,7 +70,7 @@ select * from Maquina inner join grupo on idgrupo = Grupo_Cliente where Grupo_Cl
 select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso = 1)
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
 select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
-select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'chewbacca@nubeliu.com.br'
+select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'bebe@nubeliu.com.br'
 
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')

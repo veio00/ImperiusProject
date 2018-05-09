@@ -5,10 +5,10 @@
 <meta charset="utf-8"/>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 	
 	<script src="../js/bootstrap.bundle.min.js"></script>
+	<script src="../js/relatorio.js"></script>
 	<link href="../css/relatorio.css" rel="stylesheet">
 	<!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -18,24 +18,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-	<script type="text/javascript" src="../js/relatorio.js"></script>
-	<script>
-	$(document).ready(function() {
-    $('#example').DataTable( {
-        "ajax": {
-            "url": "https://jsonplaceholder.typicode.com/users/",
-            "type": "GET"
-        },
-        "columns": [
-            { "data": "id" },
-            { "data": "name" },
-            { "data": "username" },
-            { "data": "email" },
-            { "data": "address" }
-        ]
-    } );
-} );
-	</script>
+	
 </head>
 <body class="inicia" style="background: black;">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -56,24 +39,8 @@
         <div class="col-md-12">
 		<table id="example" class="display" style="width:100%">
         <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>username</th>
-                <th>email</th>
-                <th>address</th>
-                <th></th>
-            </tr>
         </thead>
         <tfoot>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>username</th>
-                <th>email</th>
-                <th>address</th>
-                
-            </tr>
         </tfoot>
     </table>
 	</div>
