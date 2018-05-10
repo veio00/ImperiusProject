@@ -22,7 +22,8 @@ Create table Maquina(
 idMaquina int primary key identity(1,1),
 Responsavel varchar(50),
 Nome_Maquina varchar(30),
-Adiquirida varchar(10),
+Adquirida varchar(10),
+Data_Compra varchar, 
 Sistema varchar(20),
 Keep_Alive int,
 Grupo_Cliente int foreign key references Grupo(idGrupo)
@@ -54,6 +55,7 @@ idLeitura int primary key identity(1,1),
 Hd int,
 Mram int,
 Cpu int,
+Data varchar(10),
 Maquina_Uso int foreign key references Maquina(idMaquina)
 )
 
@@ -61,6 +63,7 @@ Maquina_Uso int foreign key references Maquina(idMaquina)
 create table Logss(
 idLogs int primary key identity(1,1),
 Data date,
+Msg varchar(280),
 Leitura_Logs int foreign key references Leitura(idLeitura)
 )
 
@@ -71,6 +74,8 @@ select * from leitura where idLeitura=(select max(idleitura) from leitura where 
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
 select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
 select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'bebe@nubeliu.com.br'
+Select 
+
 
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')
