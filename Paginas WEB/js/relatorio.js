@@ -56,19 +56,19 @@ $(document).ready (function () {
 	
 	function geraRelatorio2 (){
 		var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "http://localhost:3182/api/view/RelatorioLeitura",
-  "method": "POST",
-  "headers": {
-    "Cache-Control": "no-cache",
-    "Postman-Token": "5a170e39-2218-a3f9-dcbb-f6cd553aa831"
-  }
-}
-
-$.ajax(settings).done(function (data) {
-  console.log(data);
-  $('#example').DataTable({
+				"async": true,
+				"crossDomain": true,
+				"url": "http://localhost:3182/api/view/RelatorioLeitura",
+				"method": "POST",
+				"headers": {
+					"Cache-Control": "no-cache",
+					"Postman-Token": "5a170e39-2218-a3f9-dcbb-f6cd553aa831"
+				}
+			}
+			
+			$.ajax(settings).done(function (data) {
+			console.log(data);
+			$('#example').DataTable({
                         stateSave: true,
                         "language": {
                             "lengthMenu": "Mostrar MENU",
@@ -101,7 +101,7 @@ $.ajax(settings).done(function (data) {
 							{ "data": "Cpu" },
 							{ "data": "Data_Leitura" }
                         ]
-                    });
+                });
 });
 	}
 });
