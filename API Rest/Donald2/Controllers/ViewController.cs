@@ -78,5 +78,14 @@ namespace API.Controllers
             Mensageria.Envio(msg);
         }
 
+        [HttpPost]//api/view/
+        public DataTable RelatorioLeitura()
+        {
+            BancoRelatorios relatorio = new BancoRelatorios();
+            DataTable lista = new DataTable();
+            lista = relatorio.Carregar_Relatorio_Leitura();
+            return lista;
+        }
+
     }
 }

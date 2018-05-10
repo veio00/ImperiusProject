@@ -58,7 +58,7 @@ $(document).ready (function () {
 		var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://imperius.azurewebsites.net/api/view/CarregaMaquina?grupo=1",
+  "url": "http://localhost:3182/api/view/RelatorioLeitura",
   "method": "POST",
   "headers": {
     "Cache-Control": "no-cache",
@@ -92,15 +92,14 @@ $.ajax(settings).done(function (data) {
                         paging: true,
                         data: data,
                         columns: [ //configuração de pesquisa das tabelas
-                            { "data": "idMaquina" },
+                            { "data": "codigo" },
 							{ "data": "Responsavel" },
-							{ "data": "Nome_Maquina" },
-							{ "data": "Adiquirida" },
+							{ "data": "Data_Compra" },
 							{ "data": "Sistema" },
-							{ "data": "Keep_Alive" },
-							{ "data": "Grupo_Cliente" },
-							{ "data": "idGrupo" },
-							{ "data": "Nome_Grupo" }
+							{ "data": "Hd" },
+							{ "data": "Mram" },
+							{ "data": "Cpu" },
+							{ "data": "Data_Leitura" }
                         ]
                     });
 });

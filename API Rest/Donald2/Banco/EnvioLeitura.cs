@@ -45,7 +45,7 @@ namespace API.Banco
             {
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("insert into Leitura(Hd,Mram,Cpu,Maquina_Uso) values("+l.Hd+","+l.Mram+","+l.Cpu+","+l.Maquina_Uso+")", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("insert into Leitura(Hd,Mram,Cpu,Data,Maquina_Uso) values("+l.Hd+","+l.Mram+","+l.Cpu+","+ l.Data + "," + l.Maquina_Uso+")", LstParametros);
                 if(dt != null)
                 {
                     return true;

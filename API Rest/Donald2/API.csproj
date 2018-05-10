@@ -152,6 +152,7 @@
     <Compile Include="Banco\BancoMaquina.cs" />
     <Compile Include="Banco\Conexao.cs" />
     <Compile Include="Banco\EnvioLeitura.cs" />
+    <Compile Include="Banco\BancoRelatorios.cs" />
     <Compile Include="Controllers\ColetaController.cs" />
     <Compile Include="Controllers\Mensageria.cs" />
     <Compile Include="Controllers\ViewController.cs" />
