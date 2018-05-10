@@ -63,7 +63,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable resposta = ObjBanco.ExecuteQuery("insert into Maquina values('" + m.Responsavel + "','" + m.Nome_Maquina + "',getdate()" + ",'" + m.Sistema + "'," + m.KeepAlive + "," + m.Grupo_Cliente + ")", LstParametros);
+                DataTable resposta = ObjBanco.ExecuteQuery("insert into Maquina values('" + m.Responsavel + "','" + m.Nome_Maquina + "',getdate()" + ",'" + m.Data_Compra + ",'" + m.Sistema + "'," + m.KeepAlive + "," + m.Grupo_Cliente + ")", LstParametros);
                 DataTable dt = ObjBanco.ExecuteQuery("select max(idMAquina) from Maquina", LstParametros);
                 if (dt != null)
                 {

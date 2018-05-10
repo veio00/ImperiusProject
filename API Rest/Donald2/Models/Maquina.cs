@@ -15,7 +15,8 @@ namespace API.Models
         public int idMaquina { get; set; }
         public string Responsavel { get; set; }
         public string Nome_Maquina { get; set; }
-        public string Adiquirida { get; set; }
+        public string Adquirida { get; set; }
+        public string Data_Compra { get; set; }
         public string Sistema { get; set; }
         public int KeepAlive { get; set; }
         public int Grupo_Cliente { get; set; }

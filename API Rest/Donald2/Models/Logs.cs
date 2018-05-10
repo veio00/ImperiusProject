@@ -14,6 +14,7 @@ namespace API.Models
 
         [JsonProperty("data", Required = Required.Always)]
         public string Data { get; set; }
+        public string Msg { get; set; }
 
         [JsonProperty("Leitura_Logs", Required = Required.Always)]
         public int LeituraLogs { get; set; }
