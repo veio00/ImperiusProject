@@ -75,8 +75,8 @@ select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner jo
 select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
 select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'bebe@nubeliu.com.br'
 select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = 1 and Grupo_Cliente=1
-
-
+select idMaquina as codigo, Nome_Maquina, Responsavel, Adquirida, Modelo as Modelo_CPU,Qtd as Memoria_Total, Espaco as Tamanho_HD from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina where Grupo_Cliente=1
+select idLogs, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente=1
 
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')
@@ -97,12 +97,16 @@ insert into Maquina values('Will','Teste-pc4',getdate(),'25-12-2000','Microsoft'
 insert into Maquina values('Will','Teste-pc5',getdate(),'25-12-2000','Microsoft',0,1)
 
 insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',1)
+insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',2)
 
 insert into Processador values('core i3',1)
+insert into Processador values('core i3',2)
 
 insert into Memoria(Qtd,Geracao,Maquina_Memoria) values (2048,'ddr3',1)
+insert into Memoria(Qtd,Geracao,Maquina_Memoria) values (2048,'ddr3',2)
 
 insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 1)
+insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 2)
 
 select max(idMAquina) from Maquina
 
