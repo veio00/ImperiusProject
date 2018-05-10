@@ -23,7 +23,7 @@ idMaquina int primary key identity(1,1),
 Responsavel varchar(50),
 Nome_Maquina varchar(30),
 Adquirida varchar(10),
-Data_Compra varchar, 
+Data_Compra varchar(10), 
 Sistema varchar(20),
 Keep_Alive int,
 Grupo_Cliente int foreign key references Grupo(idGrupo)
@@ -74,7 +74,8 @@ select * from leitura where idLeitura=(select max(idleitura) from leitura where 
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
 select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
 select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'bebe@nubeliu.com.br'
-Select 
+select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = 1 and Grupo_Cliente=1
+
 
 
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
@@ -88,20 +89,20 @@ insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Wilia
 insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Adrelayne ','dodoi@nubeliu.com.br','123456',2,1)
 insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('chewbacca','chewbacca@nubeliu.com.br','123456',2,2)
 
-insert into Maquina values('Will','Teste-pc0',getdate(),'Microsoft',1,1)
-insert into Maquina values('Will','Teste-pc1',getdate(),'Microsoft',0,1)
-insert into Maquina values('Will','Teste-pc2',getdate(),'Microsoft',1,1)
-insert into Maquina values('Will','Teste-pc3',getdate(),'Microsoft',0,1)
-insert into Maquina values('Will','Teste-pc4',getdate(),'Microsoft',1,1)
-insert into Maquina values('Will','Teste-pc5',getdate(),'Microsoft',0,1)
+insert into Maquina values('Will','Teste-pc0',getdate(),'25-12-2000','Microsoft',1,1)
+insert into Maquina values('Will','Teste-pc1',getdate(),'25-12-2000','Microsoft',0,1)
+insert into Maquina values('Will','Teste-pc2',getdate(),'25-12-2000','Microsoft',1,1)
+insert into Maquina values('Will','Teste-pc3',getdate(),'25-12-2000','Microsoft',0,1)
+insert into Maquina values('Will','Teste-pc4',getdate(),'25-12-2000','Microsoft',1,1)
+insert into Maquina values('Will','Teste-pc5',getdate(),'25-12-2000','Microsoft',0,1)
 
-insert into Leitura(Hd,Mram,Cpu,Maquina_Uso) values(44,80,66,1)
+insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',1)
 
-insert into Processador('core i3',1)
+insert into Processador values('core i3',1)
 
 insert into Memoria(Qtd,Geracao,Maquina_Memoria) values (2048,'ddr3',1)
 
-insert into Disco(Espaço,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 1)
+insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 1)
 
 select max(idMAquina) from Maquina
 
