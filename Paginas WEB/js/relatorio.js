@@ -9,7 +9,7 @@ $(document).ready (function () {
 				dataType: "json",
 				headers: {
 				"Cache-Control": "no-cache",
-				"Postman-Token": "df98e587-f312-4bab-b892-cab75b40d4be"
+				
 				},
                 success: function (data) {
                     $('#example').DataTable({
