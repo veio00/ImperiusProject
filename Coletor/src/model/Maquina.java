@@ -10,13 +10,30 @@ package model;
  * @author Will
  */
 public class Maquina {
+
     private int idMaquina;
     private String Responsavel;
     private String Nome_Maquina;
-    private String Adiquirida;
+    private String Adquirida;
+    private String Data_Compra;
     private String Sistema;
     private int Keep_Alive;
     private int Grupo_Cliente;
+    
+    /**
+     * @return the Data_Compra
+     */
+    public String getData_Compra() {
+        return Data_Compra;
+    }
+
+    /**
+     * @param Data_Compra the Data_Compra to set
+     */
+    public void setData_Compra(String Data_Compra) {
+        this.Data_Compra = Data_Compra;
+    }
+
     /**
      * @return the Sistema
      */
@@ -76,15 +93,15 @@ public class Maquina {
     /**
      * @return the Adiquirida
      */
-    public String getAdiquirida() {
-        return Adiquirida;
+    public String getAdquirida() {
+        return Adquirida;
     }
 
     /**
      * @param Adiquirida the Adiquirida to set
      */
-    public void setAdiquirida(String Adiquirida) {
-        this.Adiquirida = Adiquirida;
+    public void setAdquirida(String Adiquirida) {
+        this.Adquirida = Adiquirida;
     }
 
     /**

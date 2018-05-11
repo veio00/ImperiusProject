@@ -5,6 +5,7 @@
  */
 package view;
 
+import static ConfiguracaoMaquina.Config.getProp;
 import com.google.gson.Gson;
 import controller.Alerta;
 import controller.InfoMaquina;
@@ -12,6 +13,7 @@ import controller.Envio;
 import controller.LeituraMaquina;
 import java.io.*;
 import java.net.*;
+import java.util.Properties;
 import model.Disco;
 import model.Leitura;
 import model.Maquina;
@@ -28,6 +30,13 @@ public class View {
 
     public static void main(String[] args) throws SigarException, Exception {
         Gson g = new Gson();
+        String idMaquina,idEmpresa; //Variavel que guardará o id do servidor.
+
+	System.out.println("************Teste de leitura do arquivo de propriedades************");
+	Properties prop = getProp();
+	idMaquina = prop.getProperty("idMaquina");
+	idEmpresa = prop.getProperty("idGrupo");
+	System.out.println("idMaquina = " + idMaquina+","+ "idGrupo = " + idEmpresa);
         while(1>0){
             
             System.out.println(g.toJson(LeituraMaquina.ColetaUso()));

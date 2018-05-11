@@ -5,6 +5,7 @@
  */
 package controller;
 
+import ConfiguracaoMaquina.Config;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -29,13 +30,24 @@ import org.hyperic.sigar.SysInfo;
 public class InfoMaquina {
 
     private static int id;
+    private static int Grupo;
+    
+    public static int getGrupo() {
+        return Grupo;
+    }
+
+    public static void setGrupo(int aGrupo) throws IOException {
+        Grupo = aGrupo;
+        ConfiguracaoMaquina.Config.setProp("idGrupo",aGrupo+"","Codigo da Empresa");
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static void setId(int Id) throws IOException {
+        id = Id;
+        ConfiguracaoMaquina.Config.setProp("idMaquina",Id+"","Codigo da maquina");
     }
 
     public static Maquina infoMaquina() throws SigarException, UnknownHostException {
@@ -79,13 +91,13 @@ public class InfoMaquina {
         m.setNome_Maquina(InetAddress.getLocalHost().getHostName());
         //zm.setResponsavel("");
         m.setSistema(sys.getVendor());
-        m.setGrupo_Cliente(id);
+        m.setGrupo_Cliente(Grupo);
         m.setResponsavel(".");
         return m;
 
     }
 
-    public static Processador InfoCpu(int id) throws SigarException {
+    public static Processador InfoCpu(int cod) throws SigarException {
         Sigar sigar = new Sigar();
         CpuPerc cpuperc = null;
 
@@ -98,13 +110,13 @@ public class InfoMaquina {
         CpuInfo[] infos = sigar.getCpuInfoList();
         CpuPerc[] cpus = sigar.getCpuPercList();
         CpuInfo info = infos[0];
-
+        
         p.setModelo(info.getModel());
-        p.setMaquina_Cpu(id);
+        p.setMaquina_Cpu(cod);
         return p;
     }
 
-    public static Memoria InfoMemo(int id) throws SigarException {
+    public static Memoria InfoMemo(int cod) throws SigarException {
         Sigar sigar = new Sigar();
         Mem mem = null;
 
@@ -115,12 +127,12 @@ public class InfoMaquina {
         }
         Memoria me = new Memoria();
         me.setQtd((int) mem.getRam());
-        me.setMaquina_Memoria(id);
+        me.setMaquina_Memoria(cod);
         return me;
 
     }
 
-    public static Disco InfoHd(int id) throws SigarException {
+    public static Disco InfoHd(int cod) throws SigarException {
         Disco d = new Disco();
         String osName = System.getProperty("os.name");
 
@@ -139,18 +151,20 @@ public class InfoMaquina {
         }
 
         d.setEspaco((int) disk.getTotal() / 1024);
-        d.setMaquina_Disco(id);
+        d.setMaquina_Disco(cod);
         return d;
 
     }
 
     public static void Cadastro(int grupo) throws SigarException, IOException {
         Gson g = new Gson();
-        id = grupo;
+        setGrupo((int)grupo);
         Maquina m = InfoMaquina.infoMaquina();
         try {
             int codigo = Integer.parseInt(Envio.envioColeta(g.toJson(m), "http://imperius.azurewebsites.net/api/Coleta/InfoMaquina"));
+            setId(codigo);
             if (codigo > 0) {
+                //a,b e c são validadores
                 boolean a = false, b = false, c = false;
                 while (a == false) {
                     Processador p = InfoMaquina.InfoCpu(codigo);

@@ -89,12 +89,12 @@ insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Wilia
 insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Adrelayne ','dodoi@nubeliu.com.br','123456',2,1)
 insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('chewbacca','chewbacca@nubeliu.com.br','123456',2,2)
 
-insert into Maquina values('Will','Teste-pc0',getdate(),'25-12-2000','Microsoft',1,1)
-insert into Maquina values('Will','Teste-pc1',getdate(),'25-12-2000','Microsoft',0,1)
-insert into Maquina values('Will','Teste-pc2',getdate(),'25-12-2000','Microsoft',1,1)
-insert into Maquina values('Will','Teste-pc3',getdate(),'25-12-2000','Microsoft',0,1)
-insert into Maquina values('Will','Teste-pc4',getdate(),'25-12-2000','Microsoft',1,1)
-insert into Maquina values('Will','Teste-pc5',getdate(),'25-12-2000','Microsoft',0,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc0',getdate(),'Microsoft',1,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc1',getdate(),'Microsoft',0,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc2',getdate(),'Microsoft',1,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc3',getdate(),'Microsoft',0,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc4',getdate(),'Microsoft',1,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc5',getdate(),'Microsoft',0,1)
 
 insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',1)
 insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',2)

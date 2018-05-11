@@ -14,6 +14,7 @@ public class Leitura {
     private int Hd;
     private int Mram;
     private int Cpu;
+    private String Data;
     private int Maquina_Uso;
 
     /**
@@ -84,5 +85,19 @@ public class Leitura {
      */
     public void setMaquina_Uso(int Maquina_Uso) {
         this.Maquina_Uso = Maquina_Uso;
+    }
+
+    /**
+     * @return the Data
+     */
+    public String getData() {
+        return Data;
+    }
+
+    /**
+     * @param Data the Data to set
+     */
+    public void setData(String Data) {
+        this.Data = Data;
     }
 }
