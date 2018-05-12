@@ -154,7 +154,7 @@
     <Compile Include="Banco\EnvioLeitura.cs" />
     <Compile Include="Banco\BancoRelatorios.cs" />
     <Compile Include="Controllers\ColetaController.cs" />
-    <Compile Include="Controllers\Mensageria.cs" />
+    <Compile Include="Notificacoes\Mensageria.cs" />
     <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

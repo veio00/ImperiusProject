@@ -63,8 +63,8 @@ namespace API.Controllers
             return lista;
         }
 
-        [HttpGet]//api/view/
-        public DataTable Login(string user, string senha)
+        [HttpPost]//api/view/
+        public DataTable Login([FromBody]string user, [FromBody] string senha)
         {
             BancoLogin ValidarLogin = new BancoLogin();
             DataTable lista = new DataTable();

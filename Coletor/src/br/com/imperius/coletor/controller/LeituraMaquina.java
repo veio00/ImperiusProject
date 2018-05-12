@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package br.com.imperius.coletor.controller;
 
-import model.Leitura;
+import br.com.imperius.coletor.model.Leitura;
 import org.hyperic.sigar.*;
 
 /**

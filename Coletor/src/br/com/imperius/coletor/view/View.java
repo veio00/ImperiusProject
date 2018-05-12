@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package br.com.imperius.coletor.view;
 
-import static ConfiguracaoMaquina.Config.getProp;
+import static br.com.imperius.coletor.configuracao.Config.getProp;
 import com.google.gson.Gson;
-import controller.Alerta;
-import controller.InfoMaquina;
-import controller.Envio;
-import controller.LeituraMaquina;
+import br.com.imperius.coletor.controller.Alerta;
+import br.com.imperius.coletor.controller.InfoMaquina;
+import br.com.imperius.coletor.controller.Envio;
+import br.com.imperius.coletor.controller.LeituraMaquina;
 import java.io.*;
 import java.net.*;
 import java.util.Properties;
-import model.Disco;
-import model.Leitura;
-import model.Maquina;
-import model.Memoria;
-import model.Processador;
+import br.com.imperius.coletor.model.Disco;
+import br.com.imperius.coletor.model.Leitura;
+import br.com.imperius.coletor.model.Maquina;
+import br.com.imperius.coletor.model.Memoria;
+import br.com.imperius.coletor.model.Processador;
 import org.hyperic.sigar.*;
 import org.*;
 
@@ -30,13 +30,14 @@ public class View {
 
     public static void main(String[] args) throws SigarException, Exception {
         Gson g = new Gson();
-        String idMaquina,idEmpresa; //Variavel que guardará o id do servidor.
-
-	System.out.println("************Teste de leitura do arquivo de propriedades************");
-	Properties prop = getProp();
-	idMaquina = prop.getProperty("idMaquina");
-	idEmpresa = prop.getProperty("idGrupo");
-	System.out.println("idMaquina = " + idMaquina+","+ "idGrupo = " + idEmpresa);
+        Properties prop = getProp();
+        String idMaquina = prop.getProperty("idMaquina"); //Variavel que guardará o id da maquina.
+        String idEmpresa; //Variavel que guardará o empresa da maquina
+        idEmpresa = prop.getProperty("idGrupo");
+        //if(idMaquina ==  null && idEmpresa == null){
+            
+            
+        //}
         while(1>0){
             
             System.out.println(g.toJson(LeituraMaquina.ColetaUso()));
@@ -44,7 +45,7 @@ public class View {
             Leitura u = LeituraMaquina.ColetaUso();
             
             boolean verificador = false;
-            while(verificador == false){
+            while(!verificador){
                 verificador = Envio.envioColeta(g.toJson(u),"http://imperius.azurewebsites.net/api/Coleta/LeituraAgora", Boolean.class);
 
                 System.out.println(verificador);

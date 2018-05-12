@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package br.com.imperius.coletor.view;
 
 import com.google.gson.Gson;
-import controller.Envio;
-import controller.InfoMaquina;
+import br.com.imperius.coletor.controller.Envio;
+import br.com.imperius.coletor.controller.InfoMaquina;
 import java.awt.Color;
 import java.util.logging.*;
 import org.hyperic.sigar.*;
@@ -135,22 +135,19 @@ public class CadastroMaquina extends javax.swing.JFrame {
             try {
                 int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""),"http://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro?email="+email+""));
                 if(cod > 0){
-                    InfoMaquina.Cadastro(cod);
+                    InfoMaquina.cadastro(cod);
                 }else{
                     lblErro.setText("E-mail não cadastrado ou errado");
                     lblErro.setForeground(Color.red);
                     openURL("http://imperius.azurewebsites.net/");
                 }
 
-            } catch (IOException ex) {
-                lblErro.setText("E-mail não cadastrado ou errado");
-                lblErro.setForeground(Color.red);
-                openURL("http://imperius.azurewebsites.net/");
-            } catch (SigarException ex) {
+            } catch (IOException |SigarException ex) {
                 lblErro.setText("E-mail não cadastrado ou errado");
                 lblErro.setForeground(Color.red);
                 openURL("http://imperius.azurewebsites.net/");
             }
+            
         }
         System.exit(0);
     }//GEN-LAST:event_btnEntrarActionPerformed

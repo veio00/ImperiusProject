@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package br.com.imperius.coletor.controller;
 
-import ConfiguracaoMaquina.Config;
+import br.com.imperius.coletor.configuracao.Config;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import model.Disco;
-import model.Maquina;
-import model.Memoria;
-import model.Processador;
-import model.Leitura;
+import br.com.imperius.coletor.model.Disco;
+import br.com.imperius.coletor.model.Maquina;
+import br.com.imperius.coletor.model.Memoria;
+import br.com.imperius.coletor.model.Processador;
+import br.com.imperius.coletor.model.Leitura;
 import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystemUsage;
@@ -38,7 +38,7 @@ public class InfoMaquina {
 
     public static void setGrupo(int aGrupo) throws IOException {
         Grupo = aGrupo;
-        ConfiguracaoMaquina.Config.setProp("idGrupo",aGrupo+"","Codigo da Empresa");
+        br.com.imperius.coletor.configuracao.Config.setProp("idGrupo",aGrupo+"","Codigo da Empresa");
     }
 
     public int getId() {
@@ -47,7 +47,7 @@ public class InfoMaquina {
 
     public static void setId(int Id) throws IOException {
         id = Id;
-        ConfiguracaoMaquina.Config.setProp("idMaquina",Id+"","Codigo da maquina");
+        br.com.imperius.coletor.configuracao.Config.setProp("idMaquina",Id+"","Codigo da maquina");
     }
 
     public static Maquina infoMaquina() throws SigarException, UnknownHostException {
@@ -97,7 +97,7 @@ public class InfoMaquina {
 
     }
 
-    public static Processador InfoCpu(int cod) throws SigarException {
+    public static Processador infoCpu(int cod) throws SigarException {
         Sigar sigar = new Sigar();
         CpuPerc cpuperc = null;
 
@@ -116,7 +116,7 @@ public class InfoMaquina {
         return p;
     }
 
-    public static Memoria InfoMemo(int cod) throws SigarException {
+    public static Memoria infoMemo(int cod) throws SigarException {
         Sigar sigar = new Sigar();
         Mem mem = null;
 
@@ -132,7 +132,7 @@ public class InfoMaquina {
 
     }
 
-    public static Disco InfoHd(int cod) throws SigarException {
+    public static Disco infoHd(int cod) throws SigarException {
         Disco d = new Disco();
         String osName = System.getProperty("os.name");
 
@@ -156,7 +156,7 @@ public class InfoMaquina {
 
     }
 
-    public static void Cadastro(int grupo) throws SigarException, IOException {
+    public static void cadastro(int grupo) throws SigarException, IOException {
         Gson g = new Gson();
         setGrupo((int)grupo);
         Maquina m = InfoMaquina.infoMaquina();
@@ -167,18 +167,18 @@ public class InfoMaquina {
                 //a,b e c são validadores
                 boolean a = false, b = false, c = false;
                 while (a == false) {
-                    Processador p = InfoMaquina.InfoCpu(codigo);
-                    System.out.println(g.toJson(InfoMaquina.InfoCpu(codigo)));
+                    Processador p = InfoMaquina.infoCpu(codigo);
+                    System.out.println(g.toJson(InfoMaquina.infoCpu(codigo)));
                     a = Envio.envioColeta(g.toJson(p), "http://imperius.azurewebsites.net/api/Coleta/InfoProcessador", Boolean.class);
                 }
                 while (b == false) {
-                    Memoria me = InfoMaquina.InfoMemo(codigo);
-                    System.out.println(g.toJson(InfoMaquina.InfoMemo(codigo)));
+                    Memoria me = InfoMaquina.infoMemo(codigo);
+                    System.out.println(g.toJson(InfoMaquina.infoMemo(codigo)));
                     b = Envio.envioColeta(g.toJson(me), "http://imperius.azurewebsites.net/api/Coleta/InfoMemoria", Boolean.class);
                 }
                 while (c == false) {
-                    Disco hd = InfoMaquina.InfoHd(codigo);
-                    System.out.println(g.toJson(InfoMaquina.InfoHd(codigo)));
+                    Disco hd = InfoMaquina.infoHd(codigo);
+                    System.out.println(g.toJson(InfoMaquina.infoHd(codigo)));
                     c = Envio.envioColeta(g.toJson(hd), "http://imperius.azurewebsites.net/api/Coleta/InfoDisco", Boolean.class);
                 }
             }
