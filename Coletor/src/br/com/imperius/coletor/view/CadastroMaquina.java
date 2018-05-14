@@ -14,6 +14,7 @@ import org.hyperic.sigar.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Will
@@ -128,26 +129,24 @@ public class CadastroMaquina extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String email = txtEmail.getText();
         Gson g = new Gson();
-        if("".equals(email)){
+        if ("".equals(email)) {
             lblErro.setText("Preencha o email");
             lblErro.setForeground(Color.red);
-        }else{
+        } else {
             try {
-                int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""),"http://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro?email="+email+""));
-                if(cod > 0){
+                int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""), "http://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro?email=" + email + ""));
+                if (cod > 0) {
                     InfoMaquina.cadastro(cod);
-                }else{
+                } else {
                     lblErro.setText("E-mail não cadastrado ou errado");
                     lblErro.setForeground(Color.red);
                     openURL("http://imperius.azurewebsites.net/");
                 }
-
-            } catch (IOException |SigarException ex) {
+            } catch (IOException | SigarException ex) {
                 lblErro.setText("E-mail não cadastrado ou errado");
                 lblErro.setForeground(Color.red);
                 openURL("http://imperius.azurewebsites.net/");
             }
-            
         }
         System.exit(0);
     }//GEN-LAST:event_btnEntrarActionPerformed
@@ -161,33 +160,33 @@ public class CadastroMaquina extends javax.swing.JFrame {
         });
     }
 
-    private static final String errMsg = "Erro ao tentar abrir o browser";   
-    public static void openURL(String url){   
-        String osName = System.getProperty("os.name");  
-        try   
-        {   
-            if (osName.startsWith("Windows"))   
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);   
-            else   
-            { //assume Unix or Linux   
-                String[] browsers = {   
-                    "firefox", "mozilla"};   
-                String browser = null;   
-                for (int count = 0; count < browsers.length && browser == null; count++)   
-                    if (Runtime.getRuntime().exec(   
-                    new String[] {"which", browsers[count]}).waitFor() == 0)   
-                        browser = browsers[count];   
-                if (browser == null)   
-                    throw new Exception("Navegador não encontrado!");   
-                else   
-                    Runtime.getRuntime().exec(new String[] {browser, url});   
-            }   
-        }   
-        catch (Exception e)   
-        {   
-            JOptionPane.showMessageDialog(null, errMsg + ":\n" + e.getLocalizedMessage());   
-        }   
-    }   
+    private static final String errMsg = "Erro ao tentar abrir o browser";
+
+    public static void openURL(String url) {
+        String osName = System.getProperty("os.name");
+        try {
+            if (osName.startsWith("Windows")) {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+            } else { //assume Unix or Linux   
+                String[] browsers = {
+                    "firefox", "mozilla"};
+                String browser = null;
+                for (int count = 0; count < browsers.length && browser == null; count++) {
+                    if (Runtime.getRuntime().exec(
+                            new String[]{"which", browsers[count]}).waitFor() == 0) {
+                        browser = browsers[count];
+                    }
+                }
+                if (browser == null) {
+                    throw new Exception("Navegador não encontrado!");
+                } else {
+                    Runtime.getRuntime().exec(new String[]{browser, url});
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, errMsg + ":\n" + e.getLocalizedMessage());
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnSair;

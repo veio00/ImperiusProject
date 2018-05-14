@@ -10,6 +10,7 @@ package br.com.imperius.coletor.model;
  * @author Will
  */
 public class Cliente {
+
     private int idCliente;
     private String Nome;
     private String Email;

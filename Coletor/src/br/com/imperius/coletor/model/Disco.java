@@ -87,6 +87,4 @@ public class Disco {
     public void setMaquina_Disco(int Maquina_Disco) {
         this.Maquina_Disco = Maquina_Disco;
     }
-
-   
 }

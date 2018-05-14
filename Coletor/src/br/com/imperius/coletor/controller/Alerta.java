@@ -20,7 +20,7 @@ import java.net.URL;
  * @author Will
  */
 public class Alerta {
-    
+
     private static String lerString(InputStream stream) throws IOException {
         try (BufferedInputStream in = new BufferedInputStream(stream)) {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -28,13 +28,15 @@ public class Alerta {
             int total;
             do {
                 total = in.read(tmp);
-                if (total > 0)
+                if (total > 0) {
                     out.write(tmp, 0, total);
+                }
             } while (total > 0);
             return new String(out.toByteArray(), "utf-8");
         }
     }
-    public static <T> T  KeepAlive(String ok,Class<T> clazz ) throws Exception {
+
+    public static <T> T KeepAlive(String ok, Class<T> clazz) throws Exception {
         URL obj = new URL("http://imperius.azurewebsites.net/api/Coleta/KeepAlive");
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setDoInput(true);
@@ -50,6 +52,5 @@ public class Alerta {
             return null;
         }
         throw new IOException("Erro HTTP: " + responseCode);
-
     }
 }

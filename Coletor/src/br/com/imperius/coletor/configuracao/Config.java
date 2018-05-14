@@ -27,11 +27,10 @@ public class Config {
         InputStream file = getLocalLeitura();
         props.load(file);
         return props;
-
     }
 
     public static void setProp(String propriedade, String valor) throws IOException {
-        setProp(propriedade, valor,null);
+        setProp(propriedade, valor, null);
     }
 
     public static void setProp(String propriedade, String valor, String Comentario) throws IOException {

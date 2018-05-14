@@ -27,13 +27,14 @@ public class Envio {
             int total;
             do {
                 total = in.read(tmp);
-                if (total > 0)
+                if (total > 0) {
                     out.write(tmp, 0, total);
+                }
             } while (total > 0);
             return new String(out.toByteArray(), "utf-8");
         }
     }
-    
+
     public static String envioColeta(String classe, String url) throws IOException {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -52,7 +53,6 @@ public class Envio {
         throw new IOException("Erro HTTP: " + responseCode);
     }
 
-    
     public static <T> T envioColeta(String classe, String url, Class<T> clazz) throws IOException {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -69,5 +69,5 @@ public class Envio {
             return null;
         }
         throw new IOException("Erro HTTP: " + responseCode);
-    }    
+    }
 }

@@ -42,7 +42,5 @@ public class LeituraMaquina {
         uso.setHd((int) (disk.getUsePercent() * 100));
         uso.setMaquina_Uso(1);
         return uso;
-
     }
-
 }

@@ -55,6 +55,4 @@ public class Acesso {
     public void setNome_Acesso(String Nome_Acesso) {
         this.Nome_Acesso = Nome_Acesso;
     }
-    
-    
 }

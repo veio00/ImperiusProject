@@ -38,8 +38,6 @@ public class View {
         if("0".equals(idMaquina) && "0".equals(idEmpresa)){
             CadastroMaquina cm = new CadastroMaquina();
             cm.setVisible(true);
-        }
-                   
-    }    
-    
+        }          
+    }       
 }

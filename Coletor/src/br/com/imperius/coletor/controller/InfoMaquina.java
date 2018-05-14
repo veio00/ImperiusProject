@@ -95,7 +95,6 @@ public class InfoMaquina {
         m.setGrupo_Cliente(Grupo);
         m.setResponsavel(".");
         return m;
-
     }
 
     public static Processador infoCpu(int cod) throws SigarException {
@@ -130,7 +129,6 @@ public class InfoMaquina {
         me.setQtd((int) mem.getRam());
         me.setMaquina_Memoria(cod);
         return me;
-
     }
 
     public static Disco infoHd(int cod) throws SigarException {
@@ -154,7 +152,6 @@ public class InfoMaquina {
         d.setEspaco((int) disk.getTotal() / 1024);
         d.setMaquina_Disco(cod);
         return d;
-
     }
 
     public static void cadastro(int grupo) throws SigarException, IOException {
@@ -187,7 +184,5 @@ public class InfoMaquina {
         } catch (Exception e) {
             throw e;
         }
-
     }
-
 }
