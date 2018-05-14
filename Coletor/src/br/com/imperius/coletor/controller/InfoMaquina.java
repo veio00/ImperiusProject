@@ -15,6 +15,7 @@ import br.com.imperius.coletor.model.Maquina;
 import br.com.imperius.coletor.model.Memoria;
 import br.com.imperius.coletor.model.Processador;
 import br.com.imperius.coletor.model.Leitura;
+import static br.com.imperius.coletor.view.View.start;
 import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystemUsage;
@@ -181,6 +182,7 @@ public class InfoMaquina {
                     System.out.println(g.toJson(InfoMaquina.infoHd(codigo)));
                     c = Envio.envioColeta(g.toJson(hd), "http://imperius.azurewebsites.net/api/Coleta/InfoDisco", Boolean.class);
                 }
+                start();
             }
         } catch (Exception e) {
             throw e;

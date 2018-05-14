@@ -1,24 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.imperius.coletor.view;
 
 import static br.com.imperius.coletor.configuracao.Config.getProp;
 import com.google.gson.Gson;
-import br.com.imperius.coletor.controller.Alerta;
-import br.com.imperius.coletor.controller.InfoMaquina;
-import br.com.imperius.coletor.controller.Envio;
-import br.com.imperius.coletor.controller.LeituraMaquina;
+import br.com.imperius.coletor.controller.*;
 import java.io.*;
 import java.net.*;
 import java.util.Properties;
-import br.com.imperius.coletor.model.Disco;
-import br.com.imperius.coletor.model.Leitura;
-import br.com.imperius.coletor.model.Maquina;
-import br.com.imperius.coletor.model.Memoria;
-import br.com.imperius.coletor.model.Processador;
+import br.com.imperius.coletor.model.*;
 import org.hyperic.sigar.*;
 import org.*;
 
@@ -27,19 +15,10 @@ import org.*;
  * @author Will
  */
 public class View {
-
-    public static void main(String[] args) throws SigarException, Exception {
+    
+    public static void start() throws IOException, SigarException{
         Gson g = new Gson();
-        Properties prop = getProp();
-        String idMaquina = prop.getProperty("idMaquina"); //Variavel que guardará o id da maquina.
-        String idEmpresa; //Variavel que guardará o empresa da maquina
-        idEmpresa = prop.getProperty("idGrupo");
-        //if(idMaquina ==  null && idEmpresa == null){
-            
-            
-        //}
-        while(1>0){
-            
+        while(1>0){            
             System.out.println(g.toJson(LeituraMaquina.ColetaUso()));
             System.out.println(g.toJson(InfoMaquina.infoMaquina()));
             Leitura u = LeituraMaquina.ColetaUso();
@@ -51,9 +30,16 @@ public class View {
                 System.out.println(verificador);
             }
         }
-           
     }
-    
-    
+    public static void main(String[] args) throws Exception {
+        Properties prop = getProp();
+        String idMaquina = prop.getProperty("idMaquina"); //Variavel que guardará o id da maquina.
+        String idEmpresa = prop.getProperty("idGrupo");//Variavel que guardará o empresa da maquina
+        if("0".equals(idMaquina) && "0".equals(idEmpresa)){
+            CadastroMaquina cm = new CadastroMaquina();
+            cm.setVisible(true);
+        }
+                   
+    }    
     
 }
