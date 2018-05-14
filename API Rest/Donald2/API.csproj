@@ -149,6 +149,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Banco\BancoGrupo.cs" />
     <Compile Include="Banco\BancoLogin.cs" />
+    <Compile Include="Banco\BancoLogs.cs" />
     <Compile Include="Banco\BancoMaquina.cs" />
     <Compile Include="Banco\Conexao.cs" />
     <Compile Include="Banco\EnvioLeitura.cs" />

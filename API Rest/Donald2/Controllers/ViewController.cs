@@ -87,5 +87,14 @@ namespace API.Controllers
             return lista;
         }
 
+        [HttpGet]//api/view/
+        public DataTable RelatorioLogs([FromBody] int empresa)
+        {
+            BancoLogs logs = new BancoLogs();
+            DataTable lista = new DataTable();
+            lista = logs.Carrega_Logs(empresa);
+            return lista;
+        }
+
     }
 }
