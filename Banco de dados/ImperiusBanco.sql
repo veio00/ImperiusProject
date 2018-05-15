@@ -77,7 +77,7 @@ select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Em
 select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = 1 and Grupo_Cliente=1
 select idMaquina as codigo, Nome_Maquina, Responsavel, Adquirida, Modelo as Modelo_CPU,Qtd as Memoria_Total, Espaco as Tamanho_HD from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina where Grupo_Cliente=2
 select idLogs, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente=1
-select * from logss
+select idlogs, Msg, Leitura_Logs from logss inner join leitura on idLeitura = Leitura_Logs inner join Maquina on idMaquina = Maquina_Uso where Grupo_Cliente = 2
 
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
 insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')
@@ -108,6 +108,7 @@ insert into Memoria(Qtd,Geracao,Maquina_Memoria) values (2048,'ddr3',2)
 
 insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 1)
 insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 2)
+
 insert into Logss(Data,Msg,Leitura_Logs) values(getdate(),'Teste de insert no banco',1)
 
 
@@ -121,3 +122,5 @@ delete from leitura where Maquina_Uso = 41
 delete from Processador where Maquina_Cpu = 41
 delete from Memoria where Maquina_Memoria = 41
 delete from Disco where Maquina_Disco = 41
+
+select * from funcionario
