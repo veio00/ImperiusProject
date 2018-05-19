@@ -111,7 +111,11 @@ insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate',
 
 insert into Logss(Data,Msg,Leitura_Logs) values(getdate(),'Teste de insert no banco',1)
 
-
+select idCliente,Nome,Email,Senha,Nome_Acesso,Nome_grupo from Cliente inner join Acesso on Acesso_Cliente=idAcesso inner join grupo on Grupo_Cliente=idGrupo where idCliente=9
+update cliente set Nome='chewbacca',Email='chewbacca@nubeliu.com.br',Senha='123456',Acesso_Cliente=2,Grupo_Cliente=2 where idCliente=12
+select * from acesso
+select * from grupo
+select * from cliente
 select max(idMAquina) from Maquina
 
 select * from Processador 

@@ -1,4 +1,6 @@
 ﻿using API.Banco;
+using API.Models;
+using API.Notificacoes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -75,7 +77,8 @@ namespace API.Controllers
         [HttpPost]
         public void alerta(string msg)
         {
-            Mensageria.Envio(msg);
+            //Telegram.EnvioTelegram(msg);
+            Email.EnvioEmail(msg,"");
         }
 
         [HttpPost]//api/view/
@@ -96,5 +99,27 @@ namespace API.Controllers
             return lista;
         }
 
+        [HttpPost]
+        public bool SalvaCliente([FromBody] Cliente c)
+        {
+            BancoCliente cli = new BancoCliente();
+            return cli.Salvar_Cliente(c);
+        }
+
+        [HttpGet]//api/view/
+        public DataTable CarregaCliente([FromBody] int idCliente)
+        {
+            BancoCliente cli = new BancoCliente();
+            DataTable lista = new DataTable();
+            lista = cli.Carrega_Cliente(idCliente);
+            return lista;
+        }
+
+        [HttpGet]//api/view/
+        public bool AlterarCliente([FromBody] Cliente c)
+        {
+            BancoCliente cli = new BancoCliente();
+            return cli.Altera_Cliente(c);
+        }
     }
 }

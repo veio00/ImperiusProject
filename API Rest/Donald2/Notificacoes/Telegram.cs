@@ -8,9 +8,9 @@ using System.Web;
 
 namespace API.Controllers
 {
-    public class Mensageria
+    public class Telegram
     {
-        public static void Envio(string msg){
+        public static void EnvioTelegram(string msg){
             const string token = "574896666:AAFLMEzCPFx_cqZ3w22fccZhxnk2yWGtRhg"; // "Pluto";
             //const string Ds_Mensagem = ; // "Colocar mensagem";
             //const string Ds_Canal = "-1001244864542";// " @Imperius_Imfernus_bot";

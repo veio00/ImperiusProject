@@ -9,19 +9,16 @@ namespace API.Models
 {
     public partial class Cliente
     {
-        [JsonProperty("idCliente", Required = Required.Always)]
-        public int IdCliente { get; set; }
 
-        [JsonProperty("Nome", Required = Required.Always)]
+        public int idCliente { get; set; }
+
         public string Nome { get; set; }
 
-        [JsonProperty("Email", Required = Required.Always)]
+        public string Senha { get; set; }
         public string Email { get; set; }
 
-        [JsonProperty("Acesso_Cliente", Required = Required.Always)]
         public int AcessoCliente { get; set; }
 
-        [JsonProperty("Grupo_Cliente", Required = Required.Always)]
         public int GrupoCliente { get; set; }
     }
 }

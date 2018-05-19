@@ -147,6 +147,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Banco\BancoCliente.cs" />
     <Compile Include="Banco\BancoGrupo.cs" />
     <Compile Include="Banco\BancoLogin.cs" />
     <Compile Include="Banco\BancoLogs.cs" />
@@ -155,7 +156,8 @@
     <Compile Include="Banco\EnvioLeitura.cs" />
     <Compile Include="Banco\BancoRelatorios.cs" />
     <Compile Include="Controllers\ColetaController.cs" />
-    <Compile Include="Notificacoes\Mensageria.cs" />
+    <Compile Include="Notificacoes\Email.cs" />
+    <Compile Include="Notificacoes\Telegram.cs" />
     <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
