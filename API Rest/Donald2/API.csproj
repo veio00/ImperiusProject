@@ -94,6 +94,9 @@
     <Reference Include="System.Web.Http.Cors, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.4\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Mvc.Extensions, Version=1.1.0.6, Culture=neutral, PublicKeyToken=d631f4e4b226a032, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Web.Mvc.Extensions.1.1.1.2\lib\net45\System.Web.Mvc.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -156,6 +159,7 @@
     <Compile Include="Banco\EnvioLeitura.cs" />
     <Compile Include="Banco\BancoRelatorios.cs" />
     <Compile Include="Controllers\ColetaController.cs" />
+    <Compile Include="Models\Grupo.cs" />
     <Compile Include="Notificacoes\Email.cs" />
     <Compile Include="Notificacoes\Telegram.cs" />
     <Compile Include="Controllers\ViewController.cs" />

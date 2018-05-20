@@ -72,7 +72,7 @@ Leitura_Logs int foreign key references Leitura(idLeitura)
 select * from Maquina inner join grupo on idgrupo = Grupo_Cliente where Grupo_Cliente = 1
 select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso = 1)
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
-select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'veio@nubeliu.com.br' and Senha = '123456'
+select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'chewbacca@nubeliu.com.br' and Senha = '123456'
 select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'bebe@nubeliu.com.br'
 select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = 1 and Grupo_Cliente=1
 select idMaquina as codigo, Nome_Maquina, Responsavel, Adquirida, Modelo as Modelo_CPU,Qtd as Memoria_Total, Espaco as Tamanho_HD from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina where Grupo_Cliente=2
@@ -116,7 +116,7 @@ update cliente set Nome='chewbacca',Email='chewbacca@nubeliu.com.br',Senha='1234
 select * from acesso
 select * from grupo
 select * from cliente
-select max(idMAquina) from Maquina
+select max(idGrupo) as idGrupo from grupo
 
 select * from Processador 
 select * from Memoria
@@ -127,4 +127,6 @@ delete from Processador where Maquina_Cpu = 41
 delete from Memoria where Maquina_Memoria = 41
 delete from Disco where Maquina_Disco = 41
 
-select * from funcionario
+select * from cliente
+
+

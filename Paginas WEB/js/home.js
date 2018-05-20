@@ -5,6 +5,8 @@ $(document).ready(function(){
 	setInterval(function() {
         drawChart(maquina);
     }, 1000);
+	$(".nano").nanoScroller();
+	$('.pane').show();
 });
 	function Cookie(name) {
 		var cookies = document.cookie;
@@ -122,7 +124,29 @@ $(document).ready(function(){
 
             
 	}
+	$(function(){
+			$('#btnDelete').on('click' , function(){
+				var x;
+				var r=confirm("Escolha um valor!");
+				if (r==true)
+				{
+					x="você pressionou OK!";
+					var settings = {
+					
+					"url": "http://imperius.azurewebsites.net/api/view/ExcluiMaquina?maquina="+maquina+"",
+					"method": "POST",
+					
+					}
+					
+					$.ajax(settings).done(function (response) {
+						console.log(response);
+						document.getElementById("Letreiro2").innerHTML=x;
+						setTimeout(function(){
+							window.location.reload(1);
+						}, 1000);
+					});
+				}
+			});
 
-
-
-
+		});
+	

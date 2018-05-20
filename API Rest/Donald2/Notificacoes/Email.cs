@@ -10,10 +10,11 @@ namespace API.Notificacoes
 {
     public class Email
     {
-        public static void EnvioEmail(string msg)
+        private static string emailLocal;
+        public static void EnvioEmail(string msg, string email)
         {
             // Especifica o servidor SMTP e a porta
-            using (System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient("smtp.gmail.com"))
+            using (SmtpClient client = new SmtpClient("smtp.gmail.com",587))
             {
                 try
                 {
@@ -22,12 +23,11 @@ namespace API.Notificacoes
 
                     // Especifica a credencial utilizada para envio da mensagem
                     client.UseDefaultCredentials = false;
-                    client.Credentials = new System.Net.NetworkCredential("imperiusprojec@gmail.com", "Cardrelayne");
+                    client.Credentials = new NetworkCredential("imperiusprojec@gmail.com", "Cardrelayne");
 
                     // Especifia o remetente e o destinatário da mensagem
-                    System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(
-                        new System.Net.Mail.MailAddress("imperiusprojec@gmail.com", "IMPERIUS", Encoding.UTF8),
-                        new System.Net.Mail.MailAddress("50036@alunos.bandtec.com.br"));
+                    MailMessage message = new MailMessage(new MailAddress("imperiusprojec@gmail.com", "IMPERIUS", Encoding.UTF8),
+                        new MailAddress(email));
 
                     // Preenche o corpo e o assunto da mensagem
                     message.BodyEncoding = Encoding.UTF8;
@@ -43,13 +43,14 @@ namespace API.Notificacoes
                 }
                 catch (Exception ex)
                 {
+                    EnvioEmail(msg);
                     throw ex;
                 }
             }
 
         }
 
-        public static void EnvioEmail(string msg, string email)
+        public static void EnvioEmail(string msg)
         {
             using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
             {
@@ -57,10 +58,10 @@ namespace API.Notificacoes
                 EnableSsl = true
             })
             {
-                client.Send("imperiusprojec@gmail.com", "50036@alunos.bandtec.com.br",  "test", "test");
+                client.Send("imperiusprojec@gmail.com", emailLocal, "test", "test");
             }
-           
-           
+
+
 
         }
     }

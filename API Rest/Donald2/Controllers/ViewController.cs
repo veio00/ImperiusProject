@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
+
 namespace API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -31,12 +32,21 @@ namespace API.Controllers
 
 
 
-        [HttpPost]//api/view/
+        [HttpGet]//api/view/
         public DataTable CarregaEmpresa()
         {
-            BancoGrupo CarregaMaquinas = new BancoGrupo();
+            BancoGrupo Empresa = new BancoGrupo();
             DataTable lista = new DataTable();
-            lista = CarregaMaquinas.Carregar_Grupo();
+            lista = Empresa.Carregar_Grupo();
+            return lista;
+        }
+
+        [HttpGet]//api/view/
+        public DataTable SalvaEmpresa(string nome)
+        {
+            BancoGrupo SalvaEmpresa = new BancoGrupo();
+            DataTable lista = new DataTable();
+            lista = SalvaEmpresa.Salva_Grupo(nome);
             return lista;
         }
 
@@ -66,7 +76,7 @@ namespace API.Controllers
         }
 
         [HttpPost]//api/view/
-        public DataTable Login([FromBody]string user, [FromBody] string senha)
+        public DataTable Login(string user, string senha)
         {
             BancoLogin ValidarLogin = new BancoLogin();
             DataTable lista = new DataTable();
@@ -75,10 +85,10 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public void alerta(string msg)
+        public void alerta(string msg,string email)
         {
-            //Telegram.EnvioTelegram(msg);
-            Email.EnvioEmail(msg,"");
+            Telegram.EnvioTelegram(msg);
+            Email.EnvioEmail(msg,email);
         }
 
         [HttpPost]//api/view/
@@ -121,5 +131,7 @@ namespace API.Controllers
             BancoCliente cli = new BancoCliente();
             return cli.Altera_Cliente(c);
         }
+
+        
     }
 }

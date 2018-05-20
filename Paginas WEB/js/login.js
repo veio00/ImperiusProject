@@ -2,7 +2,7 @@ function login(nome,senha) {
 
 var settings = {
   "url": "http://imperius.azurewebsites.net/api/view/Login?user="+nome+"&senha="+senha+"",
-  "method": "GET",
+  "method": "post",
   "headers": {
     "Cache-Control": "no-cache",
     "Postman-Token": "8244fa6d-a5b1-41d3-898a-ce64debebb14"
@@ -30,6 +30,26 @@ $(function(){
 		var nome = document.getElementById("user").value;
 		var senha = document.getElementById("senha").value;
 		login(nome,senha);
+   });
+   $('#c').on('click' , function(){
+        
+		$('.modal').show();
+		$('.modal').height('400');
+		$('.entar').hide();
+   });
+   $('#d').on('click' , function(){
+        
+		$('.modal2').show();
+		$('.modal').hide();
+		
+   });
+   $('#t').on('click' , function(){
+		SalvaEmpresa($("#nomeEmpresa").val());
+		$('.modal3').show();
+		$('.modal2').hide();
+		setTimeout(function(){
+			window.location.reload(1);
+		}, 2500);
    });
 
 });
@@ -167,4 +187,44 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles
 
 });
 
+function SalvaCliente(Nome, Email, Senha, Empresa){
+	var settings = {
+		"async": true,
+		"crossDomain": false,
+		"url": "http://imperius.azurewebsites.net/api/view/SalvaCliente",
+		"method": "POST",
+		"headers": {
+			"Content-Type": "application/json",
+			"Cache-Control": "no-cache",
+			"Postman-Token": "61076739-19cf-4b00-9cd1-3805616b0793"
+		},
+		"processData": false,
+		"data": "{\"Nome\": \""+Nome+"\",\"Senha\": \""+Senha+"\",\"Email\": \""+Email+"\",\"AcessoCliente\": \"1\",\"GrupoCliente\": \""+Empresa+"\"}"
+		}
+		
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+		});
+}
+function SalvaEmpresa(Empresa){
+	
+	var settings = {
+  "async": true,
+  "crossDomain": false,
+  "url": "http://imperius.azurewebsites.net/api/view/SalvaEmpresa?nome="+Empresa+"",
+  "method": "GET",
+  "headers": {
+    "Cache-Control": "no-cache",
+    "Postman-Token": "dd0ecad2-0ff2-43c1-bdde-0a8a6fec2ab3"
+  }
+}
 
+$.ajax(settings).done(function (response) {
+  console.log(response);
+  var Nome = $("#nome").val();
+  var Email = $("#email").val();
+  var Senha = $("#senhaCadastro").val();
+  var empresa =response[0].idGrupo;
+  SalvaCliente(Nome,Email,Senha,empresa);
+});
+}

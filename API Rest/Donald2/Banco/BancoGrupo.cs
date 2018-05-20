@@ -62,5 +62,23 @@ namespace API.Banco
             }
 
         }
+
+        public DataTable Salva_Grupo(string empresa)
+        {
+            try
+            {
+
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                ObjBanco.ExecuteQuery("insert into Grupo values('"+empresa+"')", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select max(idGrupo) as idGrupo from grupo", LstParametros);
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
     }
 }

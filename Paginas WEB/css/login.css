@@ -76,3 +76,54 @@ body, html {
   	top: 0px;
   	z-index:1;
 }
+
+.modal{
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	right: 50%;
+	bottom: 250px;
+	transform: translateX(-50%);
+	width: 350px;
+	margin: 0 auto;
+	border: 1px solid black;
+	background: rgba(48, 46, 45, 1);
+	min-height: 250px;
+	padding: 20px;
+	z-index: 9999;
+	
+}
+
+modal2{
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	right: 50%;
+	bottom: 250px;
+	transform: translateX(-50%);
+	width: 350px;
+	margin: 0 auto;
+	border: 1px solid black;
+	background: rgba(48, 46, 45, 1);
+	min-height: 250px;
+	padding: 20px;
+	z-index: 9999;
+	
+}
+
+modal3{
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	right: 50%;
+	bottom: 250px;
+	transform: translateX(-50%);
+	width: 350px;
+	margin: 0 auto;
+	border: 1px solid black;
+	background: rgba(48, 46, 45, 1);
+	min-height: 250px;
+	padding: 20px;
+	z-index: 9999;
+	
+}

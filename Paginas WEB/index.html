@@ -13,18 +13,49 @@
 
 <body>
 <div class="container">
-	<div id="login-box">
+	<div id="login-box" class="entar">
 		<div class="logo">
-			<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/jd6TVgsph6w7e" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/cheezburger-dancing-star-wars-jd6TVgsph6w7e"></a></p>
+			<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/jd6TVgsph6w7e" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
 			<h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
 		</div>
 		<div class="controls">
 			<input type="text" id="user" placeholder="Username" class="form-control" />
 			<input type="password" id="senha" placeholder="Password" class="form-control" />
 			<button type="button" id="b" class="btn btn-default btn-block btn-custom" style="background-color: #d8b600;">Login</button>
+			<button type="button" id="c" class="btn btn-default btn-block btn-custom" style="background-color: #d8b600;">Cadastro</button>
 		</div>
 	</div>
+	<div id="login-box" class="modal" style="display: none;">
+		<div class="logo">
+			<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/jd6TVgsph6w7e" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+			<h1 class="logo-caption"><span class="tweak">C</span>adastro</h1>
+		</div>
+		<div class="controls">
+			<input type="text" id="nome" placeholder="Nome" class="form-control" />
+			<input type="text" id="email" placeholder="Email" class="form-control" />
+			<input type="password" id="senhaCadastro" placeholder="Password" class="form-control" />
+			<button type="button" id="d" class="btn btn-default btn-block btn-custom" style="background-color: #d8b600;">Proximo</button>
+		</div>
+	</div>
+	<div id="login-box" class="modal2" style="display: none;">
+		<div class="logo">
+			<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/jd6TVgsph6w7e" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+			<h1 class="logo-caption"><span class="tweak">E</span>mpresa</h1>
+		</div>
+		<div class="controls">
+			<input type="text" id="nomeEmpresa" placeholder="Nome da Empresa" class="form-control" />
+			<button type="button" id="t" class="btn btn-default btn-block btn-custom" style="background-color: #d8b600;">Terminar</button>
+		</div>
+	</div>
+	<div id="login-box" class="modal3" style="display: none;">
+		<div class="logo">
+			<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/jd6TVgsph6w7e" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+			<h1 class="logo-caption"><span class="tweak">C</span>adastro efetuado</h1>
+		</div>
+
+	</div>
 </div>
+
 <div id="particles-js"></div>
 
 </body>
