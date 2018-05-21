@@ -29,7 +29,23 @@ $(function(){
         
 		var nome = document.getElementById("user").value;
 		var senha = document.getElementById("senha").value;
-		login(nome,senha);
+		if(nome == "")
+		{
+			$('#user').css('border', 'red');
+			$('#user').css('color', 'white');
+			
+		}
+		else if(senha == "")
+		{
+			$('#senha').css('background', 'red');
+			$('#senha').css('color', 'white');
+		}
+		else
+		{
+			login(nome,senha);
+		}
+		
+		
    });
    $('#c').on('click' , function(){
         
@@ -38,10 +54,27 @@ $(function(){
 		$('.entar').hide();
    });
    $('#d').on('click' , function(){
-        
-		$('.modal2').show();
-		$('.modal').hide();
-		
+        if($('#nome').val() == "")
+		{
+			$('#nome').css('background', 'red');
+			$('#nome').css('color', 'white');
+			
+		}
+		else if($('#email').val() == "")
+		{
+			$('#email').css('background', 'red');
+			$('#email').css('color', 'white');
+		}
+		else if($('#senhaCadastro').val() == "")
+		{
+			$('#senhaCadastro').css('background', 'red');
+			$('#senhaCadastro').css('color', 'white');
+		}
+		else
+		{
+			$('.modal2').show();
+			$('.modal').hide();
+		}
    });
    $('#t').on('click' , function(){
 		SalvaEmpresa($("#nomeEmpresa").val());
@@ -204,27 +237,41 @@ function SalvaCliente(Nome, Email, Senha, Empresa){
 		
 		$.ajax(settings).done(function (response) {
 			console.log(response);
+			var settings = {
+				"async": true,
+				"crossDomain": true,
+				"url": "http://imperius.azurewebsites.net/api/view/alerta?msg=Ola "+Nome+", Cadastro%20realizado%20com%20sucesso,%20%20Obrigado%20por%20assianr%20o%20Imperius%20Project%20Monitor.%20http://imperius.azurewebsites.net/&email="+Email+"",
+				"method": "POST",
+				"headers": {
+					"Cache-Control": "no-cache",
+					"Postman-Token": "6ee5a559-8eaa-483b-a11d-34da97875325"
+			}
+		}
+
+			$.ajax(settings).done(function (response) {
+				console.log(response);
+			});
 		});
 }
 function SalvaEmpresa(Empresa){
 	
 	var settings = {
-  "async": true,
-  "crossDomain": false,
-  "url": "http://imperius.azurewebsites.net/api/view/SalvaEmpresa?nome="+Empresa+"",
-  "method": "GET",
-  "headers": {
-    "Cache-Control": "no-cache",
-    "Postman-Token": "dd0ecad2-0ff2-43c1-bdde-0a8a6fec2ab3"
-  }
-}
+		"async": true,
+		"crossDomain": false,
+		"url": "http://imperius.azurewebsites.net/api/view/SalvaEmpresa?nome="+Empresa+"",
+		"method": "GET",
+		"headers": {
+			"Cache-Control": "no-cache",
+			"Postman-Token": "dd0ecad2-0ff2-43c1-bdde-0a8a6fec2ab3"
+		}
+	}
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-  var Nome = $("#nome").val();
-  var Email = $("#email").val();
-  var Senha = $("#senhaCadastro").val();
-  var empresa =response[0].idGrupo;
-  SalvaCliente(Nome,Email,Senha,empresa);
-});
+	$.ajax(settings).done(function (response) {
+		console.log(response);
+		var Nome = $("#nome").val();
+		var Email = $("#email").val();
+		var Senha = $("#senhaCadastro").val();
+		var empresa =response[0].idGrupo;
+		SalvaCliente(Nome,Email,Senha,empresa);
+	});
 }

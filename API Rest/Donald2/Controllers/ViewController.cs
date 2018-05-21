@@ -87,8 +87,16 @@ namespace API.Controllers
         [HttpPost]
         public void alerta(string msg,string email)
         {
-            Telegram.EnvioTelegram(msg);
-            Email.EnvioEmail(msg,email);
+            if (email == null)
+            {
+                Telegram.EnvioTelegram(msg);
+            }
+            else
+            {
+                Email.EnvioEmail(msg, email);
+            }
+            
+            
         }
 
         [HttpPost]//api/view/
