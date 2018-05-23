@@ -1,28 +1,27 @@
 function login(nome,senha) {
 
-var settings = {
-  "url": "http://imperius.azurewebsites.net/api/view/Login?user="+nome+"&senha="+senha+"",
-  "method": "post",
-  "headers": {
-    "Cache-Control": "no-cache",
-    "Postman-Token": "8244fa6d-a5b1-41d3-898a-ce64debebb14"
-  }
-}
-$.ajax(settings).done(function (response) {
-  console.log(response);
-  if(response.length > 0){
-
-		for (var i in response[0]) {
-			var valor;
-			valor = createCookie(i,response[0][i])
-			document.cookie = valor ;
-			i++;
+	var settings = {
+		"url": "http://imperius.azurewebsites.net/api/view/Login?user="+nome+"&senha="+senha+"",
+		"method": "post",
+		"headers": {
+			"Cache-Control": "no-cache",
+			"Postman-Token": "8244fa6d-a5b1-41d3-898a-ce64debebb14"
 		}
-		window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/principal.html";
-  }else {
-	  alert("usuario e/ou senha");
-  }
-});
+	}
+	$.ajax(settings).done(function (response) {
+		console.log(response);
+		if(response.length > 0){
+			for (var i in response[0]) {
+				var valor;
+				valor = createCookie(i,response[0][i])
+				document.cookie = valor ;
+				i++;
+			}
+			window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/principal.html";
+		}else {
+			alert("usuario e/ou senha");
+		}
+	});
 }
 $(function(){
    $('#b').on('click' , function(){
@@ -90,7 +89,7 @@ $(function(){
 function createCookie(name,value) {
     
     var date = new Date();
-    date.setTime(date.getTime()+(60*10000));
+    date.setTime(date.getTime()+(60*60000));
     var expires = "; expires="+date.toUTCString();
     
     console.log(date.toUTCString());

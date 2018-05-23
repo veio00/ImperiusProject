@@ -23,20 +23,32 @@
 </head>
 <body class="inicia" style="background: black;">
    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="btn-group">
-		<a href="../principal.html" title="Relatorios"><button type="button" class="btn-default menu" >Imperius</button></a>
-		<a href="paginas/relatorio.html" title="Relatorios"><button  type="button" class="btn-warning menu" >Relatorios</button></a>
-		
-
-	</div>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="btn-group">
+			<a href="../principal.html" title="Relatorios"><button type="button" class="btn-default menu" >Imperius</button></a>
+			<a href="../paginas/relatorio.html" title="Relatorios"><button  type="button" class="btn-warning menu"><i class = "material-icons">list_alt</i></button></a>
+			<a href="../dist.rar" title="Download"><button  type="button" class="btn-success menu" ><i class ="material-icons">cloud_download</i></button></a>
 	
+		</div>
     </nav>
+
 	<div class="row">
-        <div class="col-md-12">
+		<div class="col-md-12">
 			<h1>Relatório de Leitura</h1>
+		</div>
+		<div class="col-md-2 input-group ">
+			<select class="custom-select" id="empresa">
+				<option selected>Escolha...</option>
+			</select>
+		</div>
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" id="btnGerar" type="button"><i class="material-icons">repeat</i></button>
+		</div>
+	</div>
+        <div class="col-md-12">
+			
 		<table id="example" class="display" style="width:100%">
-        <thead>
+        <thead >
 			<tr>
 				<th>Código</th>
 				<th>Responsável</th>
@@ -50,14 +62,7 @@
         </thead>
         <tfoot>
 			<tr>
-				<th>Código</th>
-				<th>Responsável</th>
-				<th>Data de Compra</th>
-				<th>Sistema Operacional</th>
-				<th>HD %</th>
-				<th>Ram %</th>						
-				<th>Processador %</th>						
-				<th>Data</th>						
+									
 			</tr>
         </tfoot>
     </table>

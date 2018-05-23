@@ -1,107 +1,122 @@
 $(document).ready (function () {
-	geraRelatorio2();
-	function geraRelatorio (){
-            $.ajax({
-                async: false,
-				url: "http://imperius.azurewebsites.net/api/view/CarregaMaquina",
-                data: {grupo:1},
-				method: "POST",
-				dataType: "json",
-				headers: {
-				"Cache-Control": "no-cache",
-				
-				},
-                success: function (data) {
-                    $('#example').DataTable({
-                        stateSave: true,
-                        "language": {
-                            "lengthMenu": "Mostrar MENU",
-                            "zeroRecords": "Nada encontrado",
-                            "info": "Total de PAGE de PAGES",
-                            "infoEmpty": "Nenhum Dado Encontrado",
-                            "search": "Filtrar:",
-                            "infoFiltered": "(filtered from MAX total records)",
-                            "paginate": {
-                                "first": "Primeira",
-                                "last": "Ultima",
-                                "next": "Proxima",
-                                "previous": "Anterior"
-                            }
-                        },
-                        "dom": '<"top"f l>t<"bottom"ip >',//configuração de menu
-                        "pagingType": "full_numbers",
-                        "scrollX": true,
-                        "scrollY": false,
-                        scrollCollapse: true,
-                        paging: true,
-                        data: data,
-                        columns: [ //configuração de pesquisa das tabelas
-                            { "data": "idMaquina" },
-							{ "data": "Responsavel" },
-							{ "data": "Nome_Maquina" },
-							{ "data": "Adiquirida" },
-							{ "data": "Sistema" },
-							{ "data": "Keep_Alive" },
-							{ "data": "Grupo_Cliente" },
-							{ "data": "idGrupo" },
-							{ "data": "Nome_Grupo" }
-                        ]
-                    });
-                },
-                error: function () {
-                    alert("Erro de Carregamento de Dados");
-                }
-            });
+	CarregaCombo(Cookie('Grupo_Cliente'));
+
+});
+
+function Cookie(name) {
+	var cookies = document.cookie;
+	var prefix = name + "=";
+	var begin = cookies.indexOf("; " + prefix);
+
+	if (begin == -1) {
+
+		begin = cookies.indexOf(prefix);
+		
+		if (begin != 0) {
+			return null;
+		}
+
+	} else {
+		begin += 2;
+	}
+
+	var end = cookies.indexOf(";", begin);
+	
+	if (end == -1) {
+		end = cookies.length;                        
+	}
+
+	return unescape(cookies.substring(begin + prefix.length, end));
+}
+
+function geraRelatorio(empressa,cod){
+	var settings = {
+		"async": true,
+		"crossDomain": false,
+		"url": "http://localhost:3182/api/view/RelatorioLeitura?empresa="+empressa+"&cod="+cod+"",
+		"Content-Type":"application/json; charset=utf-8",
+		"method": "GET",
+		"headers": {
+			"Cache-Control": "no-cache",
+			"Postman-Token": "5a170e39-2218-a3f9-dcbb-f6cd553aa831"
+		}
+	}
+		
+	$.ajax(settings).done(function (data) {
+	console.log(data);
+	$('#example').DataTable({
+                      stateSave: true,
+                      "language": {
+                          "lengthMenu": "MENU",
+                          "zeroRecords": "Nada encontrado",
+                          "info": "Total de PAGE de PAGES",
+                          "infoEmpty": "Nenhum Dado Encontrado",
+                          "search": "Filtrar:",
+                          "infoFiltered": "(filtered from MAX total records)",
+                          "paginate": {
+                              "first": "Primeira",
+                              "last": "Ultima",
+                              "next": "Proxima",
+                              "previous": "Anterior"
+                          }
+                      },
+                      "dom": '<"top"f l>t<"bottom"ip >',//configuração de menu
+                      "pagingType": "full_numbers",
+                      "scrollX": true,
+                      "scrollY": false,
+                      scrollCollapse: true,
+                      paging: true,
+                      data: data,
+                      columns: [ //configuração de pesquisa das tabelas
+                       { "data": "codigo" },
+					{ "data": "Responsavel" },
+					{ "data": "Data_Compra" },
+					{ "data": "Sistema" },
+					{ "data": "Hd" },
+					{ "data": "Mram" },
+					{ "data": "Cpu" },
+					{ "data": "Data_Leitura" }
+                      ]
+              });
+	});
+}
+
+function CarregaCombo(grupo) {
+	
+	var settings = {
+		"async": true,
+		"crossDomain": false,
+		"url": "http://imperius.azurewebsites.net/api/View/CarregaMaquina?grupo="+grupo+"",
+		"method": "POST",
+		"headers": {
+			"Cache-Control": "no-cache",
+			"Postman-Token": "3bb6501c-abdb-43ed-8bef-db3d106374be"
+		}
 	}
 	
-	function geraRelatorio2 (){
-		var settings = {
-				"async": true,
-				"crossDomain": true,
-				"url": "http://localhost:3182/api/view/RelatorioLeitura",
-				"method": "POST",
-				"headers": {
-					"Cache-Control": "no-cache",
-					"Postman-Token": "5a170e39-2218-a3f9-dcbb-f6cd553aa831"
-				}
-			}
+	$.ajax(settings).done(function (response) {
+		console.log(response[0].Nome_grupo);
+		if (response != null) {
+                    var data = response;
+                    var selectbox = $('#empresa');
+                    selectbox.find('option').remove();
+                    $.each(data, function (i, d) {
+                        $('<option>').val(d.idMaquina).text(d.Nome_Maquina).appendTo(selectbox);
+                    });
+                }
+		$(function(){
 			
-			$.ajax(settings).done(function (data) {
-			console.log(data);
-			$('#example').DataTable({
-                        stateSave: true,
-                        "language": {
-                            "lengthMenu": "Mostrar MENU",
-                            "zeroRecords": "Nada encontrado",
-                            "info": "Total de PAGE de PAGES",
-                            "infoEmpty": "Nenhum Dado Encontrado",
-                            "search": "Filtrar:",
-                            "infoFiltered": "(filtered from MAX total records)",
-                            "paginate": {
-                                "first": "Primeira",
-                                "last": "Ultima",
-                                "next": "Proxima",
-                                "previous": "Anterior"
-                            }
-                        },
-                        "dom": '<"top"f l>t<"bottom"ip >',//configuração de menu
-                        "pagingType": "full_numbers",
-                        "scrollX": true,
-                        "scrollY": false,
-                        scrollCollapse: true,
-                        paging: true,
-                        data: data,
-                        columns: [ //configuração de pesquisa das tabelas
-                            { "data": "codigo" },
-							{ "data": "Responsavel" },
-							{ "data": "Data_Compra" },
-							{ "data": "Sistema" },
-							{ "data": "Hd" },
-							{ "data": "Mram" },
-							{ "data": "Cpu" },
-							{ "data": "Data_Leitura" }
-                        ]
-                });
-});
-	}
-});
+			$('#btnGerar').on("click", function(){
+				var cod = $("#empresa").val();
+					geraRelatorio(Cookie('Grupo_Cliente'),cod);
+			});
+	
+		});
+	}).fail(function(response){
+		
+		window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/index.html";
+
+	});
+
+           
+}

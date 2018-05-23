@@ -1,0 +1,20 @@
+-		$exception	{"O servidor remoto retornou um erro: (400) Solicitação Incorreta."}	System.Net.WebException
+https://api.telegram.org/bot353417269:AAE83uouL6joVytjTCz_4_w3QS3xV4VTOJQ/sendMessage?
+chat_id=@itgrouptest&text=Está funcionando!
+
+
+
+
+Done! Congratulations on your new bot. You will find it at t.me/Imperius_Imfernus_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
+
+Use this token to access the HTTP API:
+574896666:AAFLMEzCPFx_cqZ3w22fccZhxnk2yWGtRhg
+
+For a description of the Bot API, see this page: https://core.telegram.org/bots/api
+
+
+-294943455 pluto
+-1001244864542 infernus
+-1001267600200 IMPERIUS 
+
+imperiusprojec@gmail.com Cardrelayne

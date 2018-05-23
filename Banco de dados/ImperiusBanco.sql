@@ -128,5 +128,3 @@ delete from Memoria where Maquina_Memoria = 41
 delete from Disco where Maquina_Disco = 41
 
 select * from cliente
-
-

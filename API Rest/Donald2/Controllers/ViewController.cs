@@ -99,12 +99,12 @@ namespace API.Controllers
             
         }
 
-        [HttpPost]//api/view/
-        public DataTable RelatorioLeitura()
+        [HttpGet]//api/view/
+        public DataTable RelatorioLeitura(int empresa, int cod)
         {
             BancoRelatorios relatorio = new BancoRelatorios();
             DataTable lista = new DataTable();
-            lista = relatorio.Carregar_Relatorio_Leitura();
+            lista = relatorio.Carregar_Relatorio_Leitura(empresa, cod);
             return lista;
         }
 
