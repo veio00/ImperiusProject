@@ -1,6 +1,6 @@
 $(document).ready (function () {
 	CarregaCombo(Cookie('Grupo_Cliente'));
-
+	$(".alert").hide();
 });
 
 function Cookie(name) {
@@ -43,32 +43,35 @@ function geraRelatorio(empressa,cod){
 	}
 		
 	$.ajax(settings).done(function (data) {
-	console.log(data);
-	$('#example').DataTable({
-                      stateSave: true,
-                      "language": {
-                          "lengthMenu": "MENU",
-                          "zeroRecords": "Nada encontrado",
-                          "info": "Total de PAGE de PAGES",
-                          "infoEmpty": "Nenhum Dado Encontrado",
-                          "search": "Filtrar:",
-                          "infoFiltered": "(filtered from MAX total records)",
-                          "paginate": {
-                              "first": "Primeira",
-                              "last": "Ultima",
-                              "next": "Proxima",
-                              "previous": "Anterior"
-                          }
-                      },
-                      "dom": '<"top"f l>t<"bottom"ip >',//configuração de menu
-                      "pagingType": "full_numbers",
-                      "scrollX": true,
-                      "scrollY": false,
-                      scrollCollapse: true,
-                      paging: true,
-                      data: data,
-                      columns: [ //configuração de pesquisa das tabelas
-                       { "data": "codigo" },
+		criarCabecario(data);
+		
+		if(data.length > 0){
+		console.log(data);
+			$('#example').DataTable({
+				stateSave: true,
+				"language": {
+					"lengthMenu": "MENU",
+					"zeroRecords": "Nada encontrado",
+					"info": "Total de PAGE de PAGES",
+					"infoEmpty": "Nenhum Dado Encontrado",
+					"search": "Filtrar:",
+					"infoFiltered": "(filtered from MAX total records)",
+					"paginate": {
+						"first": "Primeira",
+						"last": "Ultima",
+						"next": "Proxima",
+						"previous": "Anterior"
+					}
+				},
+				"dom": '<"top"f l>t<"bottom"ip >',//configuração de menu
+				"pagingType": "full_numbers",
+				"scrollX": true,
+				"scrollY": false,
+				scrollCollapse: true,
+				paging: true,
+				data: data,
+				columns: [ //configuração de pesquisa das tabelas
+					{ "data": "codigo" },
 					{ "data": "Responsavel" },
 					{ "data": "Data_Compra" },
 					{ "data": "Sistema" },
@@ -76,8 +79,14 @@ function geraRelatorio(empressa,cod){
 					{ "data": "Mram" },
 					{ "data": "Cpu" },
 					{ "data": "Data_Leitura" }
-                      ]
-              });
+				]
+			});
+		}else{
+			$(".alert").show();
+			$(".alert").css('position', 'absolute');
+			$("#example").dataTable().fnDestroy();
+			
+		}
 	});
 }
 
@@ -108,7 +117,7 @@ function CarregaCombo(grupo) {
 			
 			$('#btnGerar').on("click", function(){
 				var cod = $("#empresa").val();
-					geraRelatorio(Cookie('Grupo_Cliente'),cod);
+				geraRelatorio(Cookie('Grupo_Cliente'),cod);
 			});
 	
 		});
@@ -119,4 +128,20 @@ function CarregaCombo(grupo) {
 	});
 
            
+}
+
+function criarCabecario(data){
+	var view;
+		for (var i in data[0]) {
+			
+					
+				view += "<th>" + i +" </th>";
+	
+			}
+			view += "\n";
+		
+		document.getElementById('cabecario').innerHTML = view;
+		document.getElementById('rodape').innerHTML = view;
+		
+	
 }

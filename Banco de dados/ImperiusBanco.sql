@@ -128,3 +128,7 @@ delete from Memoria where Maquina_Memoria = 41
 delete from Disco where Maquina_Disco = 41
 
 select * from cliente
+
+select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina 
+inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina 
+inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina =2 and Grupo_Cliente=1

@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
 body,html{
 	background-color:#2d2d2d;
-	font-family:"Comic Sans MS", cursive, sans-serif;
-	color:#82FA58;
+	font-family: 'Poiret One', cursive;
+	color:#000;
 
 }
 .menu{
@@ -21,13 +24,12 @@ body,html{
 }
 .row{
 	background-color:#000;
-	font-family:"Comic Sans MS", cursive, sans-serif;
-	color:#82FA58;
+	font-family: 'Poiret One', cursive;
+	color:white;
 }
 footer{
 	background-color:#000;
-	font-family:"Comic Sans MS", cursive, sans-serif;
-	color:#82FA58;
+	color:white;
 }
 #grupo{
   border:2px solid #000;
@@ -92,13 +94,19 @@ svg {
 	margin:auto;
 }
 svg > g > text[text-anchor~=middle]{
-	fill:#82FA58;
-	font-family:"Comic Sans MS", cursive, sans-serif;
+	fill:white;
+	font-family: 'Poiret One', cursive;
 	font-size:1.5em;
 }
 
 svg > g > text[text-anchor~=end],text[text-anchor~=start]{
-	fill:#82FA58;
-	font-family:"Comic Sans MS", cursive, sans-serif;
+	fill:white;
+	font-family: 'Poiret One', cursive;
 }
 
+.alert{
+	position: absolute;
+	left: 27%;
+	bottom: 0;
+	width:30%;
+}

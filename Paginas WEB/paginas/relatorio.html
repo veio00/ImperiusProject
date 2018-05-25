@@ -34,7 +34,14 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Relatório de Leitura</h1>
+			<div class="btn-group input-group-append">
+				<button type="button " class="btn btn-outline-secondary ">Leituras</button>
+				<button  type="button" class="btn btn-outline-secondary ">Logs</button>
+				<button  type="button" class="btn btn-outline-secondary">Inventario</button>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<h1 id="nomeRelatorio">Relatório de Leitura</h1>
 		</div>
 		<div class="col-md-2 input-group ">
 			<select class="custom-select" id="empresa">
@@ -49,24 +56,19 @@
 			
 		<table id="example" class="display" style="width:100%">
         <thead >
-			<tr>
-				<th>Código</th>
-				<th>Responsável</th>
-				<th>Data de Compra</th>
-				<th>Sistema Operacional</th>
-				<th>HD %</th>
-				<th>Ram %</th>						
-				<th>Processador %</th>						
-				<th>Data</th>						
+			<tr id="cabecario" >
+					
 			</tr>
         </thead>
         <tfoot>
-			<tr>
-									
+			<tr id="rodape">
+					
 			</tr>
         </tfoot>
     </table>
 	</div>
-	</div>
+<div class="alert alert-danger " role="alert">
+  Essa maquina foi cadastrada porem não teve leitura, por favor verificar instalção do coletor ou entrar em contato com o suporte tecnico via telegram ou e-mail
+</div>
 	</body>
 </html>

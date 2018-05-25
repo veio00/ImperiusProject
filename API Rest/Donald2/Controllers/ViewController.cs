@@ -109,7 +109,7 @@ namespace API.Controllers
         }
 
         [HttpGet]//api/view/
-        public DataTable RelatorioLogs([FromBody] int empresa)
+        public DataTable RelatorioLogs(int empresa)
         {
             BancoLogs logs = new BancoLogs();
             DataTable lista = new DataTable();

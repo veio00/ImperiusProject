@@ -2,6 +2,7 @@
 var jsonC;var jsonM;var maquina;
 $(document).ready(function(){
 	maquinas(Cookie("Grupo_Cliente"));
+	$(".alert").hide();
 	setInterval(function() {
         drawChart(maquina);
     }, 1000);
@@ -139,8 +140,8 @@ $(document).ready(function(){
 					}
 					
 					$.ajax(settings).done(function (response) {
-						console.log(response);
-						document.getElementById("Letreiro2").innerHTML=x;
+						$(".alert").show();
+						$(".alert").css('position', 'absolute');
 						setTimeout(function(){
 							window.location.reload(1);
 						}, 1000);

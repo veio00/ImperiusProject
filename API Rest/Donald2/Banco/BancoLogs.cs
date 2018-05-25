@@ -46,7 +46,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select idlogs, Msg, Leitura_Logs from logss inner join leitura on idLeitura = Leitura_Logs inner join Maquina on idMaquina = Maquina_Uso where Grupo_Cliente = "+ empresa +"", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select idLogs, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente="+ empresa +"", LstParametros);
 
                 return dt;
             }
