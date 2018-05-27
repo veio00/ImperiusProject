@@ -117,6 +117,15 @@ namespace API.Controllers
             return lista;
         }
 
+        [HttpGet]//api/view/
+        public DataTable RelatorioInventario(int empresa)
+        {
+            BancoRelatorios relatorio = new BancoRelatorios();
+            DataTable lista = new DataTable();
+            lista = relatorio.Carregar_Relatorio_Inventario(empresa);
+            return lista;
+        }
+
         [HttpPost]
         public bool SalvaCliente([FromBody] Cliente c)
         {

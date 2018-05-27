@@ -7,6 +7,12 @@ body,html{
 	color:#000;
 
 }
+
+#painel{
+	margin-right: 0;
+	margin-left: 0;
+	
+}
 .menu{
 	border-radius: 100%;
 	width: 50px;
@@ -38,6 +44,8 @@ footer{
 }
 #Tela{
 	top: 10%;
+	-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
 }
 
 h1{
@@ -88,6 +96,7 @@ h1{
 #btnDelete{
 	position: absolute;
 	right: 5%;
+	top: 30%
 }
 
 svg {
@@ -110,3 +119,11 @@ svg > g > text[text-anchor~=end],text[text-anchor~=start]{
 	bottom: 0;
 	width:30%;
 }
+
+.offline{
+	background:#e2e2e2;
+}
+
+.online{
+	background:#109618;
+} 

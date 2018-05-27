@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,20 +22,26 @@ namespace API.Banco
         }
 
 
-        public DataTable Salva_Logs(string mensagem, int empresa)
+        public bool Salva_Logs(Logs log)
         {
             try
             {
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("insert into Logss(Data,Msg,Leitura_Logs) values(getdate(),'"+mensagem+"',"+empresa+")", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("insert into Logss(Data,Msg,Leitura_Logs) values('"+log.Data+"','"+log.Msg+"',"+log.Leitura_Logs+")", LstParametros);
 
-                return dt;
+                if (dt != null)
+                {
+
+                    return true;
+                }
+
+                return false;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return null;
+                throw e ;
             }
 
         }
@@ -46,7 +53,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select idLogs, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente="+ empresa +"", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select idLogs as Codigo, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente="+ empresa +"", LstParametros);
 
                 return dt;
             }

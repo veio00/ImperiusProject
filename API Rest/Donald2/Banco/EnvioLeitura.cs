@@ -39,23 +39,26 @@ namespace API.Banco
 
         }
 
-        public bool Salva_Leitura(Leitura l)
+        public int Salva_Leitura(Leitura l)
         {
             try
             {
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
                 DataTable dt = ObjBanco.ExecuteQuery("insert into Leitura(Hd,Mram,Cpu,Data,Maquina_Uso) values("+l.Hd+","+l.Mram+","+l.Cpu+","+ l.Data + "," + l.Maquina_Uso+")", LstParametros);
-                if(dt != null)
+                dt = ObjBanco.ExecuteQuery("select max(idLeitura) as idLeitura from Leitura", LstParametros);
+
+                if (dt != null)
                 {
-                    return true;
+                    return int.Parse(dt.Rows[0][0].ToString());
                 }
-                return false;
+
+                return 0;
             }
             catch (Exception e)
             {
 
-                return false;
+                throw e;
             }
         }
 

@@ -28,7 +28,7 @@ public class Leitura {
      * @param idUso the idUso to set
      */
     public void setIdUso(int idUso) {
-        this.idUso = idUso;
+        this.idUso = 0;
     }
 
     /**
@@ -100,4 +100,6 @@ public class Leitura {
     public void setData(String Data) {
         this.Data = Data;
     }
+
+
 }

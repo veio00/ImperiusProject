@@ -62,7 +62,7 @@ Maquina_Uso int foreign key references Maquina(idMaquina)
 
 create table Logss(
 idLogs int primary key identity(1,1),
-Data date,
+Data Varchar(20),
 Msg varchar(280),
 Leitura_Logs int foreign key references Leitura(idLeitura)
 )
@@ -73,8 +73,7 @@ select * from Maquina inner join grupo on idgrupo = Grupo_Cliente where Grupo_Cl
 select * from leitura where idLeitura=(select max(idleitura) from leitura where Maquina_Uso = 1)
 select * from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina
 select idCliente,Acesso_Cliente,Grupo_Cliente from Cliente where Email = 'chewbacca@nubeliu.com.br' and Senha = '123456'
-select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'bebe@nubeliu.com.br'
-select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = 1 and Grupo_Cliente=1
+select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email = 'chewbacca@nubeliu.com.br'
 select idMaquina as codigo, Nome_Maquina, Responsavel, Adquirida, Modelo as Modelo_CPU,Qtd as Memoria_Total, Espaco as Tamanho_HD from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina where Grupo_Cliente=2
 select idLogs, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente=1
 select idlogs, Msg, Leitura_Logs from logss inner join leitura on idLeitura = Leitura_Logs inner join Maquina on idMaquina = Maquina_Uso where Grupo_Cliente = 2
@@ -110,6 +109,7 @@ insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate',
 insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 2)
 
 insert into Logss(Data,Msg,Leitura_Logs) values(getdate(),'Teste de insert no banco',1)
+insert into Logss(Data,Msg,Leitura_Logs) values('26/5/2018 10:16','m',1)
 
 select idCliente,Nome,Email,Senha,Nome_Acesso,Nome_grupo from Cliente inner join Acesso on Acesso_Cliente=idAcesso inner join grupo on Grupo_Cliente=idGrupo where idCliente=9
 update cliente set Nome='chewbacca',Email='chewbacca@nubeliu.com.br',Senha='123456',Acesso_Cliente=2,Grupo_Cliente=2 where idCliente=12
@@ -117,6 +117,8 @@ select * from acesso
 select * from grupo
 select * from cliente
 select max(idGrupo) as idGrupo from grupo
+select max(idLeitura) as idLeitura from Leitura
+
 
 select * from Processador 
 select * from Memoria
@@ -129,6 +131,18 @@ delete from Disco where Maquina_Disco = 41
 
 select * from cliente
 
-select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina 
+select idMaquina as Codigo, Responsavel, Data_Compra as Instalada, Sistema, Espaco, Qtd as Qtd_Memoria , Modelo as Processador from Maquina 
 inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina 
-inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina =2 and Grupo_Cliente=1
+inner join Disco on Maquina_Disco = idMaquina  where Grupo_Cliente=1
+
+select idMaquina as Codigo, Responsavel, Data_Compra as Instalada, Sistema, Hd, Mram as Memoria , Cpu as CPU, data as Leitura from Maquina 
+inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina 
+inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = 2 
+select idLeitura as Codigo, hd as HD, Mram as Memoria, cpu as CPU, Data  from leitura inner join Maquina on idMaquina=Maquina_Uso where Maquina_Uso = 1 and Grupo_Cliente=1
+select * from maquina 
+select * from Processador
+select * from Memoria
+select * from Disco
+select * from leitura
+select * from cliente
+select * from logss

@@ -31,7 +31,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public bool LeituraAgora([FromBody]Leitura l)
+        public int LeituraAgora([FromBody]Leitura l)
         {
 
                 BancoLeitura bl = new BancoLeitura();
@@ -89,5 +89,14 @@ namespace API.Controllers
             BancoGrupo emp = new BancoGrupo();
             return emp.Carregar_Grupo_Esp(email);
         }
+
+
+        [HttpPost] //api/Coleta/SalvaLogs
+        public bool SalvaLogs([FromBody] Logs l)
+        {
+            BancoLogs lo = new BancoLogs();
+            return lo.Salva_Logs(l);
+        }
+        
     }
 }

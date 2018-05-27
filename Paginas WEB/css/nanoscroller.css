@@ -1,6 +1,7 @@
 /** initial setup **/
 .nano {
   position : relative;
+  width    : 100%;
 
   overflow : hidden;
 }
@@ -17,7 +18,7 @@
   outline: thin dotted;
 }
 .nano .content::-webkit-scrollbar {
-  visibility: visible;
+  visibility: hidden;
 }
 .has-scrollbar .content::-webkit-scrollbar {
   visibility: visible;

@@ -5,7 +5,13 @@
  */
 package br.com.imperius.coletor.controller;
 
+import br.com.imperius.coletor.configuracao.Config;
+import static br.com.imperius.coletor.configuracao.Config.getProp;
 import br.com.imperius.coletor.model.Leitura;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hyperic.sigar.*;
 
 /**
@@ -16,10 +22,13 @@ public class LeituraMaquina {
 
     // metodo que retorna uma classe model de Leitura para mandar a api
     public static Leitura ColetaUso() {
+        
+        Leitura uso = new Leitura();
         Sigar sigar = new Sigar();
         Mem mem = null;
         CpuPerc cpuperc = null;
         FileSystemUsage disk = null;
+        
         try {
             mem = sigar.getMem();
             cpuperc = sigar.getCpuPerc();
@@ -35,12 +44,22 @@ public class LeituraMaquina {
         } catch (SigarException se) {
             se.printStackTrace();
         }
-        Leitura uso = new Leitura();
-        uso.setIdUso(1);
+
+        uso.getIdUso();
         uso.setCpu((int) (cpuperc.getCombined() * 100));
         uso.setMram((int) mem.getUsedPercent());
         uso.setHd((int) (disk.getUsePercent() * 100));
-        uso.setMaquina_Uso(1);
+
+        try {
+
+            Properties props = getProp();
+            int codigo = Integer.parseInt(props.getProperty("idMaquina"));
+            uso.setMaquina_Uso(codigo);
+
+        } catch (IOException ex) {
+            Logger.getLogger(LeituraMaquina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return uso;
     }
 }

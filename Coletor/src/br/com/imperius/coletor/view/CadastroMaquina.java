@@ -8,6 +8,7 @@ package br.com.imperius.coletor.view;
 import com.google.gson.Gson;
 import br.com.imperius.coletor.controller.Envio;
 import br.com.imperius.coletor.controller.InfoMaquina;
+import br.com.imperius.coletor.model.Padrao;
 import java.awt.Color;
 import java.util.logging.*;
 import org.hyperic.sigar.*;
@@ -129,12 +130,20 @@ public class CadastroMaquina extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String email = txtEmail.getText();
         Gson g = new Gson();
+        String WebServer="";
+        
+        try {
+            WebServer = Padrao.getWebServer();
+        } catch (IOException ex) {
+            Logger.getLogger(CadastroMaquina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if ("".equals(email)) {
             lblErro.setText("Preencha o email");
             lblErro.setForeground(Color.red);
         } else {
             try {
-                int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""), "http://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro?email=" + email + ""));
+                int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""), WebServer+"PesquisaCadastro?email=" + email + ""));
                 if (cod > 0) {
                     InfoMaquina.cadastro(cod);
                 } else {

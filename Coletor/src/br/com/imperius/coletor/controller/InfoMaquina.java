@@ -6,6 +6,7 @@
 package br.com.imperius.coletor.controller;
 
 import br.com.imperius.coletor.configuracao.Config;
+import static br.com.imperius.coletor.configuracao.Config.getProp;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -15,7 +16,9 @@ import br.com.imperius.coletor.model.Maquina;
 import br.com.imperius.coletor.model.Memoria;
 import br.com.imperius.coletor.model.Processador;
 import br.com.imperius.coletor.model.Leitura;
+import br.com.imperius.coletor.model.Padrao;
 import static br.com.imperius.coletor.view.View.start;
+import java.util.Properties;
 import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystemUsage;
@@ -30,28 +33,7 @@ import org.hyperic.sigar.SysInfo;
  */
 public class InfoMaquina {
 
-    private static int id;
-    private static int Grupo;
-    
-    public static int getGrupo() {
-        return Grupo;
-    }
-
-    public static void setGrupo(int aGrupo) throws IOException {
-        Grupo = aGrupo;
-        br.com.imperius.coletor.configuracao.Config.setProp("idGrupo",aGrupo+"","Codigo da Empresa");
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public static void setId(int Id) throws IOException {
-        id = Id;
-        br.com.imperius.coletor.configuracao.Config.setProp("idMaquina",Id+"","Codigo da maquina");
-    }
-
-    public static Maquina infoMaquina() throws SigarException, UnknownHostException {
+    public static Maquina infoMaquina() throws SigarException, UnknownHostException, IOException {
         Sigar sigar = new Sigar();
         Mem mem = null;
         CpuPerc cpuperc = null;
@@ -71,6 +53,7 @@ public class InfoMaquina {
         } catch (SigarException se) {
             se.printStackTrace();
         }
+        
         Maquina m = new Maquina();
         Processador cpu = new Processador();
         Memoria memo = new Memoria();
@@ -80,10 +63,10 @@ public class InfoMaquina {
         CpuInfo[] infos = sigar.getCpuInfoList();
         CpuPerc[] cpus = sigar.getCpuPercList();
         CpuInfo info = infos[0];
+        
         //Pega informação do modelo do processador
         cpu.setModelo(info.getModel());
-        //pega total de nucleos do processador
-        //System.out.println("Total CPUs....." + info.getTotalCores());
+
         //pega total de memoria em bytes e converte em megas(MB)
         memo.setQtd((int) mem.getTotal() / 1024 / 1024);
         //pega total de disco 
@@ -92,8 +75,10 @@ public class InfoMaquina {
         m.setNome_Maquina(InetAddress.getLocalHost().getHostName());
         //zm.setResponsavel("");
         m.setSistema(sys.getVendor());
-        m.setGrupo_Cliente(Grupo);
+        m.setGrupo_Cliente(Padrao.getGrupo());
         m.setResponsavel(".");
+        m.setKeep_Alive(1);
+        
         return m;
     }
 
@@ -113,6 +98,7 @@ public class InfoMaquina {
         
         p.setModelo(info.getModel());
         p.setMaquina_Cpu(cod);
+        
         return p;
     }
 
@@ -128,6 +114,7 @@ public class InfoMaquina {
         Memoria me = new Memoria();
         me.setQtd((int) mem.getRam());
         me.setMaquina_Memoria(cod);
+        
         return me;
     }
 
@@ -151,34 +138,38 @@ public class InfoMaquina {
 
         d.setEspaco((int) disk.getTotal() / 1024);
         d.setMaquina_Disco(cod);
+        
         return d;
     }
 
     public static void cadastro(int grupo) throws SigarException, IOException {
         Gson g = new Gson();
-        setGrupo((int)grupo);
+        Padrao.setGrupo((int)grupo);
         Maquina m = InfoMaquina.infoMaquina();
+        String WebServer = Padrao.getWebServer();
         try {
-            int codigo = Integer.parseInt(Envio.envioColeta(g.toJson(m), "http://imperius.azurewebsites.net/api/Coleta/InfoMaquina"));
-            setId(codigo);
+            int codigo = Integer.parseInt(Envio.envioColeta(g.toJson(m), WebServer+"InfoMaquina"));
+            Padrao.setId(codigo);
+            
             if (codigo > 0) {
                 //a,b e c são validadores
                 boolean a = false, b = false, c = false;
+                
                 while (a == false) {
                     Processador p = InfoMaquina.infoCpu(codigo);
-                    System.out.println(g.toJson(InfoMaquina.infoCpu(codigo)));
-                    a = Envio.envioColeta(g.toJson(p), "http://imperius.azurewebsites.net/api/Coleta/InfoProcessador", Boolean.class);
+                    a = Envio.envioColeta(g.toJson(p), WebServer+"InfoProcessador", Boolean.class);
                 }
+                
                 while (b == false) {
                     Memoria me = InfoMaquina.infoMemo(codigo);
-                    System.out.println(g.toJson(InfoMaquina.infoMemo(codigo)));
-                    b = Envio.envioColeta(g.toJson(me), "http://imperius.azurewebsites.net/api/Coleta/InfoMemoria", Boolean.class);
+                    b = Envio.envioColeta(g.toJson(me), WebServer+"InfoMemoria", Boolean.class);
                 }
+                
                 while (c == false) {
                     Disco hd = InfoMaquina.infoHd(codigo);
-                    System.out.println(g.toJson(InfoMaquina.infoHd(codigo)));
-                    c = Envio.envioColeta(g.toJson(hd), "http://imperius.azurewebsites.net/api/Coleta/InfoDisco", Boolean.class);
+                    c = Envio.envioColeta(g.toJson(hd), WebServer+"InfoDisco", Boolean.class);
                 }
+                
                 start();
             }
         } catch (Exception e) {

@@ -27,7 +27,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable dt = ObjBanco.ExecuteQuery("select idMaquina as codigo, Responsavel, Data_Compra, Sistema, Hd, Mram, Cpu, data as Data_Leitura from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina inner join Leitura on idMaquina=Maquina_Uso where idMaquina = "+maquina+" and Grupo_Cliente="+grupo+"", LstParametros);
+                DataTable dt = ObjBanco.ExecuteQuery("select idLeitura as Codigo, hd as HD, Mram as Memoria, cpu as CPU, Data  from leitura inner join Maquina on idMaquina=Maquina_Uso where Maquina_Uso ="+maquina+" and Grupo_Cliente="+grupo+"", LstParametros);
 
                 return dt;
             }
@@ -38,5 +38,22 @@ namespace API.Banco
 
         }
 
+        public DataTable Carregar_Relatorio_Inventario(int grupo)
+        {
+            try
+            {
+
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("select idMaquina as Codigo, Responsavel, Data_Compra as Instalada, Sistema, Espaco as HD, Qtd as Qtd_Memoria , Modelo as Processador from Maquina inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina inner join Disco on Maquina_Disco = idMaquina  where Grupo_Cliente = " + grupo + "", LstParametros);
+
+                return dt;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
     }
 }

@@ -88,7 +88,7 @@ $(document).ready(function(){
 		}
 		
 		$.ajax(settings).done(function (response) {
-			var keepAlive="btn btn-lg btn-danger";
+			var keepAlive="btn btn-lg offline";
 			jsonM = response;
 			console.log(jsonM[0].Nome_grupo);
             document.getElementById('Letreiro1').innerHTML = jsonM[0].Nome_grupo;
@@ -96,21 +96,24 @@ $(document).ready(function(){
 			for (var i in response) {
 				
 				if(response[i].Keep_Alive == 1){
-					keepAlive = "btn btn-lg btn-success";
+					keepAlive = "btn btn-lg online";
 				}
 					
 				view += `\t<button type="button" class="${keepAlive} mostra"  value=${i}><i class="maquina material-icons md-48" >computer</i> <br><span style="font-size: small;">${response[i].Nome_Maquina}</span></button>`;
-				keepAlive="btn btn-lg btn-danger";
+				keepAlive="btn btn-lg offline";
 			}
+			
 			view += "\n";
 			document.getElementById('Letreiro2').innerHTML = "Escolha a maquina ao lado";
 			document.getElementById('Tela').innerHTML = view;
+			$(".nano").nanoScroller();
 			$(function(){
 				
 				$('.btn').on("click", function(){
 					var local = $(this).attr('value');
 					document.getElementById('Letreiro2').innerHTML = jsonM[local].Nome_Maquina;
-					var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';            document.getElementById('chart_info').innerHTML = CriaInfo;
+					var CriaInfo= '<h1>data de aquisição: '+jsonM[local].Adiquirida+'</h1><h1>Responsavel: '+jsonM[local].Responsavel+'</h1><h1>Sistema Atual: '+jsonM[local].Sistema+'</h1><h1>Cod da maquina: '+jsonM[local].idMaquina+'</h1>';           
+					document.getElementById('chart_info').innerHTML = CriaInfo;
 					google.charts.load('current', {'packages':['gauge']});
 					maquina = jsonM[local].idMaquina;
 					google.charts.setOnLoadCallback(drawChart(maquina));
