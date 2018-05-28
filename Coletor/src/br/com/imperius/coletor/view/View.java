@@ -7,6 +7,7 @@ import static br.com.imperius.coletor.controller.Envio.envioColeta;
 import java.io.*;
 import java.net.*;
 import br.com.imperius.coletor.model.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,13 +37,13 @@ public class View {
                 try {
                     int validar = Integer.parseInt(Envio.envioColeta(g.toJson(u), WebServer + "LeituraAgora"));
                     ValidadorAlerta.validacao(u, validar);
-                    System.out.println("foi ");
+                    System.out.println("foi " + new SimpleDateFormat("dd/M/yyyy hh:mm").format(Calendar.getInstance().getTime()));
                 } catch (IOException ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
-        }, new Date(), 50000);//rada de 5 em 5 minutos
+        }, new Date(), 300000);//rada de 5 em 5 minutos
 
     }
 

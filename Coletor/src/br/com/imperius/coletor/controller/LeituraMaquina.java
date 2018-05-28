@@ -9,6 +9,8 @@ import br.com.imperius.coletor.configuracao.Config;
 import static br.com.imperius.coletor.configuracao.Config.getProp;
 import br.com.imperius.coletor.model.Leitura;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +51,7 @@ public class LeituraMaquina {
         uso.setCpu((int) (cpuperc.getCombined() * 100));
         uso.setMram((int) mem.getUsedPercent());
         uso.setHd((int) (disk.getUsePercent() * 100));
-
+        uso.setData(new SimpleDateFormat("dd/M/yyyy hh:mm").format(Calendar.getInstance().getTime()));
         try {
 
             Properties props = getProp();

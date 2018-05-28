@@ -21,7 +21,7 @@ namespace API.Models
         public int Mram { get; set; }
 
         public int Cpu { get; set; }
-        public int Data { get; set; }
+        public string Data { get; set; }
 
         public int Maquina_Uso { get; set; }
 
