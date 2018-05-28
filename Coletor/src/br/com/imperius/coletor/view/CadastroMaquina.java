@@ -5,6 +5,7 @@
  */
 package br.com.imperius.coletor.view;
 
+import static br.com.imperius.coletor.controller.Bandeja.startBandeja;
 import com.google.gson.Gson;
 import br.com.imperius.coletor.controller.Envio;
 import br.com.imperius.coletor.controller.InfoMaquina;
@@ -26,7 +27,11 @@ public class CadastroMaquina extends javax.swing.JFrame {
      * Creates new form CadastroMaquina
      */
     public CadastroMaquina() {
+        Color minhaCor = new Color(0, 0, 0);
+        getContentPane().setBackground(minhaCor);
+        setLocationRelativeTo(null);
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -157,6 +162,7 @@ public class CadastroMaquina extends javax.swing.JFrame {
                 openURL("http://imperius.azurewebsites.net/");
             }
         }
+        startBandeja();
         System.exit(0);
     }//GEN-LAST:event_btnEntrarActionPerformed
 

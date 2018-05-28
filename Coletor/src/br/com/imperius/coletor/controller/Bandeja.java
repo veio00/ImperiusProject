@@ -5,6 +5,7 @@
  */
 package br.com.imperius.coletor.controller;
 
+import static br.com.imperius.coletor.view.CadastroMaquina.openURL;
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
 import java.awt.Menu;
@@ -22,7 +23,7 @@ import javax.swing.*;
 
 public class Bandeja {
 
-    public static void main(String[] args) {
+    public static void startBandeja() {
 
         if (!SystemTray.isSupported()) {
             System.out.println("SystemTray is not supported");
@@ -34,8 +35,9 @@ public class Bandeja {
         final SystemTray tray = SystemTray.getSystemTray();
 
         // Create a pop-up menu components
-        //MenuItem aboutItem = new MenuItem("About");
-        ///CheckboxMenuItem cb1 = new CheckboxMenuItem("Set auto size");
+        MenuItem Configuracao = new MenuItem("Configuração");
+        MenuItem site = new MenuItem("Site");
+        //CheckboxMenuItem cb1 = new CheckboxMenuItem("Set auto size");
         //CheckboxMenuItem cb2 = new CheckboxMenuItem("Set tooltip");
         //Menu displayMenu = new Menu("Display");
         //MenuItem errorItem = new MenuItem("Error");
@@ -45,7 +47,8 @@ public class Bandeja {
         MenuItem exitItem = new MenuItem("Exit");
 
         //Add components to pop-up menu
-//        popup.add(aboutItem);
+        popup.add(Configuracao);
+        popup.add(site);
 //        popup.addSeparator();
 //        popup.add(cb1);
 //        popup.add(cb2);
@@ -59,6 +62,18 @@ public class Bandeja {
 
         trayIcon.setPopupMenu(popup);
 
+        Configuracao.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Em construção");
+            }
+        });
+        
+        site.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                openURL("http://imperius.azurewebsites.net/");
+            }
+        });
+        
         exitItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -66,7 +81,7 @@ public class Bandeja {
                 System.exit(0);
             }
 
-        });   
+        });
         try {
             tray.add(trayIcon);
         } catch (AWTException e) {

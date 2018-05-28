@@ -27,16 +27,15 @@ public class ValidadorAlerta {
     private static String nivelAtual; //pega nivel de alerta atual 
     private static String disparado; // pega ultima data que foi acionado  
 
-    public ValidadorAlerta(Leitura uso, int id) throws IOException {
+    
+    public static void validacao(Leitura uso, int id) throws IOException {
+        
         idLeitura = id;
         Properties props = getProp(); //pega propriedades atuais 
         disparado = props.getProperty("Disparado");      //pegar propridade Disparo atual para tratativa;
         nivelAtual = props.getProperty("nivelAviso");    //pegar propridade o nivel de aviso atual para tratativa;
         WebServer = props.getProperty("WebServer");         //pega link padrão para envio do log;
-        validacao(uso);
-    }
 
-    private static void validacao(Leitura uso) throws IOException {
         String ultimoDisparo = disparado;
         String nivel = nivelAtual;
         String dataAtual = DataAviso;
@@ -131,7 +130,7 @@ public class ValidadorAlerta {
                 Logs log = new Logs();
                 // guarda informaçoes dentro ca classe de get set 
                 log.setData(DataAviso);
-                log.setMsg("Seu Computador esse em risco por favor procurar um tecnico o mais rapido possivel");
+                log.setMsg("Seu Computador esta em risco por favor procurar um tecnico o mais rapido possivel");
                 log.setLeitura_Logs(idLeitura);
                 System.out.println(g.toJson(log)+ WebServer + "SalvaLogs");
                 try {

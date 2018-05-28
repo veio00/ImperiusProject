@@ -33,17 +33,16 @@ public class View {
             @Override
             public void run() {
 
-                boolean verificador = false;
                 try {
                     int validar = Integer.parseInt(Envio.envioColeta(g.toJson(u), WebServer + "LeituraAgora"));
-                    new ValidadorAlerta(u, validar);
+                    ValidadorAlerta.validacao(u, validar);
                     System.out.println("foi ");
                 } catch (IOException ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
-        }, new Date(), 100);//rada de 5 em 5 minutos
+        }, new Date(), 50000);//rada de 5 em 5 minutos
 
     }
 
@@ -58,6 +57,7 @@ public class View {
         } else if ("0".equals(idMaquina)) {
             cm.setVisible(true);
         } else {
+            Bandeja.startBandeja();
             start();
         }
 
