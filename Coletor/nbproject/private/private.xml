@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Coletor/src/br/com/imperius/coletor/controller/InfoMaquina.java</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Coletor/src/br/com/imperius/coletor/view/CadastroMaquina.java</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Coletor/src/br/com/imperius/coletor/view/View.java</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Coletor/src/br/com/imperius/coletor/controller/LeituraMaquina.java</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Coletor/src/dados.properties</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Coletor/build/classes/dados.properties</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/view/CadastroMaquina.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/controller/Bandeja.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/view/Monitoramento.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/controller/ValidadorAlerta.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/view/Configuracoes.java</file>
         </group>
     </open-files>
 </project-private>

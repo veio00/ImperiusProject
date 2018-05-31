@@ -6,17 +6,14 @@
 package br.com.imperius.coletor.controller;
 
 import static br.com.imperius.coletor.view.CadastroMaquina.openURL;
+import br.com.imperius.coletor.view.Configuracoes;
+import br.com.imperius.coletor.view.Monitoramento;
 import java.awt.AWTException;
-import java.awt.CheckboxMenuItem;
-import java.awt.Menu;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
-import java.awt.Component;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 import javax.swing.*;
@@ -31,7 +28,7 @@ public class Bandeja {
         }
         //Image image = Toolkit.getDefaultToolkit().getImage("hanSolo.gif");
         final PopupMenu popup = new PopupMenu();
-        final TrayIcon trayIcon = new TrayIcon(createImage("/hanSolo.gif", "tray icon"));
+        final TrayIcon trayIcon = new TrayIcon(createImage("/logo.png", "tray icon"));
         final SystemTray tray = SystemTray.getSystemTray();
 
         // Create a pop-up menu components
@@ -62,18 +59,26 @@ public class Bandeja {
 
         trayIcon.setPopupMenu(popup);
 
+        trayIcon.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                 new Monitoramento().setVisible(true);
+            }
+
+        });
+
         Configuracao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Em construção");
+                new Configuracoes().setVisible(true);
             }
         });
-        
+
         site.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 openURL("http://imperius.azurewebsites.net/");
             }
         });
-        
+
         exitItem.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -82,6 +87,7 @@ public class Bandeja {
             }
 
         });
+
         try {
             tray.add(trayIcon);
         } catch (AWTException e) {
@@ -100,4 +106,5 @@ public class Bandeja {
             return (new ImageIcon(imageURL, description)).getImage();
         }
     }
+    
 }

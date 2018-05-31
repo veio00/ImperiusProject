@@ -2,6 +2,7 @@ package br.com.imperius.coletor.controller;
 
 import br.com.imperius.coletor.configuracao.Config;
 import static br.com.imperius.coletor.configuracao.Config.getProp;
+import static br.com.imperius.coletor.configuracao.Config.setProp;
 import br.com.imperius.coletor.model.Leitura;
 import br.com.imperius.coletor.model.Logs;
 import br.com.imperius.coletor.model.Padrao;
@@ -27,9 +28,8 @@ public class ValidadorAlerta {
     private static String nivelAtual; //pega nivel de alerta atual 
     private static String disparado; // pega ultima data que foi acionado  
 
-    
     public static void validacao(Leitura uso, int id) throws IOException {
-        
+
         idLeitura = id;
         Properties props = getProp(); //pega propriedades atuais 
         disparado = props.getProperty("Disparado");      //pegar propridade Disparo atual para tratativa;
@@ -43,13 +43,21 @@ public class ValidadorAlerta {
         int hd = uso.getHd();       // pega a leitura da HD para tratativa 
         int mram = uso.getMram();   // pega a leitura da Memaria ram para tratativa 
 
-        if ("".equals(ultimoDisparo) || !ultimoDisparo.substring(0,4).equals(dataAtual.substring(0,4))) {
-            //Cria ou atualiza propriedade que guarda a ultima data de disparo.
-            Config.setProp("Disparado", DataAviso, "data do utimo avisa disparado");
-            //Cria ou atualiza propridade que quarda o Nivel de aviso resetado.
-            Config.setProp("nivelAviso", "", "Nivel de aviso atual");
+        try {
+            if ("0".equals(ultimoDisparo) || !ultimoDisparo.substring(0, 4).equals(dataAtual.substring(0, 4))) {
+                //Cria ou atualiza propriedade que guarda a ultima data de disparo.
+                Config.setProp("Disparado", DataAviso, "data do utimo avisa disparado");
+                //Cria ou atualiza propridade que quarda o Nivel de aviso resetado.
+                Config.setProp("nivelAviso", "0", "Nivel de aviso atual");
+            }
+        } catch (IOException e) {
+            try {
+                setProp("nivelAviso", "");
+                setProp("Disparado", "");
+            }catch(IOException f){
+                throw e;
+            }
         }
-
         //verifica se ja foi disparado algum aviso hoje 
         //caso não tenha ele verifica se a necessidade,
         //caso tenho verifica se é necessario aumentar o nivel de aviso.
@@ -132,7 +140,7 @@ public class ValidadorAlerta {
                 log.setData(DataAviso);
                 log.setMsg("Seu Computador esta em risco por favor procurar um tecnico o mais rapido possivel");
                 log.setLeitura_Logs(idLeitura);
-                System.out.println(g.toJson(log)+ WebServer + "SalvaLogs");
+                System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
                 try {
                     //envia aviso para o web server 
                     Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class);
