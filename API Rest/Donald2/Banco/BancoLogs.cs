@@ -22,7 +22,7 @@ namespace API.Banco
         }
 
 
-        public bool Salva_Logs(Logs log)
+        public int Salva_Logs(Logs log)
         {
             try
             {
@@ -30,14 +30,13 @@ namespace API.Banco
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
                 DataTable dt = ObjBanco.ExecuteQuery("insert into Logss(Data,Msg,Leitura_Logs) values('"+log.Data+"','"+log.Msg+"',"+log.Leitura_Logs+")", LstParametros);
-
+                dt = ObjBanco.ExecuteQuery("select max(idLogs) as idLogs from Logss", LstParametros);
                 if (dt != null)
                 {
-
-                    return true;
+                    return int.Parse(dt.Rows[0][0].ToString());
                 }
 
-                return false;
+                return 0;
             }
             catch (Exception e)
             {
@@ -64,6 +63,29 @@ namespace API.Banco
 
         }
 
+        public string Busca_Email(int log)
+        {
+            try
+            {
+
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("select Min(Email) as Email from Logss lo inner join Leitura  l on l.idLeitura=lo.Leitura_Logs inner join Maquina m on m.idMAquina=l.Maquina_Uso inner join grupo g on g.idGrupo = m.Grupo_Cliente inner join cliente c on c.Grupo_Cliente=m.Grupo_Cliente where idLogs = "+log+"", LstParametros);
+
+                if (dt != null)
+                {
+                    string retorno = dt.Rows[0][0].ToString().Substring(1, int.Parse(dt.Rows[0][0].ToString().Length.ToString()) - 2);
+                    return retorno;
+                }
+
+                return "";
+            }
+            catch (Exception e)
+            {
+                return e+"";
+            }
+
+        }
         //public DataTable Deleta_Logs(int empresa)
         //{
         //    try

@@ -171,7 +171,7 @@ public class ValidadorAlerta {
                 log.setData(DataAviso);
                 log.setMsg("olha seu computador ta mal se vc não cuidar vai dar ruim ");
                 log.setLeitura_Logs(idLeitura);
-
+                System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
                 try {
                     Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class);
 
@@ -198,8 +198,8 @@ public class ValidadorAlerta {
 
                 log.setData(DataAviso);
                 log.setMsg("Seu computador vai explodir");
-                log.setUso_Logs(idLeitura);
-
+                log.setLeitura_Logs(idLeitura);
+                System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
                 try {
                     Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class);
 

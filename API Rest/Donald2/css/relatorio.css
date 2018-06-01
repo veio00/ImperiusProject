@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+td{
+	color:black;
+}
+th{
+	font-family: 'Poiret One', cursive;
+}
+
+
+#btnGerar{
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.alert-danger{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width:50%;
+}
+
+.painel{
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+	
+}
+label{
+	color:#FFF !important;
+}

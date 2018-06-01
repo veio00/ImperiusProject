@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "tarefa-Paginas WEB",
+      "appliesTo": "API Rest/Donald2/Paginas WEB/",
+      "type": "launch"
+    }
+  ]
+}

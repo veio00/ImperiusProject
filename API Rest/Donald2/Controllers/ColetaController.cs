@@ -16,6 +16,7 @@ using System.Web.Http.Description;
 using API.Banco;
 using System.Data;
 using System.Web.Http.Cors;
+using API.Notificacoes;
 
 namespace API.Controllers
 {
@@ -92,10 +93,12 @@ namespace API.Controllers
 
 
         [HttpPost] //api/Coleta/SalvaLogs
-        public bool SalvaLogs([FromBody] Logs l)
+        public void SalvaLogs([FromBody] Logs l)
         {
             BancoLogs lo = new BancoLogs();
-            return lo.Salva_Logs(l);
+            
+            Email.EnvioEmail(l.Msg, lo.Busca_Email(lo.Salva_Logs(l)));
+            Telegram.EnvioTelegram(l.Data+ " "+ l.Msg);
         }
         
     }

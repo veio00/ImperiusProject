@@ -13,6 +13,7 @@ namespace API.Notificacoes
         private static string emailLocal;
         public static void EnvioEmail(string msg, string email)
         {
+            emailLocal = email;
             // Especifica o servidor SMTP e a porta
             using (SmtpClient client = new SmtpClient("smtp.gmail.com",587))
             {
