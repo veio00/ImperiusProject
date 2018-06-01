@@ -21,18 +21,21 @@
 
 	
 </head>
-<body class="inicia" style="background: black;">
+<body class="inicia">
    <!-- Fixed navbar -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="btn-group">
 			<a href="../principal.html" title="Relatorios"><button type="button" class="btn-default menu" >Imperius</button></a>
 			<a href="../paginas/relatorio.html" title="Relatorios"><button  type="button" class="btn-warning menu"><i class = "material-icons">list_alt</i></button></a>
-			<a href="../dist.rar" title="Download"><button  type="button" class="btn-success menu" ><i class ="material-icons">cloud_download</i></button></a>
+			<a href="../ImperiusProjectColetor.rar" title="Download"><button  type="button" class="btn-success menu" ><i class ="material-icons">cloud_download</i></button></a>
 	
+		</div>
+		<div class="btn-group">
+			<a href="#" title="Sair"><button type="button" id='btnSair' class="btn-danger menu" ><i class="material-icons">exit_to_app</i></button></a>
 		</div>
     </nav>
 
-	<div class="row">
+	<div class="row painel">
 		<div class="col-md-12">
 			<div class="btn-group input-group-append" style="margin: 1%;">
 				<button type="button " id="btnLeitura" class="btn btn-outline-secondary ">Leituras</button>
@@ -52,21 +55,58 @@
 			<button class="btn btn-outline-secondary" id="btnGerar" type="button"><i class="material-icons">repeat</i></button>
 		</div>
 	</div>
-        <div class="col-md-12 nano">
+	<div class="row painel">
+        <div class="col-md-12 nano leitura">
 			
-		<table id="example" class="display content" style="width:100%">
-        <thead >
-			<tr id="cabecario" >
-					
-			</tr>
-        </thead>
-        <tfoot>
-			<tr id="rodape">
-					
-			</tr>
-        </tfoot>
-    </table>
+			<table id="tbLeitura" class="display content" style="width:100%">
+				<thead >
+					<tr id="trLeituraCabecario" >
+							
+					</tr>
+				</thead>
+				<tfoot>
+					<tr id="trLeituraRodape">
+							
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 	</div>
+	<div class="row painel">
+		<div class="col-md-12 nano inventario">
+			 
+			<table id="tbInventario" class="display content" style="width:100%">
+				<thead >
+					<tr id="trInventarioCabecario" >
+							
+					</tr>
+				</thead>
+				<tfoot>
+					<tr id="trInventarioRodape">
+							
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+	<div class="row painel">
+		<div class="col-md-12 nano logs">
+			
+			<table id="tbLogs" class="display content" style="width:100%">
+				<thead >
+					<tr id="trLogsCabecario" >
+							
+					</tr>
+				</thead>
+				<tfoot>
+					<tr id="trLogsRodape">
+							
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+
 <div class="alert alert-danger " role="alert">
   Essa maquina foi cadastrada porem não teve leitura, por favor verificar instalção do coletor ou entrar em contato com o suporte tecnico via telegram ou e-mail
 </div>

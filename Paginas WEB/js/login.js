@@ -17,7 +17,7 @@ function login(nome,senha) {
 				document.cookie = valor ;
 				i++;
 			}
-			window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/principal.html";
+			window.location.href = "principal.html";
 		}else {
 			alert("usuario e/ou senha");
 		}
@@ -95,7 +95,7 @@ function createCookie(name,value) {
     console.log(date.toUTCString());
     console.log(name+"="+value+expires+";");
 	return name+"="+value+expires+";";
-    document.cookie = name+"="+value+expires+";";
+    //document.cookie = name+"="+value+expires+";";
 }
 
 $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function(){

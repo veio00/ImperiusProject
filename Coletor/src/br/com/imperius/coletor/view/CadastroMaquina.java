@@ -158,6 +158,14 @@ public class CadastroMaquina extends javax.swing.JFrame {
                 int cod = Integer.parseInt(Envio.envioColeta(g.toJson(""), WebServer + "PesquisaCadastro?email=" + email + ""));
                 if (cod > 0) {
                     InfoMaquina.cadastro(cod);
+                    SystemTray tray = SystemTray.getSystemTray();
+
+                    for (TrayIcon icon : tray.getTrayIcons()) {
+                        tray.remove(icon);
+
+                    }
+
+                    startBandeja();
                 } else {
                     lblErro.setText("E-mail não cadastrado ou errado");
                     lblErro.setForeground(Color.red);
@@ -170,15 +178,7 @@ public class CadastroMaquina extends javax.swing.JFrame {
             }
         }
 
-        SystemTray tray = SystemTray.getSystemTray();
-
-        for (TrayIcon icon : tray.getTrayIcons()) {
-            tray.remove(icon);
-
-        }
-
-        startBandeja();
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     protected static Image createImage() {

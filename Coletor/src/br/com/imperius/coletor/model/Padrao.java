@@ -5,7 +5,7 @@
  */
 package br.com.imperius.coletor.model;
 
-import static br.com.imperius.coletor.configuracao.Config.getProp;
+import static br.com.imperius.coletor.configuracao.Config.*;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -31,7 +31,7 @@ public class Padrao {
 
     public static void setGrupo(int aGrupo) throws IOException {
         Grupo = aGrupo;
-        br.com.imperius.coletor.configuracao.Config.setProp("idGrupo",aGrupo+"","Codigo da Empresa");
+        setProp("idGrupo",aGrupo+"","Codigo da Empresa");
     }
 
     public int getId() {
@@ -40,7 +40,7 @@ public class Padrao {
 
     public static void setId(int Id) throws IOException {
         id = Id;
-        br.com.imperius.coletor.configuracao.Config.setProp("idMaquina",Id+"","Codigo da maquina");
+        setProp("idMaquina",Id+"","Codigo da maquina");
     }
     
     public static String getWebServer() throws IOException {

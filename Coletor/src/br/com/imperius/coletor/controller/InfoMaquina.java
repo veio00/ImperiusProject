@@ -5,20 +5,14 @@
  */
 package br.com.imperius.coletor.controller;
 
-import br.com.imperius.coletor.configuracao.Config;
-import static br.com.imperius.coletor.configuracao.Config.getProp;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import br.com.imperius.coletor.model.Disco;
-import br.com.imperius.coletor.model.Maquina;
-import br.com.imperius.coletor.model.Memoria;
-import br.com.imperius.coletor.model.Processador;
-import br.com.imperius.coletor.model.Leitura;
-import br.com.imperius.coletor.model.Padrao;
+import br.com.imperius.coletor.model.*;
+import static br.com.imperius.coletor.model.Padrao.*;
 import static br.com.imperius.coletor.view.View.start;
-import java.util.Properties;
+import javax.swing.JOptionPane;
 import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.FileSystemUsage;
@@ -48,12 +42,14 @@ public class InfoMaquina {
                 disk = sigar.getFileSystemUsage("C:");
             } else {
                 disk = sigar.getFileSystemUsage("/");
+
             }
 
         } catch (SigarException se) {
             se.printStackTrace();
+
         }
-        
+
         Maquina m = new Maquina();
         Processador cpu = new Processador();
         Memoria memo = new Memoria();
@@ -75,7 +71,7 @@ public class InfoMaquina {
         m.setNome_Maquina(InetAddress.getLocalHost().getHostName());
         //zm.setResponsavel("");
         m.setSistema(sys.getVendor());
-        m.setGrupo_Cliente(Padrao.getGrupo());
+        m.setGrupo_Cliente(getGrupo());
         m.setResponsavel(".");
         m.setKeep_Alive(1);
         
@@ -95,10 +91,10 @@ public class InfoMaquina {
         CpuInfo[] infos = sigar.getCpuInfoList();
         CpuPerc[] cpus = sigar.getCpuPercList();
         CpuInfo info = infos[0];
-        
+
         p.setModelo(info.getModel());
         p.setMaquina_Cpu(cod);
-        
+
         return p;
     }
 
@@ -114,7 +110,7 @@ public class InfoMaquina {
         Memoria me = new Memoria();
         me.setQtd((int) mem.getRam());
         me.setMaquina_Memoria(cod);
-        
+
         return me;
     }
 
@@ -138,42 +134,52 @@ public class InfoMaquina {
 
         d.setEspaco((int) disk.getTotal() / 1024);
         d.setMaquina_Disco(cod);
-        
+
         return d;
     }
 
-    public static void cadastro(int grupo) throws SigarException, IOException {
+    public static int cadastro(int grupo) throws SigarException, IOException {
+
         Gson g = new Gson();
-        Padrao.setGrupo((int)grupo);
-        Maquina m = InfoMaquina.infoMaquina();
-        String WebServer = Padrao.getWebServer();
+        setGrupo((int)grupo);
+
+        Maquina m = new Maquina();
+
+        m = infoMaquina();
+        String WebServer = getWebServer();
         try {
-            int codigo = Integer.parseInt(Envio.envioColeta(g.toJson(m), WebServer+"InfoMaquina"));
+            int codigo = Integer.parseInt(Envio.envioColeta(g.toJson(m), WebServer + "InfoMaquina"));
+
             Padrao.setId(codigo);
-            
+
             if (codigo > 0) {
                 //a,b e c são validadores
                 boolean a = false, b = false, c = false;
-                
+
                 while (a == false) {
                     Processador p = InfoMaquina.infoCpu(codigo);
-                    a = Envio.envioColeta(g.toJson(p), WebServer+"InfoProcessador", Boolean.class);
+
+                    a = Envio.envioColeta(g.toJson(p), WebServer + "InfoProcessador", Boolean.class);
                 }
-                
+
                 while (b == false) {
                     Memoria me = InfoMaquina.infoMemo(codigo);
-                    b = Envio.envioColeta(g.toJson(me), WebServer+"InfoMemoria", Boolean.class);
+                    b = Envio.envioColeta(g.toJson(me), WebServer + "InfoMemoria", Boolean.class);
                 }
-                
+
                 while (c == false) {
                     Disco hd = InfoMaquina.infoHd(codigo);
-                    c = Envio.envioColeta(g.toJson(hd), WebServer+"InfoDisco", Boolean.class);
+                    c = Envio.envioColeta(g.toJson(hd), WebServer + "InfoDisco", Boolean.class);
                 }
-                
+
                 start();
+
+                return codigo;
             }
         } catch (Exception e) {
             throw e;
+
         }
+        return 0;
     }
 }

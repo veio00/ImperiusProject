@@ -46,9 +46,9 @@ namespace API.Banco
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
                 DataTable dt = ObjBanco.ExecuteQuery("select idGrupo from grupo inner join Cliente on idGrupo = Grupo_Cliente where Email ='"+email+"'", LstParametros);
+                                                     
 
-
-                if(dt != null)
+                if (dt != null)
                 {
                     return int.Parse(dt.Rows[0][0].ToString());
                 }

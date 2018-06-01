@@ -18,7 +18,7 @@ namespace API.Models
         public string Adquirida { get; set; }
         public string Data_Compra { get; set; }
         public string Sistema { get; set; }
-        public int KeepAlive { get; set; }
+        public int Keep_Alive { get; set; }
         public int Grupo_Cliente { get; set; }
     }
 }

@@ -8,6 +8,7 @@ $(document).ready(function(){
     }, 1000);
 	$(".nano").nanoScroller();
 	$('.pane').show();
+	 Sair();
 });
 	function Cookie(name) {
 		var cookies = document.cookie;
@@ -34,7 +35,24 @@ $(document).ready(function(){
 	
 		return unescape(cookies.substring(begin + prefix.length, end));
 	}
+	
+	function Sair(){
+
+		$('#btnSair').on('click', function(){
+			var cookies = document.cookie.split(";");
+
+			for (var i = 0; i < cookies.length; i++) {
+				var cookie = cookies[i];
+				var eqPos = cookie.indexOf("=");
+				var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+				document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+			}
+			window.location.href = "index.html";
+		});
+	}
+	
 	function drawChart(mostrar) {
+		
 		var settings = {
 		"async": false,
 		"url": "http://imperius.azurewebsites.net/api/View/CarregaLeitura?escolhida="+mostrar+"",
@@ -52,26 +70,27 @@ $(document).ready(function(){
 			}
 			jsonC =response[0];
 		}).fail(function(response){});
-			
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['Memory', jsonC['Mram']],
-          ['CPU', jsonC['Cpu']],
-          ['Disk', jsonC['Hd']]
-        ]);
+		if(jsonC != null){
 
-        var options = {
-          width: 0, height: 300,
-          redFrom: 90, redTo: 100,
-          yellowFrom:75, yellowTo: 90,
-		  greenFrom:0,greenTo:75,
-          minorTicks: 20
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-
+			var data = google.visualization.arrayToDataTable([
+			['Label', 'Value'],
+			['Memory', jsonC['Mram']],
+			['CPU', jsonC['Cpu']],
+			['Disk', jsonC['Hd']]
+			]);
+	
+			var options = {
+			width: 0, height: 300,
+			redFrom: 90, redTo: 100,
+			yellowFrom:75, yellowTo: 90,
+			greenFrom:0,greenTo:75,
+			minorTicks: 20
+			};
+	
+			var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+	
+			chart.draw(data, options);
+		}
         
     }	
 	function maquinas(grupo) {
@@ -90,9 +109,9 @@ $(document).ready(function(){
 		$.ajax(settings).done(function (response) {
 			var keepAlive="btn btn-lg offline";
 			jsonM = response;
-			console.log(jsonM[0].Nome_grupo);
             document.getElementById('Letreiro1').innerHTML = jsonM[0].Nome_grupo;
 			var view = "\n";
+			
 			for (var i in response) {
 				
 				if(response[i].Keep_Alive == 1){
@@ -122,7 +141,7 @@ $(document).ready(function(){
 			});
 		}).fail(function(response){
 			
-			window.location.href = "file:///C:/Users/Will/OneDrive%20-%20Faculdade%20de%20Tecnologia%20Bandeirantes%20-%20BandTec/Imperius/ImperiusProject/Paginas%20WEB/index.html";
+			window.location.href = "index.html";
 
 		});
 
@@ -131,7 +150,7 @@ $(document).ready(function(){
 	$(function(){
 			$('#btnDelete').on('click' , function(){
 				var x;
-				var r=confirm("Escolha um valor!");
+				var r=confirm("Tem certeza que deseja excluir essa maquina ?");
 				if (r==true)
 				{
 					x="você pressionou OK!";

@@ -55,10 +55,10 @@ idLeitura int primary key identity(1,1),
 Hd int,
 Mram int,
 Cpu int,
-Data varchar(10),
+Data varchar(15),
 Maquina_Uso int foreign key references Maquina(idMaquina)
 )
-
+alter table Leitura alter column Data varchar(20)
 
 create table Logss(
 idLogs int primary key identity(1,1),
@@ -108,7 +108,7 @@ insert into Memoria(Qtd,Geracao,Maquina_Memoria) values (2048,'ddr3',2)
 insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 1)
 insert into Disco(Espaco,Marca,N_Discos,Maquina_Disco) values (248000,'seagate', 1 , 2)
 
-insert into Logss(Data,Msg,Leitura_Logs) values(getdate(),'Teste de insert no banco',1)
+insert into Logss(Data,Msg,Leitura_Logs) values(GetDate(),'Teste de insert no banco',1)
 insert into Logss(Data,Msg,Leitura_Logs) values('26/5/2018 10:16','m',1)
 
 select idCliente,Nome,Email,Senha,Nome_Acesso,Nome_grupo from Cliente inner join Acesso on Acesso_Cliente=idAcesso inner join grupo on Grupo_Cliente=idGrupo where idCliente=9
@@ -143,6 +143,6 @@ select * from maquina
 select * from Processador
 select * from Memoria
 select * from Disco
-select * from leitura
+select * from leitura order by idLeitura desc
 select * from cliente
 select * from logss
