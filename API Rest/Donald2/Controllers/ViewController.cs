@@ -9,7 +9,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
-
+using Telegram.Net.Core;
+using Telegram.Net.Core.MTProto;
+using Telegram.Net.Core.Requests;
 
 namespace API.Controllers
 {
@@ -18,7 +20,24 @@ namespace API.Controllers
     {
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] {
+                "Get:                       https://imperius.azurewebsites.net/api/View/Get Mostra todos os caminhos da API da parte de View",
+                "POST:CarregaLeitura:       https://imperius.azurewebsites.net/api/View/CarregaLeitura Carrega Leituras da maquina solicita com id dado",
+                "GET:CarregaEmpresa:        https://imperius.azurewebsites.net/api/View/CarregaEmpresa Carrega todos os dados das empresas cadastradas",
+                "GET:SalvaEmpresa:          https://imperius.azurewebsites.net/api/View/SalvaEmpresa Cadastra uma empresa com o nome dela recebido",
+                "POST:CarregaMaquina:       https://imperius.azurewebsites.net/api/View/CarregaMaquina Carrega todas as maquinas do grupo solicitado com id dado",
+                "POST:ExcluiMaquina:        https://imperius.azurewebsites.net/api/View/ExcluiMaquina Exclui uma maquina com o id dado",
+                "POST:CarregaMaquinaEsp:    https://imperius.azurewebsites.net/api/View/CarregaMaquinaEsp Busca maquina especifica com o id dado",
+                "POST:Login:                https://imperius.azurewebsites.net/api/View/Login Valida usuario e senha dado e retorna id do grupo, nome da empresa e id do cliente",
+                "POST:alerta:               https://imperius.azurewebsites.net/api/View/alerta Enviar mensagens via telegra (1 parametro 'Msg' e/ou E-mail (2 parametros 'msg' e 'email'",
+                "GET:RelatorioLeitura:      https://imperius.azurewebsites.net/api/View/RelatorioLeitura Carrega relatorio de leituras da maquina solicitada com o id dado",
+                "GET:RelatorioLogs:         https://imperius.azurewebsites.net/api/View/RelatorioLogs Carrega relatorio de Logs do grupo solicitado com o id dado",
+                "GET:RelatorioInventario:   https://imperius.azurewebsites.net/api/View/RelatorioInventario  Carrega relatorio de Inventario do grupo solicitado com o id dado",
+                "POST:SalvaCliente:         https://imperius.azurewebsites.net/api/View/SalvaCliente Cadastra um cliente com a classe Cliente dada",
+                "GET:CarregaCliente:        https://imperius.azurewebsites.net/api/View/CarregaCliente Carrega todos os dados de cliente solicitado com o id dado",
+                "GET:AlterarCliente:        https://imperius.azurewebsites.net/api/View/AlterarCliente Altera informações de cliente com a classe cliente dada ",
+
+            };
         }
 
         [HttpPost]//api/view/
@@ -29,8 +48,6 @@ namespace API.Controllers
             lista = CarregaLeitura.Carregar_Leitura(escolhida);
             return lista;
         }
-
-
 
         [HttpGet]//api/view/
         public DataTable CarregaEmpresa()
@@ -58,7 +75,8 @@ namespace API.Controllers
             lista = CarregaMaquinas.Carregar_Maquina(grupo);
             return lista;
         }
-        [HttpPost]//api/view/ExcluiMaquina
+
+        [HttpPost]//api/view/
         public bool ExcluiMaquina(int maquina)
         {
             BancoMaquina CarregaMaquinas = new BancoMaquina();
@@ -84,7 +102,7 @@ namespace API.Controllers
             return lista;
         }
 
-        [HttpPost]
+        [HttpPost]//api/view/
         public void alerta(string msg,string email)
         {
             if (email == null)
@@ -149,6 +167,12 @@ namespace API.Controllers
             return cli.Altera_Cliente(c);
         }
 
-        
+        [HttpGet]
+        public async System.Threading.Tasks.Task<bool> AddTelegramAsync(int chat, InputUser iduser, int numeroMsg)
+        {
+            //AddChatUserRequest add = new AddChatUserRequest(chat,iduser,numeroMsg);
+            
+            return true;
+        }
     }
 }

@@ -26,9 +26,22 @@ namespace API.Controllers
         // GET api/Coleta
         [SwaggerOperation("GetAll")]
         [HttpGet]
+        //[Produces("application/json")]
         public IEnumerable<string> Get()
         {
-            return new string[] { "GetFoi: http://localhost:3182/api/Values/GetFoi", "value2" };
+            return new string[] {
+                "Get:                    https://imperius.azurewebsites.net/api/Coleta/Get Mostra todos os caminhos da API da parte de coleta",
+                "POST:LeituraAgora:      https://imperius.azurewebsites.net/api/Coleta/LeituraAgora Salva Leitura vinda do coletor em forma de json para classe de leitura",
+                "POST:KeepAlive:         https://imperius.azurewebsites.net/api/Coleta/KeepAlive Recebe sinal das maquinas ativas no momento (fora do ar no momento)",
+                "POST:InfoMaquina:       https://imperius.azurewebsites.net/api/Coleta/InfoMaquina Salva uma MAquina nova vinda do coletor em forma de json para classe de Maquina",
+                "POST:InfoProcessador:   https://imperius.azurewebsites.net/api/Coleta/InfoProcessador Salva as informaçoes de processador de uma maquina existente vinda do coletor em forma de json para classe de Processador",
+                "POST:InfoMemoria:       https://imperius.azurewebsites.net/api/Coleta/InfoMemoria Salva as informações de memoria de uma maquina existente vinda do coletor em forma de json para classe de Memoria",
+                "POST:InfoDisco:         https://imperius.azurewebsites.net/api/Coleta/InfoDisco Salva as informações de  disco uma maquina existente vinda do coletor em forma de json para classe de Disco",
+                "POST:PesquisaCadastro:  https://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro Verifica de ja existe um cadastro de maquina com o id enviado e reotrna o id do grupo dessa maquina",
+                "POST:SalvaLogs:         https://imperius.azurewebsites.net/api/Coleta/SalvaLogs Salva logs vinda do coletor em forma de json para classe de Logss"
+
+
+            };
         }
 
         [HttpPost]
