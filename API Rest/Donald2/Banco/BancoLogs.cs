@@ -21,6 +21,13 @@ namespace API.Banco
             ObjBanco = null;
         }
 
+        public Conexao Conexao
+        {
+            get => default(Conexao);
+            set
+            {
+            }
+        }
 
         public int Salva_Logs(Logs log)
         {

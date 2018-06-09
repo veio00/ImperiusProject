@@ -21,8 +21,48 @@ using API.Notificacoes;
 namespace API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class ColetaController : ApiController 
+    public class ColetaController : ApiController
     {
+        public BancoMaquina BancoMaquina
+        {
+            get => default(BancoMaquina);
+            set
+            {
+            }
+        }
+
+        public BancoLeitura BancoLeitura
+        {
+            get => default(BancoLeitura);
+            set
+            {
+            }
+        }
+
+        public BancoLogs BancoLogs
+        {
+            get => default(BancoLogs);
+            set
+            {
+            }
+        }
+
+        public Telegram Telegram
+        {
+            get => default(Telegram);
+            set
+            {
+            }
+        }
+
+        public Email Email
+        {
+            get => default(Email);
+            set
+            {
+            }
+        }
+
         // GET api/Coleta
         [SwaggerOperation("GetAll")]
         [HttpGet]

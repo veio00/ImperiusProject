@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+	<title>Controle Usuario</title>
+	<meta charset="utf-8"/>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="../js/bootstrap.bundle.min.js"></script>
+	<link href="../css/css.css" rel="stylesheet">
+	<link href="../css/cadastro.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+	<!--icones do google-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="../js/cadastro.js"></script>
+	<script type="text/javascript" src="../js/nanoScrollerJS.js"></script>
+	<link rel="stylesheet" href="../css/nanoscroller.css">
+	
+	<script>
+	$(document).ready(function(){
+
+		
+	});
+	</script>
+
+</head>
+<body class="inicia">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="btn">
+		<a href="../principal.html" title="home"><button type="button" class="btn btn-outline-secondary  menu" ><i class="material-icons">insert_chart_outlined</i></button></a>
+		<a href="relatorio.html" title="Relatorios"><button  type="button" class="btn btn-outline-secondary menu"><i class = "material-icons">list_alt</i></button></a>
+		<a href="cadastro.html" title="Cadastro"><button  type="button" class="btn btn-outline-secondary menu"><i class="material-icons">portrait</i></button></a>
+		<a href="../ImperiusProjectColetor.rar" title="Download"><button  type="button" class="btn btn-outline-secondary menu" ><i class ="material-icons">cloud_download</i></button></a>
+
+	</div>
+	<div class="btn-group">
+		<a href="#" title="Sair"><button type="button" id='btnSair' class="btn btn-outline-secondary menu" ><i class="material-icons">exit_to_app</i></button></a>
+	</div>
+    </nav>
+
+	  <div class="row " id="painel">
+        <div class="col-md-3  nano" id="cliente">
+			<div class="col-md-12">
+				<h1 id="Letreiro1">Cadastro</h1> 
+			</div>
+		
+			<div id="dados" class="d-flex align-content-stretch flex-wrap  content">
+				
+			</div>
+
+		</div>
+        <div class="col-md-9 info" >
+			<div class="row">
+				<div class="col-md-12">
+					<h1 id="Letreiro2"></h1> 
+				</div>
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8 cadastro">
+					<div class="form-group">
+						
+						<div class="row">
+							<div class="col-md-4">
+								<span>Acesso : </sapn><br>
+								<select class="custom-select" id="nivel">
+									<option selected>Escolha...</option>
+								</select><br>
+							</div>
+							<div class="col-md-2">
+								<span>Codigo : </sapn><input type="text" class="form-control" id="txtCod"> </input><br>
+							</div>
+							
+						</div>
+						<div class="row">
+						
+							<div class="col">
+								<span>Nome :</sapn><input type="text" class="form-control" value="" id="txtNome"> </input><br>
+							</div>
+							<div class="col">
+								
+								<span>E-mail : </sapn><input type="text"class="form-control"  value="" id="txtEmail"> </input><br>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col">
+								<span>Senha :  </sapn><input type="password" class="form-control" value="" id="txtSenha"> </input><br>
+							</div>
+							<div class="col">
+								<span>Confirmar senha :  </sapn><input type="password" class="form-control" value="" id="txtSenhaConf"> </input><br>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-2">
+				</div>
+			</div>		
+		</div>
+</div>
+<div class="alert alert-success" role="alert">
+ Cliente removido com sucesso
+</div>
+</body>
+</html>

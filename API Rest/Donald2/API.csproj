@@ -1515,15 +1515,17 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Banco\BancoAviso.cs" />
     <Compile Include="Banco\BancoCliente.cs" />
     <Compile Include="Banco\BancoGrupo.cs" />
     <Compile Include="Banco\BancoLogin.cs" />
     <Compile Include="Banco\BancoLogs.cs" />
     <Compile Include="Banco\BancoMaquina.cs" />
     <Compile Include="Banco\Conexao.cs" />
-    <Compile Include="Banco\EnvioLeitura.cs" />
+    <Compile Include="Banco\BancoLeitura.cs" />
     <Compile Include="Banco\BancoRelatorios.cs" />
     <Compile Include="Controllers\ColetaController.cs" />
+    <Compile Include="Models\Aviso.cs" />
     <Compile Include="Models\Grupo.cs" />
     <Compile Include="Notificacoes\Email.cs" />
     <Compile Include="Notificacoes\Telegram.cs" />
@@ -1546,7 +1548,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Imperius.cd" />
+    <Content Include="ClassDiagramImperius.cd" />
     <None Include="packages.config" />
     <Content Include=".idea\Paginas WEB.iml" />
     <Content Include="css\bootstrap-grid.css.map" />

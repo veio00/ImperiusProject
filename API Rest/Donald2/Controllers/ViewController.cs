@@ -18,6 +18,70 @@ namespace API.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ViewController : ApiController
     {
+        public BancoMaquina BancoMaquina
+        {
+            get => default(BancoMaquina);
+            set
+            {
+            }
+        }
+
+        public BancoLeitura BancoLeitura
+        {
+            get => default(BancoLeitura);
+            set
+            {
+            }
+        }
+
+        public BancoLogs BancoLogs
+        {
+            get => default(BancoLogs);
+            set
+            {
+            }
+        }
+
+        public BancoGrupo BancoGrupo
+        {
+            get => default(BancoGrupo);
+            set
+            {
+            }
+        }
+
+        public BancoRelatorios BancoRelatorios
+        {
+            get => default(BancoRelatorios);
+            set
+            {
+            }
+        }
+
+        public BancoLogin BancoLogin
+        {
+            get => default(BancoLogin);
+            set
+            {
+            }
+        }
+
+        public BancoCliente BancoCliente
+        {
+            get => default(BancoCliente);
+            set
+            {
+            }
+        }
+
+        public Email Email
+        {
+            get => default(Email);
+            set
+            {
+            }
+        }
+
         public IEnumerable<string> Get()
         {
             return new string[] {
@@ -34,6 +98,7 @@ namespace API.Controllers
                 "GET:RelatorioLogs:         https://imperius.azurewebsites.net/api/View/RelatorioLogs Carrega relatorio de Logs do grupo solicitado com o id dado",
                 "GET:RelatorioInventario:   https://imperius.azurewebsites.net/api/View/RelatorioInventario  Carrega relatorio de Inventario do grupo solicitado com o id dado",
                 "POST:SalvaCliente:         https://imperius.azurewebsites.net/api/View/SalvaCliente Cadastra um cliente com a classe Cliente dada",
+                "GET:CarregaClienteGrupo:   https://imperius.azurewebsites.net/api/View/CarregaClienteGrupo Carrega todos os dados de clientes do grupo solicitado com o id dado",
                 "GET:CarregaCliente:        https://imperius.azurewebsites.net/api/View/CarregaCliente Carrega todos os dados de cliente solicitado com o id dado",
                 "GET:AlterarCliente:        https://imperius.azurewebsites.net/api/View/AlterarCliente Altera informações de cliente com a classe cliente dada ",
 
@@ -160,6 +225,14 @@ namespace API.Controllers
             return lista;
         }
 
+        [HttpGet]//api/view/
+        public DataTable CarregaClienteGrupo(int idGrupo)
+        {
+            BancoCliente cli = new BancoCliente();
+            DataTable lista = new DataTable();
+            lista = cli.Carrega_Cliente_Grupo(idGrupo);
+            return lista;
+        }
         [HttpGet]//api/view/
         public bool AlterarCliente([FromBody] Cliente c)
         {

@@ -21,6 +21,14 @@ namespace API.Banco
             ObjBanco = null;
         }
 
+        public Conexao Conexao
+        {
+            get => default(Conexao);
+            set
+            {
+            }
+        }
+
         public bool Salvar_Cliente(Cliente c)
         {
             try
@@ -55,7 +63,23 @@ namespace API.Banco
             catch (Exception ex)
             {
 
-                return null;
+                throw null;
+            }
+        }
+
+        public DataTable Carrega_Cliente_Grupo(int grupo)
+        {
+            try
+            {
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("select idCliente,Nome,Email,Senha,idAcesso,Nome_Acesso,Nome_grupo from Cliente inner join Acesso on Acesso_Cliente=idAcesso inner join grupo on Grupo_Cliente=idGrupo where idGrupo=" + grupo + "", LstParametros);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                throw null;
             }
         }
 
@@ -73,7 +97,7 @@ namespace API.Banco
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return false;

@@ -67,6 +67,18 @@ Msg varchar(280),
 Leitura_Logs int foreign key references Leitura(idLeitura)
 )
 
+create table Aviso(
+idAviso int primary key identity(1,1),
+NomeAviso varchar(200),
+AvisoI1 int,
+AvisoI2 int,
+AvisoI3 int,
+AvisoF1 int,
+AvisoF2 int,
+AvisoF3 int,
+Maquina_Aviso int foreign key references Maquina(idMaquina)
+)
+
 select Min(Email) as Email from Logss lo inner join Leitura  l on l.idLeitura=lo.Leitura_Logs inner join Maquina m on m.idMAquina=l.Maquina_Uso inner join grupo g on g.idGrupo = m.Grupo_Cliente inner join cliente c on c.Grupo_Cliente=m.Grupo_Cliente where idLogs = 1
 
 /*select * from Grupo*/

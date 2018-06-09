@@ -29,3 +29,13 @@ th{
 label{
 	color:#FFF !important;
 }
+
+#nomeRelatorio{
+	text-align: center;
+}
+
+
+.input-group{
+	margin-left: 1%;
+	margin-bottom: 1%;
+}

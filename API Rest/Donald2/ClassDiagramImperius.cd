@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="API.Banco.BancoCliente" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="0.781" />
+        <Point X="3.875" Y="0.781" />
+        <Point X="3.875" Y="2.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.984" Y="1.8" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAABAAAIAAAAAAAAAIE=</HashCode>
+      <FileName>Banco\BancoCliente.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.BancoGrupo" Collapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.016" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Banco\BancoGrupo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.BancoLeitura" Collapsed="true">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.515" Y="1.175" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAk=</HashCode>
+      <FileName>Banco\BancoLeitura.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.BancoLogin" Collapsed="true">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="1.531" />
+        <Point X="4.25" Y="1.531" />
+        <Point X="4.25" Y="2.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.609" Y="1.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAE=</HashCode>
+      <FileName>Banco\BancoLogin.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.BancoLogs" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="3.781" />
+        <Point X="4.75" Y="3.781" />
+        <Point X="4.75" Y="3.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.15" Y="0.466" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAgAAAIAAAAABAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Banco\BancoLogs.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.BancoMaquina" Collapsed="true">
+    <Position X="6" Y="5" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="5.281" />
+        <Point X="3.875" Y="5.281" />
+        <Point X="3.875" Y="3.062" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.963" Y="1.883" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAABAAAAAAAAAAAIQAAQAAAAgAABIAAAAAAE=</HashCode>
+      <FileName>Banco\BancoMaquina.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.BancoRelatorios" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <AssociationLine Name="Conexao" Type="API.Banco.Conexao">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.14" Y="0.393" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAACAAABAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Banco\BancoRelatorios.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conexao" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Banco.Conexao" Collapsed="true">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAQAAABAAAAAAA=</HashCode>
+      <FileName>Banco\Conexao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Controllers.ColetaController" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <AssociationLine Name="BancoMaquina" Type="API.Banco.BancoMaquina" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.625" Y="3.191" />
+        <Point X="11.625" Y="5.438" />
+        <Point X="7.5" Y="5.438" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BancoLeitura" Type="API.Banco.BancoLeitura" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="3.191" />
+        <Point X="11.25" Y="4.401" />
+        <Point X="9.645" Y="4.401" Type="JumpStart" />
+        <Point X="9.479" Y="4.401" Type="JumpEnd" />
+        <Point X="9.333" Y="4.401" Type="JumpStart" />
+        <Point X="9.167" Y="4.401" Type="JumpEnd" />
+        <Point X="7.5" Y="4.401" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BancoLogs" Type="API.Banco.BancoLogs" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.688" Y="3.191" />
+        <Point X="10.688" Y="3.864" />
+        <Point X="9.645" Y="3.864" Type="JumpStart" />
+        <Point X="9.479" Y="3.864" Type="JumpEnd" />
+        <Point X="9.333" Y="3.864" Type="JumpStart" />
+        <Point X="9.167" Y="3.864" Type="JumpEnd" />
+        <Point X="7.5" Y="3.864" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAiAAAABQABACAAAAAAIAgAEAAAQAAAAEAAA=</HashCode>
+      <FileName>Controllers\ColetaController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BancoMaquina" />
+      <Property Name="BancoLeitura" />
+      <Property Name="BancoLogs" />
+      <Property Name="Telegram" />
+      <Property Name="Email" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Controllers.ViewController" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <AssociationLine Name="BancoMaquina" Type="API.Banco.BancoMaquina" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.562" Y="3.191" />
+        <Point X="9.562" Y="5.281" />
+        <Point X="7.5" Y="5.281" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BancoLeitura" Type="API.Banco.BancoLeitura" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.25" Y="3.191" />
+        <Point X="9.25" Y="4.667" />
+        <Point X="7.5" Y="4.667" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BancoLogs" Type="API.Banco.BancoLogs" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9" Y="3.191" />
+        <Point X="9" Y="3.603" />
+        <Point X="7.5" Y="3.603" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BancoLogin" Type="API.Banco.BancoLogin" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.25" Y="2.5" />
+        <Point X="9.25" Y="1.531" />
+        <Point X="7.5" Y="1.531" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BancoCliente" Type="API.Banco.BancoCliente" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.562" Y="2.5" />
+        <Point X="9.562" Y="0.781" />
+        <Point X="7.5" Y="0.781" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QEIAAUAAACBAACJQAAAAAAAAAAICCAEAAAIQwkKQAAA=</HashCode>
+      <FileName>Controllers\ViewController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BancoMaquina" />
+      <Property Name="BancoLeitura" />
+      <Property Name="BancoLogs" />
+      <Property Name="BancoGrupo" />
+      <Property Name="BancoRelatorios" />
+      <Property Name="BancoLogin" />
+      <Property Name="BancoCliente" />
+      <Property Name="Email" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="API.Controllers.Telegram" Collapsed="true">
+    <Position X="11.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Notificacoes\Telegram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="API.Notificacoes.Email" Collapsed="true">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Notificacoes\Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

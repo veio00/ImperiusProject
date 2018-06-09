@@ -11,6 +11,7 @@ namespace API.Controllers
 {
     public class Telegram
     {
+
         public static void EnvioTelegram(string msg){
             const string token = "574896666:AAFLMEzCPFx_cqZ3w22fccZhxnk2yWGtRhg"; // "Pluto";
             //const string Ds_Mensagem = ; // "Colocar mensagem";

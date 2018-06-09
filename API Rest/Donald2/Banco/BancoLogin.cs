@@ -21,6 +21,14 @@ namespace API.Banco
             ObjBanco = null;
         }
 
+        public Conexao Conexao
+        {
+            get => default(Conexao);
+            set
+            {
+            }
+        }
+
         public DataTable ValidarAcesso(string user, string senha)
         {
             try
