@@ -30,7 +30,8 @@ body,html{
 .col-md-9,.col-md-3{
 	border-left:2px solid #151515;
 	height:580px;
-	max-height:580px;
+	min-height:580px;
+	max-height:1000px;
 	overflow-x: hidden;
 	overflow-y: auto;
 }

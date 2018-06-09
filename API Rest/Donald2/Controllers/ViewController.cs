@@ -100,7 +100,7 @@ namespace API.Controllers
                 "POST:SalvaCliente:         https://imperius.azurewebsites.net/api/View/SalvaCliente Cadastra um cliente com a classe Cliente dada",
                 "GET:CarregaClienteGrupo:   https://imperius.azurewebsites.net/api/View/CarregaClienteGrupo Carrega todos os dados de clientes do grupo solicitado com o id dado",
                 "GET:CarregaCliente:        https://imperius.azurewebsites.net/api/View/CarregaCliente Carrega todos os dados de cliente solicitado com o id dado",
-                "GET:AlterarCliente:        https://imperius.azurewebsites.net/api/View/AlterarCliente Altera informações de cliente com a classe cliente dada ",
+                "POST:AlterarCliente:        https://imperius.azurewebsites.net/api/View/AlterarCliente Altera informações de cliente com a classe cliente dada ",
 
             };
         }
@@ -233,7 +233,7 @@ namespace API.Controllers
             lista = cli.Carrega_Cliente_Grupo(idGrupo);
             return lista;
         }
-        [HttpGet]//api/view/
+        [HttpPost]//api/view/
         public bool AlterarCliente([FromBody] Cliente c)
         {
             BancoCliente cli = new BancoCliente();
