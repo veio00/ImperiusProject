@@ -240,6 +240,13 @@ namespace API.Controllers
             return cli.Altera_Cliente(c);
         }
 
+        [HttpGet]//api/view/
+        public bool ExcluirCliente(int cliente)
+        {
+            BancoCliente cli = new BancoCliente();
+            return cli.excluir_Cliente(cliente);
+        }
+
         [HttpGet]
         public async System.Threading.Tasks.Task<bool> AddTelegramAsync(int chat, InputUser iduser, int numeroMsg)
         {
