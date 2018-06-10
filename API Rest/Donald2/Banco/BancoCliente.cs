@@ -103,5 +103,27 @@ namespace API.Banco
                 return false;
             }
         }
+
+        public bool excluir_Cliente(int idCliente)
+        {
+            try
+            {
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("delete from cliente where idCliente="+idCliente+"", LstParametros);
+
+                if (dt != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
     }
 }

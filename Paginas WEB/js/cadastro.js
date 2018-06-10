@@ -8,6 +8,7 @@ $(document).ready(function () {
 	
 	Usuario(grupo);
 	botoes();
+	
 });
 
 function Cookie(name) {
@@ -51,6 +52,36 @@ function botoes() {
 		}
 		window.location.href = "../index.html";
 	});
+	
+	$('#btnDelete').on('click' , function(){
+				var x;
+				var r=confirm("Tem certeza que deseja excluir essa maquina ?");
+				if (r==true)
+				{
+					x="você pressionou OK!";
+					var settings = {
+					
+					"url": "http://imperius.azurewebsites.net/api/view/ExcluiMaquina?maquina="+maquina+"",
+					"method": "POST",
+					
+					}
+					
+					$.ajax(settings).done(function (response) {
+						$(".alert").show();
+						$(".alert").css('position', 'absolute');
+						$('#txtNome').val("")
+						$('#txtEmail').val("")
+						$('#txtSenha').val("")
+						$('#txtSenhaConf').val("")
+						$("#nivel").val(0);
+						$("#txtCod").val("")
+						setTimeout(function(){
+							window.location.reload(1);
+						}, 1000);
+					});
+				}
+			});
+	
 	$('#btnSalvar').on('click', function () {
 			$("#nivel").val();
 	
@@ -183,10 +214,17 @@ function SalvaCliente(Nome, Email, Senha, Acesso, Empresa){
 		$.ajax(settings).done(function (response) {
 
 		});
-		$(".alert").innerHTML("Usuario salvo com sucesso");
+		$("#alert").text("Usuario salvo com sucesso");
 		$(".alert").show();
 		setTimeout(function(){
+			$(".alert").css('position', 'absolute');
 			$(".alert").hide();
+			$('#txtNome').val("")
+			$('#txtEmail').val("")
+			$('#txtSenha').val("")
+			$('#txtSenhaConf').val("")
+			$("#nivel").val(0);
+			$("#txtCod").val("")
 		}, 2000);
 	});
 	
@@ -208,10 +246,45 @@ function AlteraCliente(idCliente, Nome, Email, Senha, Acesso, Empresa){
 	}
 	
 	$.ajax(settings).done(function (response) {
-			$(".alert").innerHTML("Alterações feita com sucesso");
+			$("#alert").text("Alterações feita com sucesso");
 			$(".alert").show();
 			setTimeout(function(){
+				$(".alert").css('position', 'absolute');
 				$(".alert").hide();
+				$('#txtNome').val("")
+				$('#txtEmail').val("")
+				$('#txtSenha').val("")
+				$('#txtSenhaConf').val("")
+				$("#nivel").val(0);
+				$("#txtCod").val("")
+			}, 2000);
+	});
+}
+
+function ExcluirCliente(idCliente){
+		var settings = {
+		"async": false,
+		"crossDomain": false,
+		"url": "http://imperius.azurewebsites.net/api/view/ExcluirCliente",
+		"method": "GET",
+		"headers": {
+			"Cache-Control": "no-cache",
+			"Postman-Token": "61076739-19cf-4b00-9cd1-3805616b0793"
+		}
+	}
+	
+	$.ajax(settings).done(function (response) {
+			$("#alert").text("Usuario excluido com sucesso");
+			$(".alert").show();
+			setTimeout(function(){
+				$(".alert").css('position', 'absolute');
+				$(".alert").hide();
+				$('#txtNome').val("")
+				$('#txtEmail').val("")
+				$('#txtSenha').val("")
+				$('#txtSenhaConf').val("")
+				$("#nivel").val(0);
+				$("#txtCod").val("")
 			}, 2000);
 	});
 }
