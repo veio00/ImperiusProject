@@ -59,26 +59,19 @@ function botoes() {
 				if (r==true)
 				{
 					x="você pressionou OK!";
-					var settings = {
-					
-					"url": "http://imperius.azurewebsites.net/api/view/ExcluiMaquina?maquina="+maquina+"",
-					"method": "POST",
-					
-					}
-					
-					$.ajax(settings).done(function (response) {
-						$(".alert").show();
-						$(".alert").css('position', 'absolute');
-						$('#txtNome').val("")
-						$('#txtEmail').val("")
-						$('#txtSenha').val("")
-						$('#txtSenhaConf').val("")
-						$("#nivel").val(0);
-						$("#txtCod").val("")
-						setTimeout(function(){
-							window.location.reload(1);
-						}, 1000);
-					});
+					ExcluirCliente($("#txtCod").val())
+					$(".alert").show();
+					$(".alert").css('position', 'absolute');
+					$('#txtNome').val("")
+					$('#txtEmail').val("")
+					$('#txtSenha').val("")
+					$('#txtSenhaConf').val("")
+					$("#nivel").val(0);
+					$("#txtCod").val("")
+					setTimeout(function(){
+						window.location.reload(1);
+					}, 1000);
+
 				}
 			});
 	
@@ -150,11 +143,11 @@ function Usuario(grupo) {
 		for (var i in response) {
 			
 			if (response[i].idAcesso == 2) {
-				keepAlive = "btn btn-lg user";
+				acesso = "btn btn-lg user";
 			}
 			
 			view += `\t<button type="button" class="${acesso} mostra"  value=${i}><i class="maquina material-icons md-48" >perm_identity</i> <br><span style="font-size: small;">${response[i].Nome}</span></button>`;
-			keepAlive = "btn btn-lg adm";
+			acesso = "btn btn-lg adm";
 		}
 		
 		view += "\n";
@@ -265,7 +258,7 @@ function ExcluirCliente(idCliente){
 		var settings = {
 		"async": false,
 		"crossDomain": false,
-		"url": "http://imperius.azurewebsites.net/api/view/ExcluirCliente",
+		"url": "http://imperius.azurewebsites.net/api/view/ExcluirCliente?Cliente="+idCliente+"",
 		"method": "GET",
 		"headers": {
 			"Cache-Control": "no-cache",
@@ -274,17 +267,13 @@ function ExcluirCliente(idCliente){
 	}
 	
 	$.ajax(settings).done(function (response) {
+			$(".alert").css('position', 'absolute');
 			$("#alert").text("Usuario excluido com sucesso");
 			$(".alert").show();
 			setTimeout(function(){
-				$(".alert").css('position', 'absolute');
+
 				$(".alert").hide();
-				$('#txtNome').val("")
-				$('#txtEmail').val("")
-				$('#txtSenha').val("")
-				$('#txtSenhaConf').val("")
-				$("#nivel").val(0);
-				$("#txtCod").val("")
+
 			}, 2000);
 	});
 }
