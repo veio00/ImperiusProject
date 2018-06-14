@@ -3,15 +3,22 @@ package br.com.imperius.coletor.controller;
 import br.com.imperius.coletor.configuracao.Config;
 import static br.com.imperius.coletor.configuracao.Config.getProp;
 import static br.com.imperius.coletor.configuracao.Config.setProp;
+import br.com.imperius.coletor.model.Aviso;
 import br.com.imperius.coletor.model.Leitura;
 import br.com.imperius.coletor.model.Logs;
 import br.com.imperius.coletor.model.Padrao;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,7 +33,14 @@ public class ValidadorAlerta {
     private static int idLeitura; // server para pegar o id da leitura analisada
     private static String WebServer; //server para pegar link da api  
     private static String nivelAtual; //pega nivel de alerta atual 
-    private static String disparado; // pega ultima data que foi acionado  
+    private static String disparado; // pega ultima data que foi acionado
+    private static int AvisoI1;
+    private static int AvisoI2;
+    private static int AvisoI3;
+    private static int AvisoF1;
+    private static int AvisoF2;
+    private static int AvisoF3;
+    private static int NomeAviso;
 
     public static void validacao(Leitura uso, int id) throws IOException {
 
@@ -34,7 +48,7 @@ public class ValidadorAlerta {
         Properties props = getProp(); //pega propriedades atuais 
         disparado = props.getProperty("Disparado");      //pegar propridade Disparo atual para tratativa;
         nivelAtual = props.getProperty("nivelAviso");    //pegar propridade o nivel de aviso atual para tratativa;
-        WebServer = props.getProperty("WebServer");         //pega link padrão para envio do log;
+        WebServer = props.getProperty("WebServer"); //pega link padrão para envio do log;        
 
         String ultimoDisparo = disparado;
         String nivel = nivelAtual;
@@ -54,13 +68,14 @@ public class ValidadorAlerta {
             try {
                 setProp("nivelAviso", "");
                 setProp("Disparado", "");
-            }catch(IOException f){
-                throw e;
+            } catch (IOException f) {
+                throw f;
             }
         }
         //verifica se ja foi disparado algum aviso hoje 
         //caso não tenha ele verifica se a necessidade,
         //caso tenho verifica se é necessario aumentar o nivel de aviso.
+
         if ("".equals(nivel)) {
             if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
                 //Chama aviso de nivel 3
@@ -124,7 +139,7 @@ public class ValidadorAlerta {
 
     }
 
-    // metodo de aviso baixo aonde sera avisado 1 vez so por dia caso
+// metodo de aviso baixo aonde sera avisado 1 vez so por dia caso
     private static void p3() throws IOException {
         Config.setProp("nivelAviso", "p3", "Nivel de aviso atual");
         //cria contagem de tempo para enviar o proximo logs ou aviso
@@ -141,12 +156,15 @@ public class ValidadorAlerta {
                 log.setMsg("Seu Computador esta em risco por favor procurar um tecnico o mais rapido possivel");
                 log.setLeitura_Logs(idLeitura);
                 System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+
                 try {
                     //envia aviso para o web server 
-                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class);
+                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                    );
 
                 } catch (IOException ex) {
-                    Logger.getLogger(ValidadorAlerta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ValidadorAlerta.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -172,11 +190,14 @@ public class ValidadorAlerta {
                 log.setMsg("olha seu computador ta mal se vc não cuidar vai dar ruim ");
                 log.setLeitura_Logs(idLeitura);
                 System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+
                 try {
-                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class);
+                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                    );
 
                 } catch (IOException ex) {
-                    Logger.getLogger(ValidadorAlerta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ValidadorAlerta.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }, new Date(), 360000);// roda de 6 em 6 horas
@@ -200,11 +221,14 @@ public class ValidadorAlerta {
                 log.setMsg("Seu computador vai explodir");
                 log.setLeitura_Logs(idLeitura);
                 System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+
                 try {
-                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class);
+                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                    );
 
                 } catch (IOException ex) {
-                    Logger.getLogger(ValidadorAlerta.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ValidadorAlerta.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }, new Date(), 60000);//toda de 1 em 1 hora

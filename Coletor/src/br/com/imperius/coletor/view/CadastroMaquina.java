@@ -34,9 +34,8 @@ public class CadastroMaquina extends javax.swing.JFrame {
     public CadastroMaquina() {
         Color minhaCor = new Color(0, 0, 0);
         getContentPane().setBackground(minhaCor);
-        setLocationRelativeTo(null);
         initComponents();
-
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

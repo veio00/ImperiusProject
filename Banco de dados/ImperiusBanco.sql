@@ -78,6 +78,12 @@ AvisoF2 int,
 AvisoF3 int,
 Maquina_Aviso int foreign key references Maquina(idMaquina)
 )
+insert into Aviso values('personalizado',50,50,50,50,50,50,11)
+update Aviso set NomeAviso='outroteste', AvisoI1=0,AvisoI2=0,AvisoI3=0,AvisoF1=0,AvisoF2=0,AvisoF3=0 where idAviso=1
+select * from Aviso
+delete from aviso
+
+
 
 select Min(Email) as Email from Logss lo inner join Leitura  l on l.idLeitura=lo.Leitura_Logs inner join Maquina m on m.idMAquina=l.Maquina_Uso inner join grupo g on g.idGrupo = m.Grupo_Cliente inner join cliente c on c.Grupo_Cliente=m.Grupo_Cliente where idLogs = 1
 

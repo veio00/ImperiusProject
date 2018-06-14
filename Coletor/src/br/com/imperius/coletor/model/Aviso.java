@@ -5,31 +5,64 @@
  */
 package br.com.imperius.coletor.model;
 
+import static br.com.imperius.coletor.configuracao.Config.getProp;
+import static br.com.imperius.coletor.configuracao.Config.setProp;
+import br.com.imperius.coletor.controller.Envio;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
 /**
  *
  * @author Will
  */
 public class Aviso {
-private int idAviso;
-private String NomeAviso;
-private int AvisoI1;
-private int AvisoI2;
-private int AvisoI3;
-private int AvisoF1;
-private int AvisoF2;
-private int AvisoF3;
-private int Maquina_Aviso;
 
-    public Aviso(int idAviso, String NomeAviso, int AvisoI1, int AvisoI2, int AvisoI3, int AvisoF1, int AvisoF2, int AvisoF3, int Maquina_Aviso) {
-        this.idAviso = idAviso;
-        this.NomeAviso = NomeAviso;
-        this.AvisoI1 = AvisoI1;
-        this.AvisoI2 = AvisoI2;
-        this.AvisoI3 = AvisoI3;
-        this.AvisoF1 = AvisoF1;
-        this.AvisoF2 = AvisoF2;
-        this.AvisoF3 = AvisoF3;
-        this.Maquina_Aviso = Maquina_Aviso;
+    private int idAviso;
+    private String NomeAviso;
+    private int AvisoI1;
+    private int AvisoI2;
+    private int AvisoI3;
+    private int AvisoF1;
+    private int AvisoF2;
+    private int AvisoF3;
+    private int Maquina_Aviso;
+
+    public Aviso() throws IOException {
+        Properties props = getProp(); //pega propriedades atuais    
+        this.idAviso = Integer.parseInt(props.getProperty("idAviso"));
+        this.AvisoI1 = Integer.parseInt(props.getProperty("AvisoI1"));
+        this.AvisoI2 = Integer.parseInt(props.getProperty("AvisoI2"));
+        this.AvisoI3 = Integer.parseInt(props.getProperty("AvisoI3"));
+        this.AvisoF1 = Integer.parseInt(props.getProperty("AvisoF1"));
+        this.AvisoF2 = Integer.parseInt(props.getProperty("AvisoF2"));
+        this.AvisoF3 = Integer.parseInt(props.getProperty("AvisoF3"));
+        this.NomeAviso = props.getProperty("NomeAviso");
+    }
+
+    public static ArrayList<Aviso> carregaAviso() throws IOException {
+        Properties props = getProp(); //pega propriedades atuais 
+
+        String dt = Envio.envioColeta("", props.getProperty("WebServer") + "CarregaAviso?maquina=" + props.getProperty("idMaquina"));
+
+        Gson gson = new Gson();
+        Type Aviso = new TypeToken<ArrayList<Aviso>>() {
+        }.getType();
+        ArrayList<Aviso> a = gson.fromJson(dt, Aviso);
+        return a;
+
+    }
+
+    public static boolean salvaAviso(Aviso a) throws IOException {
+        Properties props = getProp(); //pega propriedades atuais 
+        Gson g = new Gson();
+        return Envio.envioColeta(g.toJson(a), props.getProperty("WebServer") + "SalvaAviso",boolean.class);
+
     }
 
     public int getIdAviso() {
@@ -103,6 +136,5 @@ private int Maquina_Aviso;
     public void setMaquina_Aviso(int Maquina_Aviso) {
         this.Maquina_Aviso = Maquina_Aviso;
     }
-
 
 }

@@ -101,7 +101,7 @@ namespace API.Controllers
                 "GET:CarregaClienteGrupo:   https://imperius.azurewebsites.net/api/View/CarregaClienteGrupo Carrega todos os dados de clientes do grupo solicitado com o id dado",
                 "GET:CarregaCliente:        https://imperius.azurewebsites.net/api/View/CarregaCliente Carrega todos os dados de cliente solicitado com o id dado",
                 "POST:AlterarCliente:        https://imperius.azurewebsites.net/api/View/AlterarCliente Altera informações de cliente com a classe cliente dada ",
-
+                "GET:ExcluirCliente:        https://imperius.azurewebsites.net/api/View/ExcluirCliente Exclui informações de cliente com o id de cliente",
             };
         }
 

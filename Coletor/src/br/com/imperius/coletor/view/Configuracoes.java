@@ -8,14 +8,18 @@ package br.com.imperius.coletor.view;
 import static br.com.imperius.coletor.configuracao.Config.getProp;
 import static br.com.imperius.coletor.configuracao.Config.setProp;
 import br.com.imperius.coletor.controller.Bandeja;
+import br.com.imperius.coletor.model.Aviso;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.hyperic.sigar.SigarException;
 
 /**
@@ -28,12 +32,15 @@ public class Configuracoes extends javax.swing.JFrame {
      * Creates new form Configuracoes
      */
     public static boolean verificar = false;
+    public static ArrayList<Aviso> lista;
 
-    public Configuracoes() {
+    public Configuracoes() throws IOException {
         Color minhaCor = new Color(0, 0, 0);
         getContentPane().setBackground(minhaCor);
-        setLocationRelativeTo(null);
         initComponents();
+        this.setLocationRelativeTo(null);
+        cbNomeAviso.removeAllItems();
+        carragaCombo();
     }
 
     /**
@@ -59,13 +66,34 @@ public class Configuracoes extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnRest = new javax.swing.JButton();
+        txtP1I = new javax.swing.JTextField();
+        txtP1F = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtP2I = new javax.swing.JTextField();
+        txtP2F = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtP3I = new javax.swing.JTextField();
+        txtP3F = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        cbNomeAviso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configurações");
         setIconImage(createImage()
         );
+        setLocationByPlatform(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -150,27 +178,99 @@ public class Configuracoes extends javax.swing.JFrame {
             }
         });
 
+        txtP1I.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        txtP1I.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtP1I.setEnabled(false);
+        txtP1I.setFocusCycleRoot(true);
+        txtP1I.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtP1IActionPerformed(evt);
+            }
+        });
+
+        txtP1F.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        txtP1F.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtP1F.setEnabled(false);
+        txtP1F.setFocusCycleRoot(true);
+
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("%");
+
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("%   até");
+
+        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Avivo processador :");
+
+        jLabel10.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Avivo memoria:");
+
+        txtP2I.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        txtP2I.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtP2I.setEnabled(false);
+        txtP2I.setFocusCycleRoot(true);
+        txtP2I.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtP2IActionPerformed(evt);
+            }
+        });
+
+        txtP2F.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        txtP2F.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtP2F.setEnabled(false);
+        txtP2F.setFocusCycleRoot(true);
+
+        jLabel11.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("%");
+
+        jLabel12.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("%   até");
+
+        jLabel13.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Avivo disco:");
+
+        txtP3I.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        txtP3I.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtP3I.setEnabled(false);
+        txtP3I.setFocusCycleRoot(true);
+        txtP3I.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtP3IActionPerformed(evt);
+            }
+        });
+
+        txtP3F.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
+        txtP3F.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtP3F.setEnabled(false);
+        txtP3F.setFocusCycleRoot(true);
+
+        jLabel14.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("%");
+
+        jLabel15.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("%   até");
+
+        jLabel16.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Nome do aviso:");
+
+        cbNomeAviso.setEditable(true);
+        cbNomeAviso.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDisparo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtWebserver, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
@@ -179,6 +279,56 @@ public class Configuracoes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRest, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAviso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDisparo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtWebserver, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbNomeAviso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGrupo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaquina, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtP2I, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtP3I, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtP1I, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtP2F, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtP3F, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtP1F, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,25 +337,50 @@ public class Configuracoes extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDisparo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtWebserver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbNomeAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtDisparo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtP1I, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtP1F, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtWebserver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                    .addComponent(txtP2I, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtP2F, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtP3I, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtP3F, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnEditar)
@@ -225,6 +400,14 @@ public class Configuracoes extends javax.swing.JFrame {
             txtAviso.setText(props.getProperty("nivelAviso"));
             txtDisparo.setText(props.getProperty("Disparado"));
             txtWebserver.setText(props.getProperty("WebServer"));
+            txtP1F.setText(props.getProperty("AvisoF1"));
+            txtP2F.setText(props.getProperty("AvisoF2"));
+            txtP3F.setText(props.getProperty("AvisoF3"));
+            txtP1I.setText(props.getProperty("AvisoI1"));
+            txtP2I.setText(props.getProperty("AvisoI2"));
+            txtP3I.setText(props.getProperty("AvisoI3"));
+            cbNomeAviso.addItem(props.getProperty("NomeAviso"));
+
         } catch (IOException ex) {
             Logger.getLogger(Configuracoes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -242,10 +425,46 @@ public class Configuracoes extends javax.swing.JFrame {
                 setProp("nivelAviso", txtAviso.getText());
                 setProp("Disparado", txtDisparo.getText());
                 setProp("WebServer", txtWebserver.getText());
+                setProp("AvisoF1", txtP1F.getText());
+                setProp("AvisoF2", txtP2F.getText());
+                setProp("AvisoF3", txtP3F.getText());
+                setProp("AvisoI1", txtP1I.getText());
+                setProp("AvisoI2", txtP2I.getText());
+                setProp("AvisoI3", txtP3I.getText());
+                setProp("NomeAviso", cbNomeAviso.getSelectedItem().toString());
+                if (cbNomeAviso.getSelectedItem().toString() != "Padrão") {
+                    Properties props = getProp(); //pega propriedades atuais    
+                    Aviso a = new Aviso();
+
+                    for (Aviso s : lista) {
+
+                        if (lista.contains(cbNomeAviso.getSelectedItem().toString())) {
+
+                            a.setIdAviso(s.getIdAviso());
+
+                        }
+
+                    }
+
+                    a.setMaquina_Aviso(Integer.parseInt(props.getProperty("idMaquina")));
+                    a.setAvisoF1(Integer.parseInt(txtP1F.getText()));
+                    a.setAvisoF2(Integer.parseInt(txtP2F.getText()));
+                    a.setAvisoF3(Integer.parseInt(txtP3F.getText()));
+                    a.setAvisoI1(Integer.parseInt(txtP1I.getText()));
+                    a.setAvisoI2(Integer.parseInt(txtP2I.getText()));
+                    a.setAvisoI3(Integer.parseInt(txtP3I.getText()));
+                    a.setNomeAviso(cbNomeAviso.getSelectedItem().toString());
+                    Aviso.salvaAviso(a);
+                }
+
+                JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+
                 dispose();
             }
+
         } catch (IOException ex) {
-            Logger.getLogger(Configuracoes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Configuracoes.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -256,6 +475,13 @@ public class Configuracoes extends javax.swing.JFrame {
         txtAviso.setEnabled(true);
         txtDisparo.setEnabled(true);
         txtWebserver.setEnabled(true);
+        txtP1F.setEnabled(true);
+        txtP2F.setEnabled(true);
+        txtP3F.setEnabled(true);
+        txtP1I.setEnabled(true);
+        txtP2I.setEnabled(true);
+        txtP3I.setEnabled(true);
+        cbNomeAviso.setEnabled(true);
         verificar = true;
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -266,14 +492,40 @@ public class Configuracoes extends javax.swing.JFrame {
             setProp("nivelAviso", "0");
             setProp("Disparado", "0");
             setProp("WebServer", "http://imperius.azurewebsites.net/api/Coleta/");
+            setProp("idAviso", "0");
+            setProp("AvisoF1", "84");
+            setProp("AvisoF2", "79");
+            setProp("AvisoF3", "80");
+            setProp("AvisoI1", "74");
+            setProp("AvisoI2", "69");
+            setProp("AvisoI3", "79");
+            setProp("NomeAviso", "Padrão");
 
             new CadastroMaquina().setVisible(true);
             dispose();
+
         } catch (IOException ex) {
-            Logger.getLogger(Configuracoes.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            Logger.getLogger(Configuracoes.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnRestActionPerformed
+
+    private void txtP1IActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtP1IActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtP1IActionPerformed
+
+    private void txtP2IActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtP2IActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtP2IActionPerformed
+
+    private void txtP3IActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtP3IActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtP3IActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cbNomeAviso.removeAllItems();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -289,16 +541,24 @@ public class Configuracoes extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Configuracoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Configuracoes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -306,13 +566,53 @@ public class Configuracoes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Configuracoes().setVisible(true);
+                try {
+                    new Configuracoes().setVisible(true);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(Configuracoes.class
+                            .getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
+    private void carragaCombo() throws IOException {
+        //cbNomeAviso.removeAllItems();
+        lista = Aviso.carregaAviso();
+        if (lista.size() == 0) {
+            cbNomeAviso.removeAllItems();
+
+            Properties props = new Properties();
+            props = getProp();
+            setProp("idAviso", "0");
+            setProp("AvisoF1", "84");
+            setProp("AvisoF2", "79");
+            setProp("AvisoF3", "80");
+            setProp("AvisoI1", "74");
+            setProp("AvisoI2", "69");
+            setProp("AvisoI3", "79");
+            setProp("NomeAviso", "Padrão");
+            txtP1F.setText(props.getProperty("AvisoF1"));
+            txtP2F.setText(props.getProperty("AvisoF2"));
+            txtP3F.setText(props.getProperty("AvisoF3"));
+            txtP1I.setText(props.getProperty("AvisoI1"));
+            txtP2I.setText(props.getProperty("AvisoI2"));
+            txtP3I.setText(props.getProperty("AvisoI3"));
+            cbNomeAviso.addItem(props.getProperty("NomeAviso"));
+
+        } else {
+            for (Aviso s : lista) {
+
+                cbNomeAviso.addItem(s.getNomeAviso());
+
+            }
+        }
+    }
+
     protected static Image createImage() {
-        URL imageURL = Bandeja.class.getResource("/logo.png");
+        URL imageURL = Bandeja.class
+                .getResource("/logo.png");
 
         if (imageURL == null) {
             System.err.println("Resource not found: " + "/logo.png");
@@ -322,20 +622,38 @@ public class Configuracoes extends javax.swing.JFrame {
         }
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnRest;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<String> cbNomeAviso;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtAviso;
     private javax.swing.JTextField txtDisparo;
     private javax.swing.JTextField txtGrupo;
     private javax.swing.JTextField txtMaquina;
+    private javax.swing.JTextField txtP1F;
+    private javax.swing.JTextField txtP1I;
+    private javax.swing.JTextField txtP2F;
+    private javax.swing.JTextField txtP2I;
+    private javax.swing.JTextField txtP3F;
+    private javax.swing.JTextField txtP3I;
     private javax.swing.JTextField txtWebserver;
     // End of variables declaration//GEN-END:variables
 }

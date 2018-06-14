@@ -28,8 +28,8 @@ public class Monitoramento extends javax.swing.JFrame {
     public Monitoramento() {
         Color minhaCor = new Color(0, 0, 0);
         getContentPane().setBackground(minhaCor);
-        setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -151,9 +151,8 @@ public class Monitoramento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+
         Timer timer = new Timer();
-        
 
         timer.schedule(
                 new TimerTask() {
@@ -163,7 +162,7 @@ public class Monitoramento extends javax.swing.JFrame {
                 lblCpu.setText(agora.getCpu() + " %");
                 lblMemo.setText(agora.getMram() + " %");
                 lblDisco.setText(agora.getHd() + " %");
-                lblCod.setText(agora.getMaquina_Uso()+"");
+                lblCod.setText(agora.getMaquina_Uso() + "");
             }
         }, new Date(), 100);
 
@@ -180,6 +179,7 @@ public class Monitoramento extends javax.swing.JFrame {
             return (new ImageIcon(imageURL, "tray icon")).getImage();
         }
     }
+
     /**
      * @param args the command line arguments
      */

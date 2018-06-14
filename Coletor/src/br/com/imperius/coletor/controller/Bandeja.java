@@ -15,7 +15,10 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.Image;
 import java.awt.event.*;
+import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Bandeja {
@@ -69,7 +72,11 @@ public class Bandeja {
 
         Configuracao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new Configuracoes().setVisible(true);
+                try {
+                    new Configuracoes().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Bandeja.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 

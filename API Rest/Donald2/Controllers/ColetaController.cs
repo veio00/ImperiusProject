@@ -78,7 +78,9 @@ namespace API.Controllers
                 "POST:InfoMemoria:       https://imperius.azurewebsites.net/api/Coleta/InfoMemoria Salva as informações de memoria de uma maquina existente vinda do coletor em forma de json para classe de Memoria",
                 "POST:InfoDisco:         https://imperius.azurewebsites.net/api/Coleta/InfoDisco Salva as informações de  disco uma maquina existente vinda do coletor em forma de json para classe de Disco",
                 "POST:PesquisaCadastro:  https://imperius.azurewebsites.net/api/Coleta/PesquisaCadastro Verifica de ja existe um cadastro de maquina com o id enviado e reotrna o id do grupo dessa maquina",
-                "POST:SalvaLogs:         https://imperius.azurewebsites.net/api/Coleta/SalvaLogs Salva logs vinda do coletor em forma de json para classe de Logss"
+                "POST:SalvaLogs:         https://imperius.azurewebsites.net/api/Coleta/SalvaLogs Salva logs vinda do coletor em forma de json para classe de Logss",
+                "POST:CarregaAviso:      https://imperius.azurewebsites.net/api/Coleta/CarregaAviso Carrega todos os aviso personalizados da maquina",
+                "POST:SalvaAviso:        https://imperius.azurewebsites.net/api/Coleta/SalvaAviso  Salva uma aviso personalidado vindo do coletor em forma de json para classe de Aviso",
 
 
             };
@@ -153,6 +155,36 @@ namespace API.Controllers
             Email.EnvioEmail(l.Msg, lo.Busca_Email(lo.Salva_Logs(l)));
             Telegram.EnvioTelegram(l.Data+ " "+ l.Msg);
         }
-        
+
+        [HttpPost] //api/Coleta/CarregaAviso
+        public DataTable CarregaAviso(int maquina)
+        {
+            BancoAviso a = new BancoAviso();
+            return a.Carrega_Aviso(maquina);
+
+        }
+
+        [HttpPost] //api/Coleta/SalvaAviso
+        public bool SalvaAviso([FromBody]Aviso aviso)
+        {
+            BancoAviso a = new BancoAviso();
+
+            DataTable lista = a.Carrega_Aviso(aviso.Maquina_Aviso);
+
+            foreach (DataRow s in lista.Rows){
+
+                if (s[1].ToString() ==aviso.NomeAviso)
+                {
+                    return a.Alterar_Aviso(aviso);
+                }
+
+            }
+            return a.Salva_Aviso(aviso);
+
+
+        }
+
+
+
     }
 }
