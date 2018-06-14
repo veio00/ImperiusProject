@@ -23,7 +23,7 @@ public class View {
     public static void start() throws IOException, SigarException {
         Timer timer = new Timer();
         Gson g = new Gson();
-        Leitura u = LeituraMaquina.ColetaUso();
+
         String WebServer = Padrao.getWebServer();
 
         System.out.println(g.toJson(LeituraMaquina.ColetaUso()));
@@ -35,6 +35,7 @@ public class View {
             public void run() {
 
                 try {
+                     Leitura u = LeituraMaquina.ColetaUso();
                     int validar = Integer.parseInt(Envio.envioColeta(g.toJson(u), WebServer + "LeituraAgora"));
                     ValidadorAlerta.validacao(u, validar);
                     System.out.println("foi " + new SimpleDateFormat("dd/M/yyyy hh:mm").format(Calendar.getInstance().getTime()));
@@ -43,7 +44,7 @@ public class View {
                 }
 
             }
-        }, new Date(), 300000);//rada de 5 em 5 minutos
+        }, new Date(),1000 );//rada de 5 em 5 minutos 300000
 
     }
 

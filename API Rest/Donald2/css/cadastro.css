@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+body,html{
+	background-color:#2d2d2d;
+	font-family: 'Poiret One', cursive;
+	color:#000;
+
+}
+
+
+#dados{
+	top: 10%;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	text-align:left;
+}
+
+#dados > button,i {
+	margin:auto;
+	margin-top: 3%;
+	
+	
+}
+
+#dados > button {
+	width:30%;
+
+}
+
+#dados > span {
+	font-size:small;
+}
+
+#nivel{
+	margin-bottom:1%;
+	margin-top:1%;
+
+}
+
+#txtCod{
+   pointer-events: none; 
+}
+
+#Letreiro2{
+	margin-left:25%;
+	margin-bottom:5%;
+}
+
+.adm{
+	background-color:#6A5ACD;
+}
+
+.user{
+	background-color:#e2e2e2;
+}

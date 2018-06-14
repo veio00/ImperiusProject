@@ -150,6 +150,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\cadastro.css" />
     <Content Include="Global.asax" />
     <Content Include=".idea\misc.xml" />
     <Content Include=".idea\modules.xml" />
@@ -1504,10 +1505,12 @@
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\cadastro.js" />
     <Content Include="js\home.js" />
     <Content Include="js\login.js" />
     <Content Include="js\nanoScrollerJS.js" />
     <Content Include="js\relatorio.js" />
+    <Content Include="paginas\cadastro.html" />
     <Content Include="paginas\relatorio.html" />
     <Content Include="principal.html" />
     <Content Include="Web.config" />
