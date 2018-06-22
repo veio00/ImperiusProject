@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\cadastro.css" />
+    <Content Include="css\multirange.css" />
     <Content Include="Global.asax" />
     <Content Include=".idea\misc.xml" />
     <Content Include=".idea\modules.xml" />
@@ -1498,7 +1499,8 @@
     <Content Include="ico\ico2\IKONS\SVG\zoom_in.svg" />
     <Content Include="ico\ico2\IKONS\SVG\zoom_out.svg" />
     <Content Include="ico\ico2\IKONS\_READ_ME.txt" />
-    <Content Include="img\tela.jpg" />
+    <Content Include="img\logo.ico" />
+    <Content Include="img\logo.png" />
     <Content Include="index.html" />
     <Content Include="Informações importantes para o projeto Imperius ].txt" />
     <Content Include="js\bootstrap.bundle.js" />
@@ -1508,8 +1510,10 @@
     <Content Include="js\cadastro.js" />
     <Content Include="js\home.js" />
     <Content Include="js\login.js" />
+    <Content Include="js\multirange.js" />
     <Content Include="js\nanoScrollerJS.js" />
     <Content Include="js\relatorio.js" />
+    <Content Include="logo.ico" />
     <Content Include="paginas\cadastro.html" />
     <Content Include="paginas\relatorio.html" />
     <Content Include="principal.html" />
@@ -1717,6 +1721,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'teste|AnyCPU'">
     <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

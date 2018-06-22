@@ -61,7 +61,7 @@ public class Aviso {
     public static boolean salvaAviso(Aviso a) throws IOException {
         Properties props = getProp(); //pega propriedades atuais 
         Gson g = new Gson();
-        return Envio.envioColeta(g.toJson(a), props.getProperty("WebServer") + "SalvaAviso",boolean.class);
+        return Boolean.parseBoolean(Envio.envioColeta(g.toJson(a), props.getProperty("WebServer") + "SalvaAviso"));
 
     }
 

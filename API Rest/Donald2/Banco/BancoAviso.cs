@@ -32,7 +32,7 @@ namespace API.Banco
             catch (Exception ex)
             {
 
-                throw null;
+                throw ex;
             }
         }
 

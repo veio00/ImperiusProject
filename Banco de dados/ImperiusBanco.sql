@@ -22,7 +22,7 @@ Create table Maquina(
 idMaquina int primary key identity(1,1),
 Responsavel varchar(50),
 Nome_Maquina varchar(30),
-Adquirida varchar(10),
+Adquirida varchar(20),
 Data_Compra varchar(10), 
 Sistema varchar(20),
 Keep_Alive int,
@@ -83,7 +83,7 @@ update Aviso set NomeAviso='outroteste', AvisoI1=0,AvisoI2=0,AvisoI3=0,AvisoF1=0
 select * from Aviso
 delete from aviso
 
-
+select * from Maquina inner join grupo on idgrupo = Grupo_Cliente inner join Aviso on Maquina_Aviso=idMaquina where Grupo_Cliente =1
 
 select Min(Email) as Email from Logss lo inner join Leitura  l on l.idLeitura=lo.Leitura_Logs inner join Maquina m on m.idMAquina=l.Maquina_Uso inner join grupo g on g.idGrupo = m.Grupo_Cliente inner join cliente c on c.Grupo_Cliente=m.Grupo_Cliente where idLogs = 1
 
@@ -97,23 +97,23 @@ select idMaquina as codigo, Nome_Maquina, Responsavel, Adquirida, Modelo as Mode
 select idLogs, Msg as Mensagem, Hd as Status_HD, Mram as Status_Ram, Cpu as Status_CPU, l.Data as Data_Ocorrência from Logss l inner join Leitura le on idLeitura = Leitura_Logs inner join maquina m on idmaquina = Maquina_uso where Grupo_Cliente=1
 select idlogs, Msg, Leitura_Logs from logss inner join leitura on idLeitura = Leitura_Logs inner join Maquina on idMaquina = Maquina_Uso where Grupo_Cliente = 2
 
-insert into Acesso(Descricao_Acesso,Nome_Acesso) values('So os picas usam', 'Administrador')
-insert into Acesso(Descricao_Acesso,Nome_Acesso) values('O resto', 'Cliente')
+insert into Acesso(Descricao_Acesso,Nome_Acesso) values('acesso total', 'Administrador')
+insert into Acesso(Descricao_Acesso,Nome_Acesso) values('acesso com restrição', 'Cliente')
 
 insert into Grupo values('Imperius')
 insert into Grupo values('Logicalis')
 
-insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Carlos Vinicius','bebe@nubeliu.com.br','123456',2,1)
-insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Wilian Mathias','veio@nubeliu.com.br','123456',1,1)
-insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Adrelayne ','dodoi@nubeliu.com.br','123456',2,1)
-insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('chewbacca','chewbacca@nubeliu.com.br','123456',2,2)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Carlos Vinicius','carlos.macedo@impeirus.com.br','123456',2,1)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Wilian Mathias','wilian.gomes@nubeliu.com.br','123456',1,1)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('Adrelayne ','adreline.souza@impeirus.com.br','123456',2,1)
+insert into Cliente(Nome,Email,Senha,Acesso_Cliente,Grupo_Cliente) values('chewbacca','chewbacca@impeirus.com.br','123456',2,1)
 
-insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc0',getdate(),'Microsoft',1,1)
-insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc1',getdate(),'Microsoft',0,1)
-insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc2',getdate(),'Microsoft',1,1)
-insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc3',getdate(),'Microsoft',0,1)
-insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc4',getdate(),'Microsoft',1,1)
-insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc5',getdate(),'Microsoft',0,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc0',getdate(),'N/D','Microsoft',1,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc1',getdate(),'N/D','Microsoft',0,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc2',getdate(),'N/D','Microsoft',1,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc3',getdate(),'N/D','Microsoft',0,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc4',getdate(),'N/D','Microsoft',1,1)
+insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente) values('Will','Teste-pc5',getdate(),'N/D','Microsoft',0,1)
 
 insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',1)
 insert into Leitura(Hd,Mram,Cpu,data,Maquina_Uso) values(44,80,66,'25-12-2000',2)
@@ -143,15 +143,16 @@ select max(idLogs) as idLogs from Logss
 select * from Processador 
 select * from Memoria
 select * from Disco
-delete from maquina where idMAquina = 101
-delete from leitura where Maquina_Uso = 101
-delete from logss where Leitura_Logs in (select idLeitura from Maquina inner join Leitura on idMaquina = Maquina_Uso where idMAquina = 101)
-delete from Processador where Maquina_Cpu = 101
-delete from Memoria where Maquina_Memoria = 101
-delete from Disco where Maquina_Disco = 101
+delete from maquina where idMAquina = 7
+delete from leitura where Maquina_Uso = 7
+delete from logss where Leitura_Logs in (select idLeitura from Maquina inner join Leitura on idMaquina = Maquina_Uso where idMAquina = 7)
+delete from Aviso where idAviso in (select idAviso from Maquina inner join Aviso on idMaquina = Maquina_Aviso where idMAquina = 7)
+delete from Processador where Maquina_Cpu = 7
+delete from Memoria where Maquina_Memoria = 7
+delete from Disco where Maquina_Disco = 7
 
 
-select * from cliente
+select * from aviso
 
 select idMaquina as Codigo, Responsavel, Data_Compra as Instalada, Sistema, Espaco, Qtd as Qtd_Memoria , Modelo as Processador from Maquina 
 inner join Processador on Maquina_Cpu = idMaquina inner join Memoria on Maquina_Memoria = idMaquina 
@@ -168,3 +169,4 @@ select * from Disco
 select * from leitura order by idLeitura desc
 select * from cliente
 select * from logss
+select * from grupo

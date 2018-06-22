@@ -3,6 +3,7 @@ package br.com.imperius.coletor.controller;
 import br.com.imperius.coletor.configuracao.Config;
 import static br.com.imperius.coletor.configuracao.Config.getProp;
 import static br.com.imperius.coletor.configuracao.Config.setProp;
+
 import br.com.imperius.coletor.model.Aviso;
 import br.com.imperius.coletor.model.Leitura;
 import br.com.imperius.coletor.model.Logs;
@@ -28,6 +29,8 @@ import java.util.logging.Logger;
 public class ValidadorAlerta {
 
     private static Timer tempo = new Timer(); // timer que esta excultando atualmente
+    private static TimerTask tarefa; // timer que esta excultando atualmente
+
     //Pega data atual para tratativa de renovação de avisos 
     private static String DataAviso = new SimpleDateFormat("dd/M/yyyy hh:mm").format(Calendar.getInstance().getTime());
     private static int idLeitura; // server para pegar o id da leitura analisada
@@ -75,100 +78,132 @@ public class ValidadorAlerta {
         //verifica se ja foi disparado algum aviso hoje 
         //caso não tenha ele verifica se a necessidade,
         //caso tenho verifica se é necessario aumentar o nivel de aviso.
+        String verificar = props.getProperty("NomeAviso");
+        String padrao = "Padrão";
+        if (!padrao.equals(verificar)) {
+            int idAviso = Integer.parseInt(props.getProperty("idAviso"));
+            int AvisoI1 = Integer.parseInt(props.getProperty("AvisoI1"));
+            int AvisoI2 = Integer.parseInt(props.getProperty("AvisoI2"));
+            int AvisoI3 = Integer.parseInt(props.getProperty("AvisoI3"));
+            int AvisoF1 = Integer.parseInt(props.getProperty("AvisoF1"));
+            int AvisoF2 = Integer.parseInt(props.getProperty("AvisoF2"));
+            int AvisoF3 = Integer.parseInt(props.getProperty("AvisoF3"));
 
-        if ("".equals(nivel)) {
-            if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
-                //Chama aviso de nivel 3
-                p3();
-            } else if (cpu >= 85 && cpu <= 94 || hd >= 81 && hd <= 89 || mram >= 80 && mram <= 89) {
-                //Chama aviso de nivel 2
-                p2();
-            } else if (cpu >= 95 || hd >= 90 || mram >= 90) {
-                //Chama aviso de nivel 1
-                p1();
-            } else {
-                //para o aviso do dia anterior caso esteja execultando e não tenha mais necessidade.
-                tempo.cancel();
+            if (cpu > AvisoI1 && cpu <= AvisoF1 || hd > AvisoI3 && hd <= AvisoF3 || mram > AvisoF2 && mram <= AvisoI2) {
+                //Chama aviso de personalizado 
+                personalizado();
             }
         } else {
-            //verifica qual nivel atual de aviso e se ah necessidade de aumenta-lo
-            switch (nivel) {
-                case "p1":
-                    //verifica a necessidade do aviso ainda estar avivo
-                    if (cpu >= 85 && cpu <= 94 || hd >= 81 && hd <= 89 || mram >= 80 && mram <= 89) {
-                        //para contagem anterior
-                        tempo.cancel();
-                        //Chama aviso de nivel 2 caso tenha regredido um nivel de aviso;
-                        p2();
-                    } else if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
-                        //para contagem anterior
-                        tempo.cancel();
-                        //Chama aviso de nivel 3 caso tenha regredido um nivel de aviso;
-                        p3();
-                    }
-                    break;
-                case "p2":
-                    if (cpu >= 95 || hd >= 90 || mram >= 90) {
+            if ("".equals(nivel)) {
+                if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
+                    //Chama aviso de nivel 3
+                    p3();
+                } else if (cpu >= 85 && cpu <= 94 || hd >= 81 && hd <= 89 || mram >= 80 && mram <= 89) {
+                    //Chama aviso de nivel 2
+                    p2();
+                } else if (cpu >= 95 || hd >= 90 || mram >= 90) {
+                    //Chama aviso de nivel 1
+                    p1();
+                } else {
+                    //para o aviso do dia anterior caso esteja execultando e não tenha mais necessidade.
+                    //tempo.cancel();
+                    pause();
+                    resume();
+                }
+            } else {
+                //verifica qual nivel atual de aviso e se ah necessidade de aumenta-lo
+                switch (nivel) {
+                    case "p1":
+                        //verifica a necessidade do aviso ainda estar avivo
+                        if (cpu >= 85 && cpu <= 94 || hd >= 81 && hd <= 89 || mram >= 80 && mram <= 89) {
+                            //para contagem anterior
+                            //tempo.cancel();
+                            //Chama aviso de nivel 2 caso tenha regredido um nivel de aviso;
+                            pause();
+                            resume();
+                            p2();
+                        } else if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
+                            //para contagem anterior
+                            //tempo.cancel();
+                            //Chama aviso de nivel 3 caso tenha regredido um nivel de aviso;
+                            pause();
+                            resume();
+                            p3();
+                        }
+                        break;
+                    case "p2":
+                        if (cpu >= 95 || hd >= 90 || mram >= 90) {
+                            pause();
+                            resume();
+                            //Chama aviso de nivel 1
+                            p1();
+                        } else if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
+                            pause();
+                            resume();
+                            //Chama aviso de nivel 3 caso tenha regredido um nivel de aviso;
+                            p3();
+                        }
+                        break;
+                    case "p3":
+                        if (cpu >= 85 && cpu <= 94 || hd >= 81 && hd <= 89 || mram >= 80 && mram <= 89) {
+                            //para contagem anterior
+                            //tempo.cancel();
+                            //Chama aviso de nivel 2
+                            pause();
+                            resume();
+                            p2();
+                        } else if (cpu >= 95 || hd >= 90 || mram >= 90) {
+                            pause();
+                            resume();
+                            //Chama aviso de nivel 1
+                            p1();
+                        }
+                        break;
+                    default:
+                        Config.setProp("nivelAviso", "", "Nivel de aviso atual");
+                        break;
 
-                        //Chama aviso de nivel 1
-                        p1();
-                    } else if (cpu > 74 && cpu <= 84 || hd > 79 && hd <= 80 || mram > 69 && mram <= 79) {
-
-                        //Chama aviso de nivel 3 caso tenha regredido um nivel de aviso;
-                        p3();
-                    }
-                    break;
-                case "p3":
-                    if (cpu >= 85 && cpu <= 94 || hd >= 81 && hd <= 89 || mram >= 80 && mram <= 89) {
-                        //para contagem anterior
-                        tempo.cancel();
-                        //Chama aviso de nivel 2
-                        p2();
-                    } else if (cpu >= 95 || hd >= 90 || mram >= 90) {
-                        //Chama aviso de nivel 1
-                        p1();
-                    }
-                    break;
-                default:
-                    Config.setProp("nivelAviso", "", "Nivel de aviso atual");
-                    break;
+                }
 
             }
-
         }
-
     }
 
 // metodo de aviso baixo aonde sera avisado 1 vez so por dia caso
     private static void p3() throws IOException {
         Config.setProp("nivelAviso", "p3", "Nivel de aviso atual");
         //cria contagem de tempo para enviar o proximo logs ou aviso
-        tempo.schedule(
-                new TimerTask() {
-            @Override
-            public void run() {
-                //instancia um objeto de GSON para conversão se json 
-                Gson g = new Gson();
-                //onstancia da classe Logs 
-                Logs log = new Logs();
-                // guarda informaçoes dentro ca classe de get set 
-                log.setData(DataAviso);
-                log.setMsg("Seu Computador esta em risco por favor procurar um tecnico o mais rapido possivel");
-                log.setLeitura_Logs(idLeitura);
-                System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+        try {
+            tempo.schedule(
+                    new TimerTask() {
+                @Override
+                public void run() {
+                    //instancia um objeto de GSON para conversão se json 
+                    Gson g = new Gson();
+                    //onstancia da classe Logs 
+                    Logs log = new Logs();
+                    // guarda informaçoes dentro ca classe de get set 
+                    log.setData(DataAviso);
+                    log.setMsg("Seu Computador esta em risco por favor procurar um tecnico o mais rapido possivel");
+                    log.setLeitura_Logs(idLeitura);
+                    System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
 
-                try {
-                    //envia aviso para o web server 
-                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
-                    );
+                    try {
+                        //envia aviso para o web server 
+                        Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                        );
 
-                } catch (IOException ex) {
-                    Logger.getLogger(ValidadorAlerta.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    } finally {
+                        System.out.println(" p3 foi enviado");
+                    }
+
                 }
-
-            }
-        }, new Date(), 1440000);// roda em 24hs 
+            }, new Date(), 1440000);// roda em 24hs 
+        } finally {
+            System.out.println("Erro ao enviar");
+        }
 
     }
 
@@ -176,62 +211,115 @@ public class ValidadorAlerta {
     private static void p2() throws IOException {
         Config.setProp("nivelAviso", "p2", "Nivel de aviso atual");
         //cria contagem de tempo para enviar o proximo logs ou aviso
-        tempo.schedule(
-                new TimerTask() {
-            @Override
-            public void run() {
-                //instancia um objeto de GSON para conversão se json 
-                Gson g = new Gson();
-                //onstancia da classe Logs 
-                Logs log = new Logs();
-                // guarda informaçoes dentro ca classe de get set 
+        try {
+            tempo.schedule(
+                    new TimerTask() {
+                @Override
+                public void run() {
+                    //instancia um objeto de GSON para conversão se json 
+                    Gson g = new Gson();
+                    //onstancia da classe Logs 
+                    Logs log = new Logs();
+                    // guarda informaçoes dentro ca classe de get set 
 
-                log.setData(DataAviso);
-                log.setMsg("olha seu computador ta mal se vc não cuidar vai dar ruim ");
-                log.setLeitura_Logs(idLeitura);
-                System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+                    log.setData(DataAviso);
+                    log.setMsg("olha seu computador ta mal se vc não cuidar vai dar ruim ");
+                    log.setLeitura_Logs(idLeitura);
+                    System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
 
-                try {
-                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
-                    );
+                    try {
+                        Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                        );
 
-                } catch (IOException ex) {
-                    Logger.getLogger(ValidadorAlerta.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    } finally {
+                        System.out.println(" p2 foi enviado");
+                    }
                 }
-            }
-        }, new Date(), 360000);// roda de 6 em 6 horas
+            }, new Date(), 360000);// roda de 6 em 6 horas
+        } finally {
+            System.out.println("Erro ao enviar");
+        }
     }
 
     // metodo de aviso Alto aonde sera avisado de uma em uma hora 
     private static void p1() throws IOException {
         Config.setProp("nivelAviso", "p1", "Nivel de aviso atual");
         //cria contagem de tempo para enviar o proximo logs ou aviso
-        tempo.schedule(
-                new TimerTask() {
-            @Override
-            public void run() {
-                //instancia um objeto de GSON para conversão se json 
-                Gson g = new Gson();
-                //onstancia da classe Logs 
-                Logs log = new Logs();
-                // guarda informaçoes dentro ca classe de get set 
+        try {
+            tempo.schedule(
+                    new TimerTask() {
+                @Override
+                public void run() {
+                    //instancia um objeto de GSON para conversão se json 
+                    Gson g = new Gson();
+                    //onstancia da classe Logs 
+                    Logs log = new Logs();
+                    // guarda informaçoes dentro ca classe de get set 
 
-                log.setData(DataAviso);
-                log.setMsg("Seu computador vai explodir");
-                log.setLeitura_Logs(idLeitura);
-                System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+                    log.setData(DataAviso);
+                    log.setMsg("Seu computador vai explodir");
+                    log.setLeitura_Logs(idLeitura);
+                    System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
 
-                try {
-                    Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
-                    );
+                    try {
+                        Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                        );
 
-                } catch (IOException ex) {
-                    Logger.getLogger(ValidadorAlerta.class
-                            .getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    } finally {
+                        System.out.println(" p1 foi enviado");
+                    }
                 }
-            }
-        }, new Date(), 60000);//toda de 1 em 1 hora
+            }, new Date(), 60000);//toda de 1 em 1 hora
+        } finally {
+            System.out.println("Erro ao enviar");
+        }
     }
 
+    // metodo de aviso Alto aonde sera avisado de uma em uma hora 
+    private static void personalizado() throws IOException {
+        Config.setProp("nivelAviso", "p1", "Nivel de aviso atual");
+        //cria contagem de tempo para enviar o proximo logs ou aviso
+        try {
+            tempo.schedule(
+                    new TimerTask() {
+                @Override
+                public void run() {
+                    //instancia um objeto de GSON para conversão se json 
+                    Gson g = new Gson();
+                    //onstancia da classe Logs 
+                    Logs log = new Logs();
+                    // guarda informaçoes dentro ca classe de get set
+
+                    log.setData(DataAviso);
+                    log.setMsg("Seu aviso personalizado foi acionado");
+                    log.setLeitura_Logs(idLeitura);
+                    System.out.println(g.toJson(log) + WebServer + "SalvaLogs");
+
+                    try {
+                        Envio.envioColeta(g.toJson(log), WebServer + "SalvaLogs", Boolean.class
+                        );
+
+                    } catch (IOException ex) {
+                        System.out.println(ex);
+                    } finally {
+                        System.out.println(" personalizado foi enviado");
+                    }
+                }
+            }, new Date(), 60000);//toda de 1 em 1 hora
+        } finally {
+            System.out.println("Erro ao enviar");
+        }
+    }
+
+    public static void pause() {
+        tempo.cancel();
+    }
+
+    public static void resume() {
+        tempo = new Timer();
+    }
 }

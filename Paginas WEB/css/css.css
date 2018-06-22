@@ -29,8 +29,8 @@ body,html{
 
 .col-md-9,.col-md-3{
 	border-left:2px solid #151515;
-	height:580px;
-	min-height:580px;
+	height:600px;
+
 	max-height:1000px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -91,16 +91,15 @@ h1{
 	
 }
 
-#btnDelete{
-	background-color: transparent;
-	border:none;
-}
+
 
 #Letreiro2{
 	float:left;
 }
 
 #btnDelete{
+	background-color: transparent;
+	border:none;
 	position: absolute;
 	right: 5%;
 	top: 30%
@@ -121,8 +120,8 @@ svg > g > text[text-anchor~=end],text[text-anchor~=start]{
 }
 
 .alert{
-	position: absolute;
-	left: 27%;
+	position: absolute !important;
+	left: 0 !important;
 	bottom: 0;
 	width:30%;
 }
@@ -134,3 +133,12 @@ svg > g > text[text-anchor~=end],text[text-anchor~=start]{
 .online{
 	background:#109618;
 } 
+
+
+input{
+	font-weight: bold;
+}
+
+#chart_info{
+	display: none;
+}

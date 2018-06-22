@@ -71,7 +71,7 @@ namespace API.Banco
 
                 List<SqlParameter> LstParametros = new List<SqlParameter>();
 
-                DataTable resposta = ObjBanco.ExecuteQuery("insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Sistema,Keep_Alive,Grupo_Cliente)  values('" + m.Responsavel + "','" + m.Nome_Maquina + "',getdate(),'" + m.Sistema + "'," + m.Keep_Alive + "," + m.Grupo_Cliente + ")", LstParametros);
+                DataTable resposta = ObjBanco.ExecuteQuery("insert into Maquina(Responsavel,Nome_Maquina,Adquirida,Data_Compra,Sistema,Keep_Alive,Grupo_Cliente)  values('" + m.Responsavel + "','" + m.Nome_Maquina + "',getdate(),'" + m.Data_Compra + "','" + m.Sistema + "'," + m.Keep_Alive + "," + m.Grupo_Cliente + ")", LstParametros);
                 DataTable dt = ObjBanco.ExecuteQuery("select max(idMAquina) from Maquina", LstParametros);
                 if (dt != null)
                 {
@@ -171,6 +171,7 @@ namespace API.Banco
                 dt = ObjBanco.ExecuteQuery("delete from Disco where Maquina_Disco =" + maquina + "", LstParametros);
                 dt = ObjBanco.ExecuteQuery("delete from Processador where Maquina_Cpu =" + maquina + "", LstParametros);
                 dt = ObjBanco.ExecuteQuery("delete from logss where Leitura_Logs in (select idLeitura from Maquina inner join Leitura on idMaquina = Maquina_Uso where idMAquina = "+maquina+")", LstParametros);
+                dt = ObjBanco.ExecuteQuery("delete from Aviso where idAviso in (select idAviso from Maquina inner join Aviso on idMaquina = Maquina_Aviso where idMAquina =" + maquina + ")", LstParametros);
                 dt = ObjBanco.ExecuteQuery("delete from leitura where Maquina_Uso =" + maquina + "", LstParametros);
                 dt = ObjBanco.ExecuteQuery("delete from maquina where idMAquina =" + maquina + "", LstParametros);
                 if (dt == null)
@@ -184,6 +185,32 @@ namespace API.Banco
                 return false;
             }
 
+        }
+
+        public bool Altera_Maquina(Maquina m)
+        {
+            try
+            {
+
+                List<SqlParameter> LstParametros = new List<SqlParameter>();
+
+                DataTable dt = ObjBanco.ExecuteQuery("update Maquina set Responsavel = "+m.Responsavel+",Nome_Maquina="+m.Nome_Maquina+",Adquirida"+m.Adquirida+",Sistema="+m.Sistema+"where idMaquina = " +m.idMaquina+"", LstParametros);
+
+                if (dt != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

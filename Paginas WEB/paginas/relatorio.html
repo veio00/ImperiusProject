@@ -1,115 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-<title>Relatórios</title>
-<meta charset="utf-8"/>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-	
-	<script src="../js/bootstrap.bundle.min.js"></script>
-	<script src="../js/relatorio.js"></script>
-	<link href="../css/relatorio.css" rel="stylesheet">
-	<link href="../css/css.css" rel="stylesheet">
-	<!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
-	<!--icones do google-->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-	
-</head>
-<body class="inicia">
-   <!-- Fixed navbar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="btn">
-			<a href="../principal.html" title="home"><button type="button" class="btn btn-outline-secondary  menu" ><i class="material-icons">insert_chart_outlined</i></button></a>
-			<a href="../paginas/relatorio.html" title="Relatorios"><button  type="button" class="btn btn-outline-secondary  menu"><i class = "material-icons">list_alt</i></button></a>
-			<a href="cadastro.html" title="Cadastro"><button  type="button" class="btn btn-outline-secondary menu"><i class="material-icons">portrait</i></button></a>
-			<a href="../ImperiusProjectColetor.rar" title="Download"><button  type="button" class="btn btn-outline-secondary  menu" ><i class ="material-icons">cloud_download</i></button></a>
-	
-		</div>
-		<div class="btn-group">
-			<a href="#" title="Sair"><button type="button" id='btnSair' class="btn btn-outline-secondary menu" ><i class="material-icons">exit_to_app</i></button></a>
-		</div>
-    </nav>
-
-	<div class="row painel">
-		<div class="col-md-12">
-			<div class="btn-group input-group-append" style="margin: 1%;">
-				<button type="button " id="btnLeitura" class="btn btn-outline-secondary ">Leituras</button>
-				<button  type="button" id="btnLogs" class="btn btn-outline-secondary ">Logs</button>
-				<button  type="button" id="btnInventario" class="btn btn-outline-secondary">Inventario</button>
-			</div>
-		</div>
-		<div class="col-md-12">
-			<h1 id="nomeRelatorio">Relatório de Leitura</h1>
-		</div>
-		<div class="col-md-2 input-group ">
-			<select class="custom-select" id="empresa">
-				<option selected>Escolha...</option>
-			</select>
-		</div>
-		<div class="input-group-append">
-			<button class="btn btn-outline-secondary menu" id="btnGerar" type="button"><i class="material-icons">repeat</i></button>
-		</div>
-	</div>
-	<div class="row painel">
-        <div class="col-md-12 nano leitura">
-			
-			<table id="tbLeitura" class="display content" style="width:100%">
-				<thead >
-					<tr id="trLeituraCabecario" >
-							
-					</tr>
-				</thead>
-				<tfoot>
-					<tr id="trLeituraRodape">
-							
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
-	<div class="row painel">
-		<div class="col-md-12 nano inventario">
-			 
-			<table id="tbInventario" class="display content" style="width:100%">
-				<thead >
-					<tr id="trInventarioCabecario" >
-							
-					</tr>
-				</thead>
-				<tfoot>
-					<tr id="trInventarioRodape">
-							
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
-	<div class="row painel">
-		<div class="col-md-12 nano logs">
-			
-			<table id="tbLogs" class="display content" style="width:100%">
-				<thead >
-					<tr id="trLogsCabecario" >
-							
-					</tr>
-				</thead>
-				<tfoot>
-					<tr id="trLogsRodape">
-							
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
-
-<div class="alert alert-danger " role="alert">
-  Essa maquina foi cadastrada porem não teve leitura, por favor verificar instalção do coletor ou entrar em contato com o suporte tecnico via telegram ou e-mail
-</div>
-	</body>
+   <head>
+      <title>Relatórios</title>
+      <link REL="SHORTCUT ICON" href="../img/logo.png">
+      </link>
+      <meta charset="utf-8"/>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+      <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/relatorio.js"></script>
+      <link href="../css/relatorio.css" rel="stylesheet">
+      <link href="../css/css.css" rel="stylesheet">
+      <!-- Bootstrap core CSS -->
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <!-- Bootstrap theme -->
+      <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+      <!--icones do google-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   </head>
+   <body class="inicia">
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+         <div class="btn">
+            <a href="../principal.html" title="home"><button type="button" class="btn btn-outline-secondary  menu" ><i class="material-icons">insert_chart_outlined</i></button></a>
+            <a href="../paginas/relatorio.html" title="Relatorios"><button  type="button" class="btn btn-outline-secondary  menu"><i class = "material-icons">list_alt</i></button></a>
+            <a href="cadastro.html" title="Cadastro"><button  type="button" class="btn btn-outline-secondary menu"><i class="material-icons">portrait</i></button></a>
+            <a href="../ImperiusProjectColetor.rar" title="Download"><button  type="button" class="btn btn-outline-secondary  menu" ><i class ="material-icons">cloud_download</i></button></a>
+         </div>
+         <div class="btn-group">
+            <a href="#" title="Sair"><button type="button" id='btnSair' class="btn btn-outline-secondary menu" ><i class="material-icons">exit_to_app</i></button></a>
+         </div>
+      </nav>
+      <div class="row painel">
+         <div class="col-md-12">
+            <div class="btn-group input-group-append" style="margin: 1%;">
+               <button type="button " id="btnLeitura" class="btn btn-outline-secondary ">Leituras</button>
+               <button  type="button" id="btnLogs" class="btn btn-outline-secondary ">Logs</button>
+               <button  type="button" id="btnInventario" class="btn btn-outline-secondary">Inventario</button>
+            </div>
+         </div>
+         <div class="col-md-12">
+            <h1 id="nomeRelatorio">Relatório de Leitura</h1>
+         </div>
+         <div class="col-md-2 input-group ">
+            <select class="custom-select" id="empresa">
+               <option selected>Escolha...</option>
+            </select>
+         </div>
+         <div class="input-group-append">
+            <!--<button class="btn btn-outline-secondary menu" id="btnGerar" type="button"><i class="material-icons">repeat</i></button>-->
+         </div>
+      </div>
+      <div class="row painel">
+         <div class="col-md-12 nano leitura">
+            <table id="tbLeitura" class="display content" style="width:100%">
+               <thead >
+                  <tr id="trLeituraCabecario" >
+                  </tr>
+               </thead>
+               <tfoot>
+                  <tr id="trLeituraRodape">
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+      </div>
+      <div class="row painel">
+         <div class="col-md-12 nano inventario">
+            <table id="tbInventario" class="display content" style="width:100%">
+               <thead >
+                  <tr id="trInventarioCabecario" >
+                  </tr>
+               </thead>
+               <tfoot>
+                  <tr id="trInventarioRodape">
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+      </div>
+      <div class="row painel">
+         <div class="col-md-12 nano logs">
+            <table id="tbLogs" class="display content" style="width:100%">
+               <thead >
+                  <tr id="trLogsCabecario" >
+                  </tr>
+               </thead>
+               <tfoot>
+                  <tr id="trLogsRodape">
+                  </tr>
+               </tfoot>
+            </table>
+         </div>
+      </div>
+      <div class="alert alert-danger " role="alert">
+         Essa maquina foi cadastrada porem não teve leitura, por favor verificar instalção do coletor ou entrar em contato com o suporte tecnico via telegram ou e-mail
+      </div>
+   </body>
 </html>

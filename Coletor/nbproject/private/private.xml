@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/build/classes/dados.properties</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/model/Aviso.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/configuracao/Config.java</file>
             <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/controller/Envio.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/view/CadastroMaquina.java</file>
             <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/view/View.java</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/controller/ValidadorAlerta.java</file>
-            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/view/Configuracoes.java</file>
+            <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/br/com/imperius/coletor/controller/InfoMaquina.java</file>
             <file>file:/C:/Users/Will/OneDrive%20-%20Digital%20School%20-%20BandTec/Imperius/ImperiusProjet2/Coletor/src/dados.properties</file>
         </group>
     </open-files>

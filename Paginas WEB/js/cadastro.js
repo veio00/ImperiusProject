@@ -39,6 +39,15 @@ function Cookie(name) {
 
 function botoes() {
 	
+	$('#oculto').on('click', function () {
+		$('#txtNome').val("Gerson Santos")
+		$('#txtEmail').val("50036@alunos.bandtec.com.br")
+		$('#txtSenha').val("123456")
+		$('#txtSenhaConf').val("123456")
+		$("#nivel").val(1);
+		$("#txtCod").val("")
+	});
+	
 	$('#btnSair').on('click', function () {
 		var cookies = document.cookie.split(";");
 		
@@ -74,6 +83,17 @@ function botoes() {
 
 				}
 			});
+	$('#btnAdd').on('click' , function(){
+
+					$('#txtNome').val("")
+					$('#txtEmail').val("")
+					$('#txtSenha').val("")
+					$('#txtSenhaConf').val("")
+					$("#nivel").val(0);
+					$("#txtCod").val("")
+
+				
+			});
 	
 	$('#btnSalvar').on('click', function () {
 			$("#nivel").val();
@@ -108,7 +128,7 @@ function botoes() {
 			$(".alert").show();
 			setTimeout(function(){
 				$(".alert").hide();
-			}, 2000);
+			}, 1000);
 			
 		}
 		var nome = $('#txtNome').val()
@@ -122,6 +142,19 @@ function botoes() {
 		}else{
 			AlteraCliente(cod, nome,email,senha,acesso,grupo);
 		}
+			setTimeout(function(){
+						
+			
+			$(".alert").hide();
+			$('#txtNome').val("")
+			$('#txtEmail').val("")
+			$('#txtSenha').val("")
+			$('#txtSenhaConf').val("")
+			$("#nivel").val(0);
+			$("#txtCod").val("")
+			window.location.reload(1);
+		}, 2000);
+				
 	});
 }
 
@@ -146,7 +179,7 @@ function Usuario(grupo) {
 				acesso = "btn btn-lg user";
 			}
 			
-			view += `\t<button type="button" class="${acesso} mostra"  value=${i}><i class="maquina material-icons md-48" >perm_identity</i> <br><span style="font-size: small;">${response[i].Nome}</span></button>`;
+			view += `\t<button type="button" class="${acesso} mostra"  value=${i}><i class="maquina material-icons md-48" >perm_identity</i> <br><span style="font-size: small;">${response[i].Nome.substring(0,8)}</span></button>`;
 			acesso = "btn btn-lg adm";
 		}
 		
@@ -196,7 +229,7 @@ function SalvaCliente(Nome, Email, Senha, Acesso, Empresa){
 		var settings = {
 			"async": true,
 			"crossDomain": false,
-			"url": "http://imperius.azurewebsites.net/api/view/alerta?msg=Ola "+Nome+", Cadastro%20realizado%20com%20sucesso,%20%20Obrigado%20por%20assianr%20o%20Imperius%20Project%20Monitor.%20http://imperius.azurewebsites.net/&email="+Email+"",
+			"url": "http://imperius.azurewebsites.net/api/view/alerta?msg=Ola "+Nome+", Cadastro%20realizado%20com%20sucesso,%20%20Obrigado%20por%20assinar%20o%20Imperius%20Project%20Monitor.%20http://imperius.azurewebsites.net/&email="+Email+"",
 			"method": "POST",
 			"headers": {
 				"Cache-Control": "no-cache",
@@ -209,16 +242,9 @@ function SalvaCliente(Nome, Email, Senha, Acesso, Empresa){
 		});
 		$("#alert").text("Usuario salvo com sucesso");
 		$(".alert").show();
-		setTimeout(function(){
-			$(".alert").css('position', 'absolute');
-			$(".alert").hide();
-			$('#txtNome').val("")
-			$('#txtEmail').val("")
-			$('#txtSenha').val("")
-			$('#txtSenhaConf').val("")
-			$("#nivel").val(0);
-			$("#txtCod").val("")
-		}, 2000);
+		$(".alert").css('position', 'absolute');
+
+	
 	});
 	
 }
@@ -267,14 +293,14 @@ function ExcluirCliente(idCliente){
 	}
 	
 	$.ajax(settings).done(function (response) {
-			$(".alert").css('position', 'absolute');
+			//$(".alert").css('position', 'absolute');
 			$("#alert").text("Usuario excluido com sucesso");
 			$(".alert").show();
 			setTimeout(function(){
 
 				$(".alert").hide();
 
-			}, 2000);
+			}, 1000);
 	});
 }
 	

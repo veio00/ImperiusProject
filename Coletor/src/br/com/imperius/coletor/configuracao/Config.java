@@ -19,6 +19,7 @@ public class Config {
     }
 
     private static OutputStream getLocalEscrita() throws FileNotFoundException, URISyntaxException {
+
         return new FileOutputStream(new File(Config.class.getResource(NOME_ARQUIVO).toURI()));
     }
 

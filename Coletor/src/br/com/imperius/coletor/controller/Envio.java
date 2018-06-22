@@ -5,6 +5,7 @@
  */
 package br.com.imperius.coletor.controller;
 
+import br.com.imperius.coletor.view.CadastroMaquina;
 import com.google.gson.Gson;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,6 +20,8 @@ import java.net.URL;
  * @author Will
  */
 public class Envio {
+    
+    private static CadastroMaquina cm = new CadastroMaquina();
 
     private static String lerString(InputStream stream) throws IOException {
         try (BufferedInputStream in = new BufferedInputStream(stream)) {
@@ -49,6 +52,8 @@ public class Envio {
             return lerString(con.getInputStream());
         } else if (responseCode == 204) {
             return null;
+        }else if (responseCode == 500) {
+            return "erro ao achar cadastro de maquina verifiquei com seu adiminstrador";
         }
         throw new IOException("Erro HTTP: " + responseCode);
     }

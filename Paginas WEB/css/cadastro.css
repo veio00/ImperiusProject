@@ -54,3 +54,17 @@ body,html{
 .user{
 	background-color:#e2e2e2;
 }
+
+
+#btnAdd{
+	background-color: transparent;
+	border:none;
+	position: absolute;
+	right: 25%;
+	top: 30%
+}
+
+input{
+	font-weight: bold;
+}
+

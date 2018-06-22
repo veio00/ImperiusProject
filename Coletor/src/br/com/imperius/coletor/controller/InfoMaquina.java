@@ -72,7 +72,8 @@ public class InfoMaquina {
         //zm.setResponsavel("");
         m.setSistema(sys.getVendor());
         m.setGrupo_Cliente(getGrupo());
-        m.setResponsavel(".");
+        m.setResponsavel("Não definido");
+        m.setData_Compra("N/D");
         m.setKeep_Alive(1);
         
         return m;

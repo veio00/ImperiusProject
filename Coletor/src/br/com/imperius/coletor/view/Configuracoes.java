@@ -103,15 +103,15 @@ public class Configuracoes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Configuraões");
+        jLabel1.setText("Configurações");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Indentificador do grupo:");
+        jLabel2.setText("Identificador do grupo:");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Indentificador da maquina:");
+        jLabel3.setText("Identificador da maquina:");
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,7 +123,7 @@ public class Configuracoes extends javax.swing.JFrame {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Webser ref:");
+        jLabel6.setText("Web server ref:");
 
         txtGrupo.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
         txtGrupo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -203,11 +203,11 @@ public class Configuracoes extends javax.swing.JFrame {
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Avivo processador :");
+        jLabel9.setText("Aviso processador :");
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Avivo memoria:");
+        jLabel10.setText("Aviso memoria:");
 
         txtP2I.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
         txtP2I.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -234,7 +234,7 @@ public class Configuracoes extends javax.swing.JFrame {
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Avivo disco:");
+        jLabel13.setText("Aviso disco:");
 
         txtP3I.setFont(new java.awt.Font("Arial Black", 3, 11)); // NOI18N
         txtP3I.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -291,7 +291,7 @@ public class Configuracoes extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAviso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDisparo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)

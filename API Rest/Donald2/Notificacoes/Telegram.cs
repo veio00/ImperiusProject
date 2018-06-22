@@ -16,7 +16,7 @@ namespace API.Controllers
             const string token = "574896666:AAFLMEzCPFx_cqZ3w22fccZhxnk2yWGtRhg"; // "Pluto";
             //const string Ds_Mensagem = ; // "Colocar mensagem";
             //const string Ds_Canal = "-1001244864542";// " @Imperius_Imfernus_bot";
-            const string Ds_Canal = "-1001267600200;-294943455;-1001244864542";// " @IMPERIUS";
+            const string Ds_Canal = "-1001267600200";// " @IMPERIUS";
 
 
             try
